@@ -115,21 +115,26 @@ public class Task {
             }
         }
         //for  repeatable task:
-        if (end < current) {
-            //active =false;
+        if (current < start || current > end) {
             return -1;
         }
 
-        int count = start;
+        int count = start; //helpful variable's
+        int lastIteration = start;
 
-        while (true) {
+        while (lastIteration <= end) {
+            lastIteration += interval;
+        }
+        lastIteration -= interval;
+
+        if (current > lastIteration) {
+            return -1;
+        }
+        while (count < current) {
             count += interval;
-            if(count > current)
-                break;
-            return -1;
         }
+        //  System.out.println("Last i: " + lastIteration);
         return count;
-
     }
 }
 
