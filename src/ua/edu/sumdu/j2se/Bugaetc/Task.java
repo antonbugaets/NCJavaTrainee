@@ -12,7 +12,7 @@ public class Task {
 
     private boolean repeatable; //
 
-    public Task(String title, int time) { //constructor constructs an inactive task to run at a specified time without repeating with a given name.
+    Task(String title, int time) { //constructor constructs an inactive task to run at a specified time without repeating with a given name.
         this.title = title;
         this.time = time;
         repeatable = false;
@@ -30,36 +30,36 @@ public class Task {
         repeatable = true;
     }
 
-    public String getTitle() {
+    String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    void setTitle(String title) {
         this.title = title;
     }
 
-    public Boolean isActive() {
+    Boolean isActive() {
         return active;
     }
 
-    public void setActive(boolean active) {
+    void setActive(boolean active) {
         this.active = active;
     }
 
-    public boolean isRepeated() {
+    boolean isRepeated() {
         return repeatable;
     }
 
     //Methods for reading and changing execution time for non-repetitive tasks:
 
-    public int getTime() { //if the task is a repetitive one, the method must return the start time of the repetition;
+    int getTime() { //if the task is a repetitive one, the method must return the start time of the repetition;
         if (!isRepeated()) {
             return time;
         } else return start;
 
     }
 
-    public void setTime(int time) { // if the task was a repetitive one, it should become non-repetitive.
+    void setTime(int time) { // if the task was a repetitive one, it should become non-repetitive.
         if (isRepeated()) {
             this.time = time;
             this.start = 0;
@@ -70,19 +70,19 @@ public class Task {
     }
 
     // Methods for reading and changing execution time for repetitive tasks:
-    public int getStartTime() { //if the task is a non-repetitive one, the method must return the time of the execution;
+    int getStartTime() { //if the task is a non-repetitive one, the method must return the time of the execution;
         if (isRepeated()) {
             return start;
         } else return time;
     }
 
-    public int getEndTime() {
+    int getEndTime() {
         if (isRepeated()) {
             return end;
         } else return time;
     }
 
-    public int getRepeatInterval() {
+    int getRepeatInterval() {
         if (isRepeated()) {
             return interval;
         } else return 0;
@@ -103,7 +103,7 @@ public class Task {
     method to the Task class that returns the next start time of the task execution after the current time.
      If after the specified time the task is not executed anymore, the method must return -1.
      */
-    public int nextTimeAfter(int current) { // current - time at this moment
+    int nextTimeAfter(int current) { // current - time at this moment
         //for non repeatable task:
         if (!isRepeated()) {
             if (time < current) {
