@@ -109,32 +109,32 @@ public class Task {
             if (time < current) {
                 //active =false;
                 return -1; //
-            }
-            if (time >= current) {
+            } else {
                 return time;
             }
         }
         //for  repeatable task:
-        if (current < start || current > end) {
+        if (current > end) {
             return -1;
         }
+        //helpful variable's
+        int count = start; //last Iteration with current
+        int lastIteration = start; //Last Iteration w/o current
 
-        int count = start; //helpful variable's
-        int lastIteration = start;
-
-        while (lastIteration <= end) {
+        while (lastIteration <= end) { ////calculation last Iteration w/o current
             lastIteration += interval;
         }
         lastIteration -= interval;
 
-        if (current > lastIteration) {
+        if (current > lastIteration) { //the task will not be executed anymore
             return -1;
         }
-        while (count < current) {
+
+        while (count < current) { //calculation last Iteration with current
             count += interval;
         }
         //  System.out.println("Last i: " + lastIteration);
-        return count;
+        return count; // return last Iteration with current
     }
 }
 
