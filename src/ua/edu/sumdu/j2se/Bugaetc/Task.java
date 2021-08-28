@@ -162,15 +162,3 @@ public class Task {
     }
 }
 
-class RepeatableTaskEx extends RuntimeException {
-    private String msg;
-
-    public RepeatableTaskEx(String msg) {
-        this.msg = msg;
-    }
-
-    @Override
-    public String getMessage() {
-        return msg;
-    }
-}
