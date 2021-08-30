@@ -95,7 +95,7 @@ public class ArrayTaskList implements ArrayTask {
             if (tasks[i].isRepeated()) {
                 //  int testTo = tasks[i].nextTimeAfter(to);
                 // int testFrom = tasks[i].nextTimeAfter(from);
-                if (tasks[i].nextTimeAfter(to) < to || tasks[i].nextTimeAfter(from) < to) {
+                if (tasks[i].nextTimeAfter(to) < to && tasks[i].nextTimeAfter(from) < to) {
                     result.add(tasks[i]);
                 }
             }
