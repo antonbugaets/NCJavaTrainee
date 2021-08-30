@@ -72,9 +72,9 @@ public class Task {
     void setTime(int time) {
         this.time = time;
         if (isRepeated()) {
-            this.start = Integer.parseInt(null);
-            this.end = Integer.parseInt(null);
-            this.interval = Integer.parseInt(null);
+            this.start = 0;
+            this.end = 0;
+            this.interval = 0;
             repeatable = false;
         }
     }
@@ -111,7 +111,7 @@ public class Task {
         this.end = end;
         this.interval = interval;
         if (!isRepeated()) {
-            this.time = Integer.parseInt(null);
+            this.time = 0;
             repeatable = true;
         }
     }
