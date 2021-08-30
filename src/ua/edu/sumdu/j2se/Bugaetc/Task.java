@@ -1,5 +1,7 @@
 package ua.edu.sumdu.j2se.Bugaetc;
 
+import java.util.Objects;
+
 public class Task {
     private String title;
     private int time;
@@ -31,6 +33,25 @@ public class Task {
         this.end = end;
         this.interval = interval;
         repeatable = true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return time == task.time &&
+                start == task.start &&
+                end == task.end &&
+                interval == task.interval &&
+                active == task.active &&
+                repeatable == task.repeatable &&
+                Objects.equals(title, task.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, time, start, end, interval, active, repeatable);
     }
 
     String getTitle() {
@@ -159,6 +180,7 @@ public class Task {
         }
         // return last Iteration with current
         return count;
+
     }
 }
 

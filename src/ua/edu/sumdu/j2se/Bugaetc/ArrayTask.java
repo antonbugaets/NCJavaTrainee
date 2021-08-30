@@ -5,4 +5,5 @@ public interface ArrayTask {
     boolean remove (Task task);
     int size();
     Task getTask(int index);
+    ArrayTaskList incoming(int from, int to);
 }
