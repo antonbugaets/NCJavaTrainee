@@ -126,7 +126,7 @@ public class Task {
      * current - time at this moment
      */
     int nextTimeAfter(int current) {
-        /**for non repeatable task:*/
+        //for non repeatable task:
         if (!isRepeated()) {
             if (time < current) {
                 //active =false;
@@ -135,29 +135,29 @@ public class Task {
                 return time;
             }
         }
-        /**for  repeatable task:*/
+        //for  repeatable task:
         if (current > end) {
             return -1;
         }
-        /**helpful variable's*/
-        /**last Iteration with current*/
+        //helpful variable's
+        //last Iteration with current
         int count = start;
-        /**Last Iteration w/o current*/
+        //Last Iteration w/o current
         int lastIteration = start;
-        /** calculation last Iteration w/o current*/
+        // calculation last Iteration w/o current
         while (lastIteration <= end) {
             lastIteration += interval;
         }
         lastIteration -= interval;
-        /**the task will not be executed anymore*/
+        //the task will not be executed anymore
         if (current > lastIteration) {
             return -1;
         }
-        /**calculation last Iteration with current*/
+        //calculation last Iteration with current
         while (count < current) {
             count += interval;
         }
-        /** return last Iteration with current*/
+        // return last Iteration with current
         return count;
     }
 }
