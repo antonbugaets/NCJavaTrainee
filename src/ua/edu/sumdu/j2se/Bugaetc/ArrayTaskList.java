@@ -3,7 +3,7 @@ package ua.edu.sumdu.j2se.Bugaetc;
 import java.util.*;
 
 public class ArrayTaskList implements ArrayTask {
-    private Task[] tasks;
+    private Task[] tasks = new Task[]{};
 
     public ArrayTaskList() {
 
@@ -15,20 +15,28 @@ public class ArrayTaskList implements ArrayTask {
 
     @Override
     public void add(Task task) {
-        tasks[tasks.length] = task;
+        tasks = Arrays.copyOf(tasks, tasks.length + 1);
+        tasks[tasks.length - 1] = task;
     }
 
     @Override
     public boolean remove(Task task) {
+        Task[] result = new Task[tasks.length - 1];
+        int j = 0;
         for (int i = 0; i < tasks.length; i++) {
             if (tasks[i].equals(task)) {
-                tasks[i] = null;
-                tasks[i] = tasks[i + 1];
-                return true;
-            } else continue;
-
+                System.arraycopy(tasks, 0, result, 0, i);
+                System.arraycopy(tasks, i + 1, result, i, tasks.length - i - 1);
+                j++;
+            }
         }
-        return false;
+        if (j > 0) {
+            tasks = result;
+            System.out.println();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
