@@ -83,6 +83,7 @@ public class ArrayTaskList implements ArrayTask {
     @Override
     public ArrayTaskList incoming(int from, int to) {
         ArrayTaskList result = new ArrayTaskList();
+
         for (int i = 0; i < tasks.length; i++) {
             //for non - repeatable task's:
             if (!tasks[i].isRepeated()) {
@@ -92,7 +93,9 @@ public class ArrayTaskList implements ArrayTask {
             }
             //for  repeatable task's:
             if (tasks[i].isRepeated()) {
-                if (tasks[i].nextTimeAfter(to) < to || tasks[i].nextTimeAfter(from) > from) {
+                //  int testTo = tasks[i].nextTimeAfter(to);
+                // int testFrom = tasks[i].nextTimeAfter(from);
+                if (tasks[i].nextTimeAfter(to) <= to || tasks[i].nextTimeAfter(from) <= to) {
                     result.add(tasks[i]);
                 }
             }
