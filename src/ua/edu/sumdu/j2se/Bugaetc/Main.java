@@ -11,6 +11,9 @@ public class Main {
         //System.out.println(repetableTask1.nextTimeAfter(4  ));
 
         ArrayTaskList arrayTaskList = new ArrayTaskList();
+        for (int i = 0; i < 20; i++) {
+            arrayTaskList.add(repetableTask1);
+        }
 
         arrayTaskList.add(repetableTask2);
         for (int i = 0; i < 20; i++) {
@@ -19,7 +22,7 @@ public class Main {
 
         System.out.println(arrayTaskList.size());
 
-        arrayTaskList.remove(repetableTask2 );
+        arrayTaskList.remove(repetableTask1);
         System.out.println(arrayTaskList.size());
     }
 }

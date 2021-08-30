@@ -58,19 +58,19 @@ public class Task {
         return title;
     }
 
-    void setTitle(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    boolean isActive() {
+    public boolean isActive() {
         return active;
     }
 
-    void setActive(boolean active) {
+    public void setActive(boolean active) {
         this.active = active;
     }
 
-    boolean isRepeated() {
+    public boolean isRepeated() {
         return repeatable;
     }
 
@@ -79,7 +79,7 @@ public class Task {
     /**
      * if the task is a repetitive one, the method must return the start time of the repetition;
      */
-    int getTime() {
+    public int getTime() {
         if (!isRepeated()) {
             return time;
         } else return start;
@@ -90,7 +90,7 @@ public class Task {
      * if the task was a repetitive one, it should become non-repetitive.
      */
 
-    void setTime(int time) {
+    public void setTime(int time) {
         this.time = time;
         if (isRepeated()) {
             this.start = 0;
@@ -105,19 +105,19 @@ public class Task {
     /**
      * if the task is a non-repetitive one, the method must return the time of the execution;
      */
-    int getStartTime() {
+    public int getStartTime() {
         if (isRepeated()) {
             return start;
         } else return time;
     }
 
-    int getEndTime() {
+    public int getEndTime() {
         if (isRepeated()) {
             return end;
         } else return time;
     }
 
-    int getRepeatInterval() {
+    public int getRepeatInterval() {
         if (isRepeated()) {
             return interval;
         } else return 0;
@@ -127,7 +127,7 @@ public class Task {
      * if the task is a non-repetitive one, it should become repetitive.
      */
 
-    void setTime(int start, int end, int interval) {
+    public void setTime(int start, int end, int interval) {
         this.start = start;
         this.end = end;
         this.interval = interval;
@@ -146,7 +146,7 @@ public class Task {
     /**
      * current - time at this moment
      */
-    int nextTimeAfter(int current) {
+    public int nextTimeAfter(int current) {
 
         //for non repeatable task:
         if (!isRepeated()) {

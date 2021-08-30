@@ -57,6 +57,19 @@ public class ArrayTaskList implements ArrayTask {
 
     @Override
     public ArrayTaskList incoming(int from, int to) {
-        return null;
+        ArrayTaskList result = new ArrayTaskList();
+        for (int i = 0; i < tasks.length; i++) {
+            if (!tasks[i].isRepeated()) {
+                if (tasks[i].getTime() < to & tasks[i].getTime() > from) {
+                    result.add(tasks[i]);
+                }
+            }
+            if (tasks[i].isRepeated()) {
+                if(tasks[i].nextTimeAfter(to) < to || tasks[i].nextTimeAfter(from) > from  ){
+                    result.add(tasks[i]);
+                }
+            }
+        }
+        return result;
     }
 }
