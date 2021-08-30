@@ -149,6 +149,7 @@ public class Task {
             lastIteration += interval;
         }
         lastIteration -= interval;
+        System.out.println("LastIretation w/o current: " + lastIteration);
         //the task will not be executed anymore
         if (current > lastIteration) {
             return -1;
