@@ -11,6 +11,11 @@ public class Main {
 
         ArrayTaskList arrayTaskList = new ArrayTaskList();
         arrayTaskList.add(repetableTask1);
+        arrayTaskList.add(repetableTask1);
+        arrayTaskList.add(repetableTask1);
+
+        System.out.println(arrayTaskList.size());
+        arrayTaskList.remove(repetableTask1);
         System.out.println(arrayTaskList.size());
     }
 }

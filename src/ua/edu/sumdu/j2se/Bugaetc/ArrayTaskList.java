@@ -21,18 +21,19 @@ public class ArrayTaskList implements ArrayTask {
 
     @Override
     public boolean remove(Task task) {
-        Task[] result = new Task[tasks.length - 1];
+        Task[] result;
         int j = 0;
         for (int i = 0; i < tasks.length; i++) {
+            result = new Task[tasks.length - 1];
             if (tasks[i].equals(task)) {
                 System.arraycopy(tasks, 0, result, 0, i);
                 System.arraycopy(tasks, i + 1, result, i, tasks.length - i - 1);
+                tasks = result;
                 j++;
             }
         }
         if (j > 0) {
-            tasks = result;
-            System.out.println();
+            System.out.println("Sum of removed items :" + j);
             return true;
         } else {
             return false;
