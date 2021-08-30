@@ -1,4 +1,4 @@
-package ua.edu.sumdu.j2se.Bugaetc;
+package ua.sumdu.j2se.sAnton.tasks;
 
 import java.util.*;
 

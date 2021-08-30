@@ -1,7 +1,4 @@
-package ua.edu.sumdu.j2se.Bugaetc;
-
-import java.util.ArrayList;
-import java.util.List;
+package ua.sumdu.j2se.sAnton.tasks;
 
 public class Main {
 
