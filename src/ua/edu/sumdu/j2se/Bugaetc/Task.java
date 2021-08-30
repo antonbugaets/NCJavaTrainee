@@ -126,6 +126,7 @@ public class Task {
      * current - time at this moment
      */
     int nextTimeAfter(int current) {
+
         //for non repeatable task:
         if (!isRepeated()) {
             if (time < current) {
@@ -139,24 +140,22 @@ public class Task {
         if (current > end) {
             return -1;
         }
+        if (current < start) {
+            return start;
+        }
         //helpful variable's
         //last Iteration with current
         int count = start;
-        //Last Iteration w/o current
-        int lastIteration = start;
         // calculation last Iteration w/o current
-        while (lastIteration <= end) {
-            lastIteration += interval;
-        }
-        lastIteration -= interval;
+        long lastIteration = end - start % interval == 0 ? end : end - ((end - start) % interval);
         System.out.println("LastIretation w/o current: " + lastIteration);
         //the task will not be executed anymore
-        if (current > lastIteration) {
-            return -1;
-        }
         //calculation last Iteration with current
-        while (count < current) {
+        while (count <= current) {
             count += interval;
+        }
+        if (current >= lastIteration | count > lastIteration) {
+            return -1;
         }
         // return last Iteration with current
         return count;
