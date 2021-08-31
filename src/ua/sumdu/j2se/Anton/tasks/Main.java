@@ -23,7 +23,7 @@ public class Main {
         arrayTaskList.add(repetableTask2);
         System.out.println(arrayTaskList.size());
 
-       System.out.println(arrayTaskList.remove(repetableTask1));
+       System.out.println(arrayTaskList.remove(repetableTask2));
 
         System.out.println(arrayTaskList.size());
 

@@ -46,7 +46,9 @@ public class Task {
                 interval == task.interval &&
                 active == task.active &&
                 repeatable == task.repeatable &&
-                Objects.equals(title, task.title);
+                title.equals(task.title);
+
+                //Objects.equals(title, task.title);
     }
 
     @Override
@@ -169,7 +171,7 @@ public class Task {
         int count = start;
         // calculation last Iteration w/o current
         long lastIteration = end - start % interval == 0 ? end : end - ((end - start) % interval);
-       // System.out.println("LastIretation w/o current: " + lastIteration);
+        // System.out.println("LastIretation w/o current: " + lastIteration);
         //the task will not be executed anymore
         //calculation last Iteration with current
         while (count <= current) {
