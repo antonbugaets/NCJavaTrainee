@@ -59,7 +59,7 @@ public class ArrayTaskList implements ArrayTask {
     @Override
     public boolean remove(Task task) {
         int count = 0;
-        //calling helpful met "removeOneTask", while remove1 return's true count will count++
+        //calling helpful met "removeOneTask", while removeOneTask return's true count will count++
         while (removeOneTask(task)) {
             count++;
         }
