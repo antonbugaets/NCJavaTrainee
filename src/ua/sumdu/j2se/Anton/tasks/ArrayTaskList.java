@@ -28,25 +28,27 @@ public class ArrayTaskList implements ArrayTask {
      * if such a task was in the list. If the list contains several tasks of the same type, any of them should be removed.
      */
 
-    @Override
-    public boolean remove(Task task) {
-        // Task[] result;
-        int j = 0;
+
+    public boolean remove1(Task task) {
         for (int i = 0; i < tasks.length; i++) {
             Task[] result = new Task[tasks.length - 1];
             if (tasks[i].equals(task)) {
                 System.arraycopy(tasks, 0, result, 0, i);
                 System.arraycopy(tasks, i + 1, result, i, tasks.length - i - 1);
                 tasks = result;
-                j++;
+                return true;
             }
         }
-        if (j > 0) {
-            System.out.println("Sum of removed items :" + j);
-            return true;
-        } else {
-            return false;
+        return false;
+    }
+
+    @Override
+    public boolean remove(Task task) {
+        int count = 0;
+        while (remove1(task)) {
+            count++;
         }
+        return count > 0;
     }
 
     /**
@@ -88,10 +90,11 @@ public class ArrayTaskList implements ArrayTask {
         for (int i = 0; i < tasks.length; i++) {
             //for non - repeatable task's:
             if (!tasks[i].isRepeated()) {
-                if (tasks[i].getTime() < to && tasks[i].getTime() > from) {
+                if (tasks[i].getTime() <= to && tasks[i].getTime() > from) {
                     result.add(tasks[i]);
                 }
             }
+
             //for  repeatable task's:
             if (tasks[i].isRepeated()) {
                 for (int j = from; j <= to; j++) {
