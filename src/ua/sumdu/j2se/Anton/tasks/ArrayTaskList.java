@@ -5,11 +5,11 @@ import java.util.*;
 public class ArrayTaskList implements ArrayTask {
     private Task[] tasks = new Task[]{};
 
-    public ArrayTaskList() {
+    public ArrayTaskList() { //default constructor
 
     }
 
-    public ArrayTaskList(Task[] tasks) {
+    public ArrayTaskList(Task[] tasks) { // constructor with parameter's
         this.tasks = tasks;
     }
 
@@ -18,8 +18,8 @@ public class ArrayTaskList implements ArrayTask {
      */
     @Override
     public void add(Task task) {
-        tasks = Arrays.copyOf(tasks, tasks.length + 1);
-        tasks[tasks.length - 1] = task;
+        tasks = Arrays.copyOf(tasks, tasks.length + 1); //make tasks length + 1
+        tasks[tasks.length - 1] = task; // set task to empty place in tasks
     }
 
 
@@ -29,23 +29,38 @@ public class ArrayTaskList implements ArrayTask {
      */
 
 
-    public boolean remove1(Task task) {
+    /**
+     * this my helpful met
+     * it's necessary to implement business logic;
+     * source : https://riptutorial.com/java/example/5339/remove-an-element-from-an-array
+     */
+    public boolean removeOneTask(Task task) {
+        //get index from original array
         for (int i = 0; i < tasks.length; i++) {
+            // Array which will contain the result.
             Task[] result = new Task[tasks.length - 1];
+            //equals - overridden met in Task class
             if (tasks[i].equals(task)) {
+                // Copy the elements at the left of the index.
                 System.arraycopy(tasks, 0, result, 0, i);
+                // Copy the elements at the right of the index.
                 System.arraycopy(tasks, i + 1, result, i, tasks.length - i - 1);
+                //assignment result to original array
                 tasks = result;
+                // if one element added return true
                 return true;
             }
         }
+        // if no one element's added return false
         return false;
     }
+
 
     @Override
     public boolean remove(Task task) {
         int count = 0;
-        while (remove1(task)) {
+        //calling helpful met "removeOneTask", while remove1 return's true count will count++
+        while (removeOneTask(task)) {
             count++;
         }
         return count > 0;
@@ -57,7 +72,7 @@ public class ArrayTaskList implements ArrayTask {
 
     @Override
     public int size() {
-        //take Test[] lenght
+        //take Test[] length
         return tasks.length;
     }
 
@@ -90,7 +105,9 @@ public class ArrayTaskList implements ArrayTask {
         for (int i = 0; i < tasks.length; i++) {
             //for non - repeatable task's:
             if (!tasks[i].isRepeated()) {
+                //calling "getTime" met from Task Class, If task's time is in the interval ( from - to ):
                 if (tasks[i].getTime() <= to && tasks[i].getTime() > from) {
+                    //Then we add this task to the result array
                     result.add(tasks[i]);
                 }
             }
@@ -98,7 +115,9 @@ public class ArrayTaskList implements ArrayTask {
             //for  repeatable task's:
             if (tasks[i].isRepeated()) {
                 for (int j = from; j <= to; j++) {
+                    //calling "nextTimeAfter" met from Task Class, If one task execution is in the interval ( from - to ):
                     if (tasks[i].nextTimeAfter(j) <= to && tasks[i].nextTimeAfter(j) != -1) {
+                        //Then we add this task to the result array
                         result.add(tasks[i]);
                         break;
                     }
