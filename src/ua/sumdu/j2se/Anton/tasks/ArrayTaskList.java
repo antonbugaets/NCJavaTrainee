@@ -1,4 +1,4 @@
-package ua.sumdu.j2se.sAnton.tasks;
+package ua.sumdu.j2se.Anton.tasks;
 
 import java.util.*;
 
