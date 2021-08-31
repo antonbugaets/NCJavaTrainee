@@ -22,6 +22,7 @@ public class ArrayTaskList implements ArrayTask {
         tasks[tasks.length - 1] = task;
     }
 
+
     /**
      * boolean remove (Task task)is a method that removes a task from the list and returns true,
      * if such a task was in the list. If the list contains several tasks of the same type, any of them should be removed.
@@ -93,10 +94,11 @@ public class ArrayTaskList implements ArrayTask {
             }
             //for  repeatable task's:
             if (tasks[i].isRepeated()) {
-                //  int testTo = tasks[i].nextTimeAfter(to);
-                // int testFrom = tasks[i].nextTimeAfter(from);
-                if (tasks[i].nextTimeAfter(to) < to && tasks[i].nextTimeAfter(from) < to) {
-                    result.add(tasks[i]);
+                for (int j = from; j <= to; j++) {
+                    if (tasks[i].nextTimeAfter(j) <= to && tasks[i].nextTimeAfter(j) != -1) {
+                        result.add(tasks[i]);
+                        break;
+                    }
                 }
             }
         }

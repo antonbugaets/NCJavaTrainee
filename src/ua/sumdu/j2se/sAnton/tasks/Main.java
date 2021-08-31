@@ -8,12 +8,12 @@ public class Main {
         Task repetableTask2 = new Task("title", 16, 238, 16);
 
         //System.out.println(repetableTask1.nextTimeAfter(4  ));
-
+        System.out.println(repetableTask1.nextTimeAfter(10));
         ArrayTaskList arrayTaskList = new ArrayTaskList();
         arrayTaskList.add(repetableTask1);
         arrayTaskList.add(repetableTask2);
 
-        ArrayTaskList test = arrayTaskList.incoming(5,15);
+        ArrayTaskList test = arrayTaskList.incoming(6,15);
 
 
         //System.out.println(test.size());
