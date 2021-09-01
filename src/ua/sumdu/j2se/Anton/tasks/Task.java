@@ -48,7 +48,7 @@ public class Task {
                 repeatable == task.repeatable &&
                 title.equals(task.title);
 
-                //Objects.equals(title, task.title);
+        //Objects.equals(title, task.title);
     }
 
     @Override

@@ -27,44 +27,20 @@ public class ArrayTaskList implements ArrayTask {
      * boolean remove (Task task)is a method that removes a task from the list and returns true,
      * if such a task was in the list. If the list contains several tasks of the same type, any of them should be removed.
      */
-
-
-    /**
-     * this my helpful met
-     * it's necessary to implement business logic;
-     * source : https://riptutorial.com/java/example/5339/remove-an-element-from-an-array
-     */
-    public boolean removeOneTask(Task task) {
-        //get index from original array
-        for (int i = 0; i < tasks.length; i++) {
-            // Array which will contain the result.
-            Task[] result = new Task[tasks.length - 1];
-            //equals - overridden met in Task class
-            if (tasks[i].equals(task)) {
-                // Copy the elements at the left of the index.
-                System.arraycopy(tasks, 0, result, 0, i);
-                // Copy the elements at the right of the index.
-                System.arraycopy(tasks, i + 1, result, i, tasks.length - i - 1);
-                //assignment result to original array
-                tasks = result;
-                // if one element added return true
-                return true;
+    @Override
+    public boolean remove(Task task) { //right version
+        boolean b = false;
+        ArrayTaskList result = new ArrayTaskList();
+        for (int i = 0; i < this.size(); i++) {
+            if (!task.equals(tasks[i])) {
+                result.add(tasks[i]);
+                tasks = result.tasks;
+                b = true;
             }
         }
-        // if no one element's added return false
-        return false;
+        return b;
     }
 
-
-    @Override
-    public boolean remove(Task task) {
-        int count = 0;
-        //calling helpful met "removeOneTask", while removeOneTask return's true count will count++
-        while (removeOneTask(task)) {
-            count++;
-        }
-        return count > 0;
-    }
 
     /**
      * int size() is a method that returns several tasks from the list .
@@ -101,6 +77,59 @@ public class ArrayTaskList implements ArrayTask {
     @Override
     public ArrayTaskList incoming(int from, int to) {
         ArrayTaskList result = new ArrayTaskList();
+        for (int i = 0; i < this.size(); i++) {
+            //after the "from" time, and not later than the "to" time
+            for (int j = from + 1; j <= to; j++) {
+                //calling "nextTimeAfter" met from "Task" class, If one task execution is in the interval ( from - to ):
+                if (tasks[i].nextTimeAfter(j) <= to && tasks[i].nextTimeAfter(j) != -1) {
+                    //Then we add this task to the result array
+                    result.add(tasks[i]);
+                    //add this task and break;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+
+    /*
+    public boolean removeOneTask(Task task) {
+        //get index from original array
+        for (int i = 0; i < tasks.length; i++) {
+            // Array which will contain the result.
+            Task[] result = new Task[tasks.length - 1];
+            //equals - overridden met in Task class
+            if (tasks[i].equals(task)) {
+                // Copy the elements at the left of the index.
+                System.arraycopy(tasks, 0, result, 0, i);
+                // Copy the elements at the right of the index.
+                System.arraycopy(tasks, i + 1, result, i, tasks.length - i - 1);
+                //assignment result to original array
+                tasks = result;
+                // if one element added return true
+                return true;
+            }
+        }
+        // if no one element's added return false
+        return false;
+    }
+
+
+    @Override
+    public boolean remove(Task task) {
+        int count = 0;
+        //calling helpful met "removeOneTask", while removeOneTask return's true count will count++
+        while (removeOneTask(task)) {
+            count++;
+        }
+        return count > 0;
+    }
+
+     */
+
+   /* public ArrayTaskList incoming(int from, int to) {
+        ArrayTaskList result = new ArrayTaskList();
 
         for (int i = 0; i < tasks.length; i++) {
             //for non - repeatable task's:
@@ -126,4 +155,6 @@ public class ArrayTaskList implements ArrayTask {
         }
         return result;
     }
+
+    */
 }
