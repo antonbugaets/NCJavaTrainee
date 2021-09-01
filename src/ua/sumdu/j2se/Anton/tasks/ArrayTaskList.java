@@ -84,7 +84,7 @@ public class ArrayTaskList implements ArrayTask {
                 if (tasks[i].nextTimeAfter(j) <= to && tasks[i].nextTimeAfter(j) != -1) {
                     //Then we add this task to the result array
                     result.add(tasks[i]);
-                    //add this task and break;
+                    //add this task and break invested "for-j";
                     break;
                 }
             }
