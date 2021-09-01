@@ -90,8 +90,6 @@ public class ArrayTaskList implements ArrayTask {
                 }
             }
         }
-        for (int i = 0; i < this.size(); i++) {
-        }
         return result;
     }
 
