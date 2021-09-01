@@ -12,26 +12,17 @@ public class Main {
 
         arrayTaskList.add(repetableTask1);
         arrayTaskList.add(repetableTask2);
-        arrayTaskList.add(repetableTask2);
-        arrayTaskList.add(repetableTask2);
-        arrayTaskList.add(repetableTask2);
-        arrayTaskList.add(repetableTask2);
-        arrayTaskList.add(repetableTask2);
         arrayTaskList.add(nonrepetableTask1);
-        System.out.println(arrayTaskList.size());
 
-        System.out.println((arrayTaskList.remove(repetableTask2)));
+        //  System.out.println((arrayTaskList.remove(repetableTask1)));
 
-        System.out.println(arrayTaskList.size());
+        System.out.println("Size: " + arrayTaskList.size());
 
-
-     /*   ArrayTaskList test = arrayTaskList.incomingTest(11, 14);
-        System.out.println(test.size());
+        ArrayTaskList test = arrayTaskList.incoming(11, 14);
+        System.out.println("Size of incoming: " + test.size());
         for (int i = 0; i < test.size(); i++) {
             System.out.println(test.getTask(i).getTitle());
         }
-
-      */
 
 
     }
