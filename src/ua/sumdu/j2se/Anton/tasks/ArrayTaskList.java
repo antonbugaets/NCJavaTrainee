@@ -89,10 +89,9 @@ public class ArrayTaskList implements ArrayTask {
                 }
             }
         }
+
         return result;
     }
-
-
     /*
     public boolean removeOneTask(Task task) {
         //get index from original array
