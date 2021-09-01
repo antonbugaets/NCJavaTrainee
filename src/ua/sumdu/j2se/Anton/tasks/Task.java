@@ -152,7 +152,7 @@ public class Task {
 
         //for non repeatable task:
         if (!isRepeated()) {
-            if (time < current) {
+            if (time <= current) {
                 //active =false;
                 return -1; //
             } else {

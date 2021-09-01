@@ -80,7 +80,7 @@ public class ArrayTaskList implements ArrayTask {
         ArrayTaskList result = new ArrayTaskList();
         for (Task value : tasks) {
             //after the "from" time, and not later than the "to" time
-            for (int j = from + 1; j <= to; j++) {
+            for (int j = from; j <= to; j++) {
                 //calling "nextTimeAfter" met from "Task" class, If one task execution is in the interval ( from - to ):
                 if (value.nextTimeAfter(j) <= to && value.nextTimeAfter(j) != -1) {
                     //Then we add this task to the result array

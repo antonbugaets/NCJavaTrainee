@@ -18,7 +18,7 @@ public class Main {
 
         System.out.println("Size: " + arrayTaskList.size());
 
-        ArrayTaskList test = arrayTaskList.incoming(11, 14);
+        ArrayTaskList test = arrayTaskList.incoming(12, 14);
         System.out.println("Size of incoming: " + test.size());
         for (int i = 0; i < test.size(); i++) {
             System.out.println(test.getTask(i).getTitle());
