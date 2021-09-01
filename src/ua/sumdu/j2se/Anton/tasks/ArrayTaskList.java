@@ -59,7 +59,7 @@ public class ArrayTaskList implements ArrayTask {
 
     @Override
     public Task getTask(int index) {
-        for (int i = 0; i < tasks.length; i++) {
+        for (int i = 0; i < this.size(); i++) {
             if (index == i) {
                 return tasks[i];
             }
