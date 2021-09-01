@@ -14,17 +14,19 @@ public class Main {
         arrayTaskList.add(repetableTask2);
         arrayTaskList.add(nonrepetableTask1);
         System.out.println(arrayTaskList.size());
-     //   System.out.println((arrayTaskList.remove(repetableTask2)));
 
-   //     System.out.println(arrayTaskList.size());
+        System.out.println((arrayTaskList.remove(repetableTask2)));
+
+        System.out.println(arrayTaskList.size());
 
 
-
-        ArrayTaskList test = arrayTaskList.incomingTest(11, 14);
-        //System.out.println(test.size());
-        for(int i = 0; i < test.size(); i ++){
+     /*   ArrayTaskList test = arrayTaskList.incomingTest(11, 14);
+        System.out.println(test.size());
+        for (int i = 0; i < test.size(); i++) {
             System.out.println(test.getTask(i).getTitle());
         }
+
+      */
 
 
     }

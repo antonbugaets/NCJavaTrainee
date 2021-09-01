@@ -34,10 +34,10 @@ public class ArrayTaskList implements ArrayTask {
         for (int i = 0; i < this.size(); i++) {
             if (!task.equals(tasks[i])) {
                 result.add(tasks[i]);
-                tasks = result.tasks;
                 b = true;
             }
         }
+        tasks = result.tasks;
         return b;
     }
 
