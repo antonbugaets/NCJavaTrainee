@@ -18,6 +18,9 @@ public class ArrayTaskList implements ArrayTask {
      */
     @Override
     public void add(Task task) {
+        if (Objects.equals(task, null)) {
+            throw new NullPointerException("The task was empty(null)!");
+        }
         tasks = Arrays.copyOf(tasks, tasks.length + 1); //make tasks length + 1
         tasks[tasks.length - 1] = task; // set task to empty place in tasks
     }
@@ -65,7 +68,8 @@ public class ArrayTaskList implements ArrayTask {
                 return tasks[i];
             }
         }
-        return null;
+        throw new IndexOutOfBoundsException("index exceeds the permissible limits for the list!");
+        // return null;
     }
 
     /**
@@ -77,13 +81,16 @@ public class ArrayTaskList implements ArrayTask {
 
     @Override
     public ArrayTaskList incoming(int from, int to) {
+        if(to <= from && from < 0){
+           throw new IllegalArgumentException("incoming's interval was set as a wrong number's!");
+        }
         ArrayTaskList result = new ArrayTaskList();
         for (Task value : tasks) {
             //after the "from" time, and not later than the "to" time
             for (int j = from; j <= to; j++) {
                 //calling "nextTimeAfter" met from "Task" class, If one task execution is in the interval ( from - to ):
                 if (value.nextTimeAfter(j) <= to && value.nextTimeAfter(j) != -1) {
-                    //Then we add this task to the result array
+                    //Then we add this task to the result  array
                     result.add(value);
                     //add this task and break invested "for-j";
                     break;

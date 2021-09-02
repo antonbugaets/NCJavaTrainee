@@ -18,9 +18,18 @@ public class Task {
      * constructor constructs an inactive task to run at a specified time without repeating with a given name.
      */
     public Task(String title, int time) {
+        //The constructor of a Task class should necessarily generate the IllegalArgumentException exception in the case when the time was set as a negative number;
+        if (time <= 0) {
+            throw new IllegalArgumentException("Time was set as a negative number!");
+        }
+        if (title == null) {
+            throw new NullPointerException("Title was set as a wrong!");
+        }
+        repeatable = false;
         this.title = title;
         this.time = time;
-        repeatable = false;
+
+
     }
 
     /**
@@ -28,11 +37,23 @@ public class Task {
      * (including the start and the end time) with the set repetition interval and with a given name.
      */
     public Task(String title, int start, int end, int interval) {
+        if (start < 0) {
+            throw new IllegalArgumentException("Start was set as a negative number!");
+        }
+        if (end <= start) {
+            throw new IllegalArgumentException("End was set as a wrong number!");
+        }
+        if (interval <= 0) {
+            throw new IllegalArgumentException("Interval was set as a wrong number!");
+        }
+        if (title == null) {
+            throw new NullPointerException("Title was set as a wrong!");
+        }
+        repeatable = true;
         this.title = title;
         this.start = start;
         this.end = end;
         this.interval = interval;
-        repeatable = true;
     }
 
     @Override
@@ -61,6 +82,9 @@ public class Task {
     }
 
     public void setTitle(String title) {
+        if (title == null) {
+            throw new NullPointerException("Title was set as a wrong!");
+        }
         this.title = title;
     }
 
@@ -93,6 +117,9 @@ public class Task {
      */
 
     public void setTime(int time) {
+        if (time <= 0) {
+            throw new IllegalArgumentException("Time was set as a negative number!");
+        }
         this.time = time;
         if (isRepeated()) {
             this.start = 0;
@@ -130,6 +157,15 @@ public class Task {
      */
 
     public void setTime(int start, int end, int interval) {
+        if (start < 0) {
+            throw new IllegalArgumentException("Start was set as a negative number!");
+        }
+        if (end <= start) {
+            throw new IllegalArgumentException("End was set as a wrong number!");
+        }
+        if (interval <= 0) {
+            throw new IllegalArgumentException("Interval was set as a wrong number!");
+        }
         this.start = start;
         this.end = end;
         this.interval = interval;

@@ -6,6 +6,8 @@ public class Main {
         Task repetableTask1 = new Task("testtasik", 12, 3666, 2);
         Task repetableTask2 = new Task("title", 16, 238, 16);
         Task nonrepetableTask1 = new Task("titleNon", 12);
+   //     Task expTast1 = new Task("tite", -3);
+
         //System.out.println(repetableTask1.nextTimeAfter(4  ));
         //  System.out.println(repetableTask1.nextTimeAfter(10));
         ArrayTaskList arrayTaskList = new ArrayTaskList();
