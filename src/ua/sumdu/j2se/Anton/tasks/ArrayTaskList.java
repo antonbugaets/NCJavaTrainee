@@ -81,7 +81,7 @@ public class ArrayTaskList implements ArrayTask {
 
     @Override
     public ArrayTaskList incoming(int from, int to) {
-        if(to <= from && from < 0){
+        if(to <= from & from < 0){
            throw new IllegalArgumentException("incoming's interval was set as a wrong number's!");
         }
         ArrayTaskList result = new ArrayTaskList();
