@@ -79,10 +79,10 @@ public class ArrayTaskList implements ArrayTask {
      * after the "from" time, and not later than the "to" time.
      */
 
-    @Override
+    // @Override
     public ArrayTaskList incoming(int from, int to) {
-        if(to <= from & from < 0){
-           throw new IllegalArgumentException("incoming's interval was set as a wrong number's!");
+        if (to <= from & from < 0) {
+            throw new IllegalArgumentException("incoming's interval was set as a wrong number's!");
         }
         ArrayTaskList result = new ArrayTaskList();
         for (Task value : tasks) {
