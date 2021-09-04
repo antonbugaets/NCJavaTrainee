@@ -1,7 +1,5 @@
 package ua.sumdu.j2se.Anton.tasks;
 
-import java.util.LinkedList;
-
 /**
  * The concept of the task list does not depend on the task saving method;
  * the users of ArrayTaskList class objects may even be unaware of the way this class is implemented.
@@ -16,9 +14,9 @@ import java.util.LinkedList;
  * <p>
  * SOURCE : https://www.youtube.com/watch?v=BH6RJf2fVCQ&t=2232s&ab_channel=JavaVision
  */
-public class LinkedTaskList<Task> /*implements ArrayTask*/ {
-    private Node<Task> firstNode;
-    private Node<Task> lastNode;
+public class LinkedTaskList<E> implements ArrayTask {
+    private Node<E> firstNode;
+    private Node<E> lastNode;
     private int size = 0;
 
     public LinkedTaskList() {
@@ -26,28 +24,68 @@ public class LinkedTaskList<Task> /*implements ArrayTask*/ {
         firstNode = new Node<>(null, null, lastNode);
     }
 
+    @Override
     public void add(Task task) {
-        Node<Task> previousElement = lastNode;
-        previousElement.setCurrentElement(task);
+        Node<E> previousElement = lastNode;
+        previousElement.setCurrentElement((E) task);
         lastNode = new Node<>(null, previousElement, null);
         previousElement.setNextElement(lastNode);
         size++;
     }
 
+    @Override
     public Task getTask(int index) {
-        Node<Task> target = firstNode.getNextElement();
+        if (index >= size() || index < 0) {
+            throw new IndexOutOfBoundsException("index exceeds the permissible limits for the list!");
+        }
+        Node<E> target = firstNode.getNextElement();
         for (int i = 0; i < index; i++) {
             target = getNextElement(target);
         }
-        return target.getCurrentElement();
+        return (Task) target.getCurrentElement();
     }
 
-    private Node<Task> getNextElement(Node<Task> currentElement) {
+
+    private Node<E> getNextElement(Node<E> currentElement) {
         return currentElement.getNextElement();
     }
 
+    @Override
     public int size() {
         return size;
+    }
+
+    @Override
+    public boolean remove(Task task) {
+        LinkedTaskList<E> result = new LinkedTaskList();
+        boolean isRemoved = false;
+        for (int i = 0; i < size(); i++) {
+            if (task.equals(getTask(i))) {
+                isRemoved = true;
+            } else {
+                result.add(getTask(i));
+            }
+        }
+        this.firstNode = result.firstNode;
+        this.lastNode = result.lastNode;
+        this.size = result.size;
+        return isRemoved;
+    }
+
+    LinkedTaskList incoming(int from, int to) {
+        if (to <= from & from < 0) {
+            throw new IllegalArgumentException("incoming's interval was set as a wrong number's!");
+        }
+        LinkedTaskList<Task> result = new LinkedTaskList<>();
+        for (int i = 0; i < size(); i++) {
+            for (int j = from; j < to; j++) {
+                if (getTask(i).nextTimeAfter(j) <= to && getTask(i).nextTimeAfter(j) != -1) {
+                    result.add(getTask(i));
+                    break;
+                }
+            }
+        }
+        return result;
     }
 
     //class of links;
