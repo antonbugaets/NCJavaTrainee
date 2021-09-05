@@ -11,12 +11,22 @@ public class Main {
 
 
         AbstractTaskList linkedList = new LinkedTaskList<>();
+        System.out.println(linkedList.size());
+        linkedList.add(repetableTask1);
+        linkedList.add(repetableTask1);
+        linkedList.add(repetableTask1);
+        linkedList.add(repetableTask1);
+        linkedList.add(repetableTask1);
         linkedList.add(repetableTask1);
        // linkedList.add(repetableTask1);
         linkedList.add(repetableTask2);
         linkedList.add(nonrepetableTask1);
+        System.out.println(linkedList.size());
+        linkedList.remove(repetableTask1);
+        System.out.println(linkedList.size());
+        System.out.println(linkedList.getTask(1).getTitle());
 
-        System.out.println(linkedList.incoming(10,14).getTask(1).getTitle());
+       // System.out.println(linkedList.incoming(10,14).getTask(1).getTitle());
 
     }
 }

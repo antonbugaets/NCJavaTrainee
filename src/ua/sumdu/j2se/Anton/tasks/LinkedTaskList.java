@@ -62,7 +62,8 @@ public class LinkedTaskList<E> extends AbstractTaskList {
 
     @Override
     public boolean remove(Task task) {
-        LinkedTaskList<E> result = new LinkedTaskList();
+        //LinkedTaskList<E> result = new LinkedTaskList();
+        LinkedTaskList result = new LinkedTaskList();
         boolean isRemoved = false;
         for (int i = 0; i < size(); i++) {
             if (task.equals(getTask(i))) {
