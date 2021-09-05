@@ -2,15 +2,11 @@ package ua.sumdu.j2se.Anton.tasks;
 
 import java.util.*;
 
-public class ArrayTaskList implements ArrayTask {
+public class ArrayTaskList extends AbstractTaskList {
     private Task[] tasks = new Task[]{};
 
     public ArrayTaskList() { //default constructor
 
-    }
-
-    public ArrayTaskList(Task[] tasks) { // constructor with parameter's
-        this.tasks = tasks;
     }
 
     /**
@@ -79,9 +75,9 @@ public class ArrayTaskList implements ArrayTask {
      * after the "from" time, and not later than the "to" time.
      */
 
-    // @Override
+    @Override
     public ArrayTaskList incoming(int from, int to) {
-        if (to <= from & from < 0) {
+        if (to <= from || from < 0) {
             throw new IllegalArgumentException("incoming's interval was set as a wrong number's!");
         }
         ArrayTaskList result = new ArrayTaskList();

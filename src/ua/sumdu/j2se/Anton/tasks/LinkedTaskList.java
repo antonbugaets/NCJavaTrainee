@@ -1,5 +1,7 @@
 package ua.sumdu.j2se.Anton.tasks;
 
+import java.util.Objects;
+
 /**
  * The concept of the task list does not depend on the task saving method;
  * the users of ArrayTaskList class objects may even be unaware of the way this class is implemented.
@@ -14,7 +16,7 @@ package ua.sumdu.j2se.Anton.tasks;
  * <p>
  * SOURCE : https://www.youtube.com/watch?v=BH6RJf2fVCQ&t=2232s&ab_channel=JavaVision
  */
-public class LinkedTaskList<E> implements ArrayTask {
+public class LinkedTaskList<E> extends AbstractTaskList {
     private Node<E> firstNode;
     private Node<E> lastNode;
     private int size = 0;
@@ -26,6 +28,9 @@ public class LinkedTaskList<E> implements ArrayTask {
 
     @Override
     public void add(Task task) {
+        if (Objects.equals(task, null)) {
+            throw new NullPointerException("The task was empty(null)!");
+        }
         Node<E> previousElement = lastNode;
         previousElement.setCurrentElement((E) task);
         lastNode = new Node<>(null, previousElement, null);
@@ -72,8 +77,9 @@ public class LinkedTaskList<E> implements ArrayTask {
         return isRemoved;
     }
 
-    LinkedTaskList incoming(int from, int to) {
-        if (to <= from & from < 0) {
+    @Override
+    public LinkedTaskList incoming(int from, int to) {
+        if (to <= from || from < 0) {
             throw new IllegalArgumentException("incoming's interval was set as a wrong number's!");
         }
         LinkedTaskList<Task> result = new LinkedTaskList<>();
