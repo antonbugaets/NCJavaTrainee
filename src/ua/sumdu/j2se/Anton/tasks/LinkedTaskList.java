@@ -61,7 +61,8 @@ public class LinkedTaskList<E> extends AbstractTaskList {
     @Override
     public boolean remove(Task task) {
         //LinkedTaskList<E> result = new LinkedTaskList();
-        //не надо записывать лист. Реализовать логику линкедлиста. Перезаписать ссылки, не создавая новый объект.
+        //не надо записывать лист. Реализовать логику линкедлиста. Перезаписать ссылки, не создавая новый объект. Когда на этот объект никто не будет ссылаться
+        //сборщик мусора сам его уберет
         LinkedTaskList result = new LinkedTaskList();
         boolean isRemoved = false;
         for (int i = 0; i < size(); i++) {
@@ -78,17 +79,29 @@ public class LinkedTaskList<E> extends AbstractTaskList {
     }
 
     public boolean removeTest(Task task) {
-        Node qwe = firstNode;
+        boolean isSuccess = false;
 
-        while (qwe != null) {
-            Node qwe1 = qwe.getNextElement();
-            if (qwe1 != null && qwe1.currentElement != null && qwe1.currentElement.equals(task)) {
-                qwe.setNextElement(qwe1.getNextElement());
+        if (firstNode.equals(task)) {
+            firstNode = firstNode.getNextElement();
+        }
+
+        Node firstLink = firstNode;
+
+        while (firstLink != null) {
+            Boolean isRemoved = false;
+            Node secondLink = firstLink.getNextElement();
+            if (secondLink != null && secondLink.currentElement != null && secondLink.currentElement.equals(task)) {
+
+                firstLink.setNextElement(secondLink.getNextElement());
+                isRemoved = true;
+                isSuccess = true;
                 size--;
             }
-            qwe = qwe1;
+            if (!isRemoved) {
+                firstLink = secondLink;
+            }
         }
-        return false;
+        return isSuccess;
     }
 
 
