@@ -40,20 +40,18 @@ public class LinkedTaskList<E> extends AbstractTaskList {
 
     @Override
     public Task getTask(int index) {
-        if (index >= size() || index < 0) {
+     /*   if (index >= size() || index < 0) {
             throw new IndexOutOfBoundsException("index exceeds the permissible limits for the list!");
         }
+
+      */
         Node<E> target = firstNode.getNextElement();
         for (int i = 0; i < index; i++) {
-            target = getNextElement(target);
+            target = target.getNextElement();
         }
         return (Task) target.getCurrentElement();
     }
 
-
-    private Node<E> getNextElement(Node<E> currentElement) {
-        return currentElement.getNextElement();
-    }
 
     @Override
     public int size() {
@@ -63,6 +61,7 @@ public class LinkedTaskList<E> extends AbstractTaskList {
     @Override
     public boolean remove(Task task) {
         //LinkedTaskList<E> result = new LinkedTaskList();
+        //не надо записывать лист. Реализовать логику линкедлиста. Перезаписать ссылки, не создавая новый объект.
         LinkedTaskList result = new LinkedTaskList();
         boolean isRemoved = false;
         for (int i = 0; i < size(); i++) {
@@ -77,6 +76,21 @@ public class LinkedTaskList<E> extends AbstractTaskList {
         this.size = result.size;
         return isRemoved;
     }
+
+    public boolean removeTest(Task task) {
+        Node qwe = firstNode;
+
+        while (qwe != null) {
+            Node qwe1 = qwe.getNextElement();
+            if (qwe1 != null && qwe1.currentElement != null && qwe1.currentElement.equals(task)) {
+                qwe.setNextElement(qwe1.getNextElement());
+                size--;
+            }
+            qwe = qwe1;
+        }
+        return false;
+    }
+
 
     @Override
     public LinkedTaskList incoming(int from, int to) {
