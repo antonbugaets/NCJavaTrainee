@@ -23,13 +23,18 @@ public class Main {
         linkedList.add(nonrepetableTask1);
         System.out.println(linkedList.size());
 
-        linkedList.removeTest(repetableTask2);
-
-        System.out.println(linkedList.size());
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < linkedList.size(); i++) {
             System.out.println(i + " " + linkedList.getTask(i).getTitle());
         }
 
+        System.out.println(linkedList.removeTest(repetableTask1));
+        System.out.println();
+
+        System.out.println(linkedList.size());
+        for (int i = 0; i < linkedList.size(); i++) {
+            System.out.println(i + " " + linkedList.getTask(i).getTitle());
+        }
+        System.out.println(linkedList.removeTest(repetableTask1));
 
         //   LinkedList linkedList1 = new LinkedList();
         // System.out.println(linkedList.incoming(10,14).getTask(1).getTitle());
