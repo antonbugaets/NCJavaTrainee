@@ -1,6 +1,7 @@
 package ua.sumdu.j2se.Anton.tasks;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 public class ArrayTaskList extends AbstractTaskList {
     private Task[] tasks = new Task[]{};
@@ -67,6 +68,24 @@ public class ArrayTaskList extends AbstractTaskList {
         }
         throw new IndexOutOfBoundsException("index exceeds the permissible limits for the list!");
         // return null;
+    }
+
+    @Override
+    public Iterator iterator() {
+        return new Iterator() {
+            private int iteratorCounter = 0;
+
+
+            @Override
+            public boolean hasNext() {
+                return iteratorCounter < size();
+            }
+
+            @Override
+            public Task next() {
+                return getTask(iteratorCounter++);
+            }
+        };
     }
 
     /**

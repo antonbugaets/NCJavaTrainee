@@ -1,8 +1,11 @@
 package ua.sumdu.j2se.Anton.tasks;
 
+import javax.swing.text.html.HTMLDocument;
 import java.lang.reflect.Type;
+import java.util.Iterator;
+import java.util.ListIterator;
 
-public abstract class AbstractTaskList {
+public abstract class AbstractTaskList implements Iterable {
     int size = 0;
     String whoIsChild = null;
 
@@ -25,7 +28,7 @@ public abstract class AbstractTaskList {
 
         if (whoIsChild.equals("ArrayTaskList")) result = new ArrayTaskList();
         if (whoIsChild.equals("LinkedTaskList")) result = new LinkedTaskList<>();
-       
+
 
         for (int i = 0; i < size(); i++) {
             for (int j = from; j < to; j++) {

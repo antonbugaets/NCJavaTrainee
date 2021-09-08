@@ -1,6 +1,8 @@
 package ua.sumdu.j2se.Anton.tasks;
 
+import java.util.Iterator;
 import java.util.Objects;
+
 
 /**
  * The concept of the task list does not depend on the task saving method;
@@ -47,15 +49,12 @@ public class LinkedTaskList<E> extends AbstractTaskList {
         }
         Node<E> target = firstNode.getNextElement();
         for (int i = 0; i < index; i++) {
-            target = getNextElement(target);
+
+            target = target.getNextElement();
         }
         return (Task) target.getCurrentElement();
     }
 
-
-    private Node<E> getNextElement(Node<E> currentElement) {
-        return currentElement.getNextElement();
-    }
 
     @Override
     public boolean remove(Task task) {
@@ -77,6 +76,26 @@ public class LinkedTaskList<E> extends AbstractTaskList {
         }
         return isSuccess;
     }
+
+    @Override
+    public Iterator iterator() {
+        return new Iterator() {
+
+            private int iteratorCounter = 0;
+
+            @Override
+            public boolean hasNext() {
+                return iteratorCounter < size();
+            }
+
+            @Override
+            public Task next() {
+                return getTask(iteratorCounter++);
+            }
+        };
+    }
+
+
 /*
     @Override
     public LinkedTaskList incoming(int from, int to) {
