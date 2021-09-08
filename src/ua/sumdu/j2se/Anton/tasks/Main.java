@@ -12,7 +12,7 @@ public class Main {
         Task repetableTask2 = new Task("title", 16, 238, 16);
         Task nonrepetableTask1 = new Task("titleNon", 12);
 
-       AbstractTaskList linkedList = ListTypes.createTaskList(ListTypes.types.LINKED);
+        AbstractTaskList linkedList = ListTypes.createTaskList(ListTypes.types.LINKED);
 
         System.out.println(linkedList.size());
         linkedList.add(repetableTask1);
@@ -43,14 +43,12 @@ public class Main {
         linkedList.add(repetableTask1);
         linkedList = linkedList.incoming(10, 14);
 
-        for (int i = 0; i < linkedList.size(); i++) {
-            System.out.println(linkedList.getTask(i).getTitle());
-        }
+
         System.out.println();
 
-        for (Object value :
+        for (Task value :
                 linkedList) {
-            System.out.println(((Task) value).getTitle());
+            System.out.println(value.getTitle());
         }
 
 
