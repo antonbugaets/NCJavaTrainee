@@ -5,8 +5,9 @@ import java.util.*;
 public class ArrayTaskList extends AbstractTaskList {
     private Task[] tasks = new Task[]{};
 
+    static String className  = null;
     public ArrayTaskList() { //default constructor
-
+        className = "ArrayTaskList";
     }
 
     /**

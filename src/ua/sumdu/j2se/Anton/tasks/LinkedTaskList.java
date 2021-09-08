@@ -17,13 +17,17 @@ import java.util.Objects;
  * SOURCE : https://www.youtube.com/watch?v=BH6RJf2fVCQ&t=2232s&ab_channel=JavaVision
  */
 public class LinkedTaskList<E> extends AbstractTaskList {
+
     private Node<E> firstNode;
     private Node<E> lastNode;
-    private int size = 0;
+    // private int size = 0;
+
+    static String className  = null;
 
     public LinkedTaskList() {
         lastNode = new Node<>(null, firstNode, null);
         firstNode = new Node<>(null, null, lastNode);
+        className = "LinkedTaskList";
     }
 
     @Override
@@ -56,16 +60,11 @@ public class LinkedTaskList<E> extends AbstractTaskList {
     }
 
     @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
     public boolean remove(Task task) {
         boolean isSuccess = false;
         Node firstLink = firstNode;
         while (firstLink != null) {
-            Boolean isRemoved = false;
+            boolean isRemoved = false;
             Node secondLink = firstLink.getNextElement();
             if (secondLink != null && secondLink.currentElement != null && secondLink.currentElement.equals(task)) {
                 firstLink.setNextElement(secondLink.getNextElement());
@@ -86,7 +85,7 @@ public class LinkedTaskList<E> extends AbstractTaskList {
         if (to <= from || from < 0) {
             throw new IllegalArgumentException("incoming's interval was set as a wrong number's!");
         }
-        LinkedTaskList<Task> result = new LinkedTaskList<>();
+        LinkedTaskList result = new LinkedTaskList<>();
         for (int i = 0; i < size(); i++) {
             for (int j = from; j < to; j++) {
                 if (getTask(i).nextTimeAfter(j) <= to && getTask(i).nextTimeAfter(j) != -1) {
@@ -97,6 +96,7 @@ public class LinkedTaskList<E> extends AbstractTaskList {
         }
         return result;
     }
+
 
     //class of links;
     private class Node<E> {

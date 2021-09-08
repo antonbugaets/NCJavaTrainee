@@ -9,7 +9,21 @@ public class Main {
         Task repetableTask2 = new Task("title", 16, 238, 16);
         Task nonrepetableTask1 = new Task("titleNon", 12);
 
+        AbstractTaskList testArr = new ArrayTaskList();
+        AbstractTaskList testLinks = new LinkedTaskList<>();
+        System.out.println(testArr.size());
+        testArr.add(repetableTask1);
+        testArr.add(repetableTask2);
+        testArr.add(nonrepetableTask1);
+        System.out.println(testArr.size());
+        for (int i = 0; i < testArr.size(); i++) {
+            System.out.println(i + " " + testArr.getTask(i).getTitle());
+        }
 
+        System.out.println(testArr.incomingTest(10, 14).getTask(0).getTitle());
+    }
+
+/*
         AbstractTaskList linkedList = new LinkedTaskList<>();
         System.out.println(linkedList.size());
         linkedList.add(repetableTask1);
@@ -21,7 +35,7 @@ public class Main {
         }
 
 
-/*
+
         for (int i = 0; i < linkedList.size(); i++) {
             System.out.println(i + " " + linkedList.getTask(i).getTitle());
         }
@@ -36,9 +50,12 @@ public class Main {
         System.out.println(linkedList.remove(repetableTask1));
 
 
- */
+
 
         System.out.println(linkedList.incoming(10, 14).getTask(0).getTitle());
 
     }
+
+ */
 }
+
