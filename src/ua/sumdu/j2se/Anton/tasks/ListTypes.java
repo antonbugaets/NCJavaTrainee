@@ -7,8 +7,13 @@ public class ListTypes {
     }
 
     public static AbstractTaskList createTaskList(ListTypes.types type) {
-        if (type.equals(types.ARRAY)) return new ArrayTaskList();
-        if (type.equals(types.LINKED)) return new LinkedTaskList<>();
-        return null;
+        switch (type) {
+            case LINKED:
+                return new LinkedTaskList<>();
+            case ARRAY:
+                return new ArrayTaskList();
+            default:
+                return null;
+        }
     }
 }
