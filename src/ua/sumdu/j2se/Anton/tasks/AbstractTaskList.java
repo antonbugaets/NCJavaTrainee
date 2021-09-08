@@ -6,10 +6,6 @@ public abstract class AbstractTaskList {
     int size = 0;
     String whoIsChild = null;
 
-    public AbstractTaskList() {
-    }
-
-
     abstract public void add(Task task);
 
     abstract public boolean remove(Task task);
@@ -20,8 +16,6 @@ public abstract class AbstractTaskList {
 
     abstract public Task getTask(int index);
 
-    //  abstract public AbstractTaskList incoming(int from, int to);
-
     final public AbstractTaskList incoming(int from, int to) {
         if (to <= from || from < 0) {
             throw new IllegalArgumentException("incoming's interval was set as a wrong number's!");
@@ -31,6 +25,7 @@ public abstract class AbstractTaskList {
 
         if (whoIsChild.equals("ArrayTaskList")) result = new ArrayTaskList();
         if (whoIsChild.equals("LinkedTaskList")) result = new LinkedTaskList<>();
+       
 
         for (int i = 0; i < size(); i++) {
             for (int j = from; j < to; j++) {
