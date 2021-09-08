@@ -1,5 +1,6 @@
 package ua.sumdu.j2se.Anton.tasks;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public class Main {
@@ -9,7 +10,7 @@ public class Main {
         Task repetableTask2 = new Task("title", 16, 238, 16);
         Task nonrepetableTask1 = new Task("titleNon", 12);
 
-     LinkedTaskList linkedList = new LinkedTaskList<>();
+        AbstractTaskList linkedList = ListTypes.createTaskList(ListTypes.types.LINKED);
         System.out.println(linkedList.size());
         linkedList.add(repetableTask1);
         linkedList.add(repetableTask1);
@@ -34,8 +35,13 @@ public class Main {
         }
         System.out.println(linkedList.remove(repetableTask1));
 
+        System.out.println();
+        linkedList.add(repetableTask1);
+        linkedList = linkedList.incoming(10, 14);
 
-
+        for (int i = 0; i < linkedList.size(); i++) {
+            System.out.println(linkedList.getTask(i).getTitle());
+        }
 
 
     }

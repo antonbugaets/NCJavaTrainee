@@ -77,7 +77,7 @@ public class LinkedTaskList<E> extends AbstractTaskList {
         }
         return isSuccess;
     }
-
+/*
     @Override
     public LinkedTaskList incoming(int from, int to) {
         if (to <= from || from < 0) {
@@ -94,6 +94,8 @@ public class LinkedTaskList<E> extends AbstractTaskList {
         }
         return result;
     }
+
+ */
 
 
     //class of links;

@@ -75,7 +75,7 @@ public class ArrayTaskList extends AbstractTaskList {
      * method in the ArrayTaskList class. This method returns a subset of tasks that are scheduled for execution at least once
      * after the "from" time, and not later than the "to" time.
      */
-
+/*
     @Override
     public ArrayTaskList incoming(int from, int to) {
         if (to <= from || from < 0) {
@@ -96,6 +96,8 @@ public class ArrayTaskList extends AbstractTaskList {
         }
         return result;
     }
+
+ */
 
 
 }
