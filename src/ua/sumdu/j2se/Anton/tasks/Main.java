@@ -10,34 +10,35 @@ public class Main {
         Task nonrepetableTask1 = new Task("titleNon", 12);
 
 
-        LinkedTaskList linkedList = new LinkedTaskList<>();
+        AbstractTaskList linkedList = new LinkedTaskList<>();
         System.out.println(linkedList.size());
         linkedList.add(repetableTask1);
-        linkedList.add(repetableTask1);
-        linkedList.add(repetableTask1);
-        linkedList.add(repetableTask1);
-        linkedList.add(repetableTask1);
-        linkedList.add(repetableTask1);
-        // linkedList.add(repetableTask1);
         linkedList.add(repetableTask2);
         linkedList.add(nonrepetableTask1);
         System.out.println(linkedList.size());
-
         for (int i = 0; i < linkedList.size(); i++) {
             System.out.println(i + " " + linkedList.getTask(i).getTitle());
         }
 
-        System.out.println(linkedList.removeTest(repetableTask1));
+
+/*
+        for (int i = 0; i < linkedList.size(); i++) {
+            System.out.println(i + " " + linkedList.getTask(i).getTitle());
+        }
+
+        System.out.println(linkedList.remove(repetableTask1));
         System.out.println();
 
         System.out.println(linkedList.size());
         for (int i = 0; i < linkedList.size(); i++) {
             System.out.println(i + " " + linkedList.getTask(i).getTitle());
         }
-        System.out.println(linkedList.removeTest(repetableTask1));
+        System.out.println(linkedList.remove(repetableTask1));
 
-        //   LinkedList linkedList1 = new LinkedList();
-        // System.out.println(linkedList.incoming(10,14).getTask(1).getTitle());
+
+ */
+
+        System.out.println(linkedList.incoming(10, 14).getTask(0).getTitle());
 
     }
 }

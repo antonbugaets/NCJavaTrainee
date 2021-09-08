@@ -40,18 +40,20 @@ public class LinkedTaskList<E> extends AbstractTaskList {
 
     @Override
     public Task getTask(int index) {
-     /*   if (index >= size() || index < 0) {
+        if (index >= size() || index < 0) {
             throw new IndexOutOfBoundsException("index exceeds the permissible limits for the list!");
         }
-
-      */
         Node<E> target = firstNode.getNextElement();
         for (int i = 0; i < index; i++) {
-            target = target.getNextElement();
+            target = getNextElement(target);
         }
         return (Task) target.getCurrentElement();
     }
 
+
+    private Node<E> getNextElement(Node<E> currentElement) {
+        return currentElement.getNextElement();
+    }
 
     @Override
     public int size() {
@@ -60,39 +62,14 @@ public class LinkedTaskList<E> extends AbstractTaskList {
 
     @Override
     public boolean remove(Task task) {
-        //LinkedTaskList<E> result = new LinkedTaskList();
-        //не надо записывать лист. Реализовать логику линкедлиста. Перезаписать ссылки, не создавая новый объект. Когда на этот объект никто не будет ссылаться
-        //сборщик мусора сам его уберет
-        LinkedTaskList result = new LinkedTaskList();
-        boolean isRemoved = false;
-        for (int i = 0; i < size(); i++) {
-            if (task.equals(getTask(i))) {
-                isRemoved = true;
-            } else {
-                result.add(getTask(i));
-            }
-        }
-        this.firstNode = result.firstNode;
-        this.lastNode = result.lastNode;
-        this.size = result.size;
-        return isRemoved;
-    }
-
-    public boolean removeTest(Task task) {
         boolean isSuccess = false;
-
-        if (firstNode.equals(task)) {
-            firstNode = firstNode.getNextElement();
-        }
-
         Node firstLink = firstNode;
-
         while (firstLink != null) {
             Boolean isRemoved = false;
             Node secondLink = firstLink.getNextElement();
             if (secondLink != null && secondLink.currentElement != null && secondLink.currentElement.equals(task)) {
-
                 firstLink.setNextElement(secondLink.getNextElement());
+                firstLink.setPreviousElement(secondLink.getPreviousElement());
                 isRemoved = true;
                 isSuccess = true;
                 size--;
@@ -103,7 +80,6 @@ public class LinkedTaskList<E> extends AbstractTaskList {
         }
         return isSuccess;
     }
-
 
     @Override
     public LinkedTaskList incoming(int from, int to) {
