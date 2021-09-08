@@ -3,11 +3,12 @@ package ua.sumdu.j2se.Anton.tasks;
 import java.lang.reflect.Type;
 
 public abstract class AbstractTaskList {
-    public AbstractTaskList() {
+    int size = 0;
+    String whoIsChild = null;
 
+    public AbstractTaskList() {
     }
 
-    int size = 0;
 
     abstract public void add(Task task);
 
@@ -28,8 +29,8 @@ public abstract class AbstractTaskList {
 
         AbstractTaskList result = null;
 
-        if (LinkedTaskList.className != null) result = new LinkedTaskList<>();
-        if (ArrayTaskList.className != null) result = new ArrayTaskList();
+        if(whoIsChild.equals("ArrayTaskList")) result = new ArrayTaskList();
+        if(whoIsChild.equals("LinkedTaskList")) result = new LinkedTaskList<>();
 
         for (int i = 0; i < size(); i++) {
             for (int j = from; j < to; j++) {

@@ -22,12 +22,10 @@ public class LinkedTaskList<E> extends AbstractTaskList {
     private Node<E> lastNode;
     // private int size = 0;
 
-    static String className  = null;
-
     public LinkedTaskList() {
         lastNode = new Node<>(null, firstNode, null);
         firstNode = new Node<>(null, null, lastNode);
-        className = "LinkedTaskList";
+        whoIsChild = "LinkedTaskList";
     }
 
     @Override
@@ -63,7 +61,7 @@ public class LinkedTaskList<E> extends AbstractTaskList {
     public boolean remove(Task task) {
         boolean isSuccess = false;
         Node firstLink = firstNode;
-        while (firstLink != null) {
+        while (firstLink != null && firstLink.getCurrentElement() != task) {
             boolean isRemoved = false;
             Node secondLink = firstLink.getNextElement();
             if (secondLink != null && secondLink.currentElement != null && secondLink.currentElement.equals(task)) {
