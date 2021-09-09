@@ -55,6 +55,28 @@ public class LinkedTaskList<E> extends AbstractTaskList {
         return (Task) target.getCurrentElement();
     }
 
+    //   @Override
+    public Task getTaskTest(int index) {
+        if (index >= size() || index < 0) {
+            throw new IndexOutOfBoundsException("index exceeds the permissible limits for the list!");
+        }
+
+        if (index < size() / 2) {
+            Node<E> target = firstNode.getNextElement();
+            for (int i = 0; i < index; i++) {
+
+                target = target.getNextElement();
+            }
+            return (Task) target.getCurrentElement();
+        } else {
+            Node<E> target = lastNode.getPreviousElement();
+            for (int i = size(); i > index + 1; i--) {
+                target = target.getPreviousElement();
+            }
+            return (Task) target.getCurrentElement();
+        }
+    }
+
 
     @Override
     public boolean remove(Task task) {
