@@ -6,8 +6,7 @@ import java.util.function.Consumer;
 public class ArrayTaskList extends AbstractTaskList {
     private Task[] tasks = new Task[]{};
 
-    public ArrayTaskList() { //default constructor
-        whoIsChild = "ArrayTaskList";
+    public ArrayTaskList() {
     }
 
     /**

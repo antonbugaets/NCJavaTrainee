@@ -27,7 +27,6 @@ public class LinkedTaskList<E> extends AbstractTaskList {
     public LinkedTaskList() {
         lastNode = new Node<>(null, firstNode, null);
         firstNode = new Node<>(null, null, lastNode);
-        whoIsChild = "LinkedTaskList";
     }
 
     @Override
@@ -42,21 +41,10 @@ public class LinkedTaskList<E> extends AbstractTaskList {
         size++;
     }
 
+
     @Override
     public Task getTask(int index) {
-        if (index >= size() || index < 0) {
-            throw new IndexOutOfBoundsException("index exceeds the permissible limits for the list!");
-        }
-        Node<E> target = firstNode.getNextElement();
-        for (int i = 0; i < index; i++) {
 
-            target = target.getNextElement();
-        }
-        return (Task) target.getCurrentElement();
-    }
-
-    //   @Override
-    public Task getTaskTest(int index) {
         if (index >= size() || index < 0) {
             throw new IndexOutOfBoundsException("index exceeds the permissible limits for the list!");
         }
@@ -82,7 +70,9 @@ public class LinkedTaskList<E> extends AbstractTaskList {
     public boolean remove(Task task) {
         boolean isSuccess = false;
         Node firstLink = firstNode;
-        while (firstLink != null && firstLink.getCurrentElement() != task) {
+        int i = 0;
+        while (firstLink.getNextElement().currentElement != null) {
+            System.out.println("inter: " + i++);
             boolean isRemoved = false;
             Node secondLink = firstLink.getNextElement();
             if (secondLink != null && secondLink.currentElement != null && secondLink.currentElement.equals(task)) {
@@ -116,6 +106,21 @@ public class LinkedTaskList<E> extends AbstractTaskList {
             }
         };
     }
+    /*
+    @Override
+    public Task getTask(int index) {
+        if (index >= size() || index < 0) {
+            throw new IndexOutOfBoundsException("index exceeds the permissible limits for the list!");
+        }
+        Node<E> target = firstNode.getNextElement();
+        for (int i = 0; i < index; i++) {
+
+            target = target.getNextElement();
+        }
+        return (Task) target.getCurrentElement();
+    }
+
+     */
 
 
 /*
