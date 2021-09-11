@@ -42,7 +42,7 @@ public class Main {
         System.out.println();
         printListWithPreviousNNext(linkedList);
         System.out.println();
-        System.out.println(linkedList.remove(linkedList.getTask(4)));
+        System.out.println("Removed was: " + linkedList.remove(linkedList.getTask(4)));
 
         System.out.println();
         printListWithPreviousNNext(linkedList);
