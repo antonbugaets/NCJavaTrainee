@@ -17,27 +17,28 @@ public class Main {
 
 
         AbstractTaskList linkedList = ListTypes.createTaskList(ListTypes.types.LINKED);
+
         int j = 0;
         while (j < 10) {
-            linkedList.add(new Task("Number: " + j++, 10));
+            linkedList.add(new Task("Task №: " + j++, 10));
         }
         System.out.println(linkedList.size());
+
+
         for (Task value :
                 linkedList) {
-            System.out.println(value.getTitle());
+            System.out.print(value.getTitle() + " , ");
         }
-
-        System.out.println(linkedList.remove(linkedList.getTask(7)));
-
-
+        System.out.println();
+        System.out.println(linkedList.remove(linkedList.getTask(4)));
 
         System.out.println(linkedList.size());
+
         for (Task value :
                 linkedList) {
-            System.out.println(value.getTitle());
+            System.out.print(value.getTitle() + " , ");
         }
     }
 
 
 }
-

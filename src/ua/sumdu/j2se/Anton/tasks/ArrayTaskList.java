@@ -73,7 +73,6 @@ public class ArrayTaskList extends AbstractTaskList {
         return new Iterator() {
             private int iteratorCounter = 0;
 
-
             @Override
             public boolean hasNext() {
                 return iteratorCounter < size();
@@ -85,36 +84,5 @@ public class ArrayTaskList extends AbstractTaskList {
             }
         };
     }
-
-    /**
-     * Besides, the application should know which tasks from the list are scheduled at least once in a certain interval,
-     * for example, which tasks are scheduled for the next week. To implement this, create the ArrayTaskList incoming(int from, int to)
-     * method in the ArrayTaskList class. This method returns a subset of tasks that are scheduled for execution at least once
-     * after the "from" time, and not later than the "to" time.
-     */
-/*
-    @Override
-    public ArrayTaskList incoming(int from, int to) {
-        if (to <= from || from < 0) {
-            throw new IllegalArgumentException("incoming's interval was set as a wrong number's!");
-        }
-        ArrayTaskList result = new ArrayTaskList();
-        for (Task value : tasks) {
-            //after the "from" time, and not later than the "to" time
-            for (int j = from; j <= to; j++) {
-                //calling "nextTimeAfter" met from "Task" class, If one task execution is in the interval ( from - to ):
-                if (value.nextTimeAfter(j) <= to && value.nextTimeAfter(j) != -1) {
-                    //Then we add this task to the result  array
-                    result.add(value);
-                    //add this task and break invested "for-j";
-                    break;
-                }
-            }
-        }
-        return result;
-    }
-
- */
-
 
 }

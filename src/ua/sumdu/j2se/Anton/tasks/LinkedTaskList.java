@@ -70,13 +70,16 @@ public class LinkedTaskList<E> extends AbstractTaskList {
     public boolean remove(Task task) {
         boolean isSuccess = false;
         Node firstLink = firstNode;
+
         //int i = 0;
         while (firstLink.getNextElement().getCurrentElement() != null) {
             //  System.out.println("inter: " + i++);
             boolean isRemoved = false;
             Node secondLink = firstLink.getNextElement();
             if (secondLink != null && secondLink.getCurrentElement() != null && secondLink.getCurrentElement().equals(task)) {
+                //overwriting the following link
                 firstLink.setNextElement(secondLink.getNextElement());
+                //overwriting the previous link
                 secondLink.getNextElement().setPreviousElement(secondLink.getPreviousElement());
                 isRemoved = true;
                 isSuccess = true;
@@ -88,6 +91,7 @@ public class LinkedTaskList<E> extends AbstractTaskList {
         }
         return isSuccess;
     }
+
 
     @Override
     public Iterator iterator() {
@@ -106,42 +110,6 @@ public class LinkedTaskList<E> extends AbstractTaskList {
             }
         };
     }
-    /*
-    @Override
-    public Task getTask(int index) {
-        if (index >= size() || index < 0) {
-            throw new IndexOutOfBoundsException("index exceeds the permissible limits for the list!");
-        }
-        Node<E> target = firstNode.getNextElement();
-        for (int i = 0; i < index; i++) {
-
-            target = target.getNextElement();
-        }
-        return (Task) target.getCurrentElement();
-    }
-
-     */
-
-
-/*
-    @Override
-    public LinkedTaskList incoming(int from, int to) {
-        if (to <= from || from < 0) {
-            throw new IllegalArgumentException("incoming's interval was set as a wrong number's!");
-        }
-        LinkedTaskList result = new LinkedTaskList<>();
-        for (int i = 0; i < size(); i++) {
-            for (int j = from; j < to; j++) {
-                if (getTask(i).nextTimeAfter(j) <= to && getTask(i).nextTimeAfter(j) != -1) {
-                    result.add(getTask(i));
-                    break;
-                }
-            }
-        }
-        return result;
-    }
-
- */
 
 
     //class of links;
