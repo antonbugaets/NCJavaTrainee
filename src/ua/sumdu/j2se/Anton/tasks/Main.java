@@ -6,6 +6,22 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 public class Main {
+    public static void printListWithPreviousNNext(AbstractTaskList linkedTaskList) {
+        int j = 0;
+        while (j < linkedTaskList.size()) {
+            if (j == 0) {
+                System.out.print("Previous element: " + null + "; Current element: " + linkedTaskList.getTask(j).getTitle() + "; Next element: " + linkedTaskList.getTask(j + 1).getTitle() + "\n");
+            }
+
+            if (j != 0 & j != linkedTaskList.size() - 1)
+                System.out.print("Previous element: " + linkedTaskList.getTask(j - 1).getTitle() + "; Current element: " + linkedTaskList.getTask(j).getTitle() + "; Next element: " + linkedTaskList.getTask(j + 1).getTitle() + "\n");
+            if (j == linkedTaskList.size() - 1) {
+                System.out.print("Previous element: " + linkedTaskList.getTask(j - 1).getTitle() + "; Current element: " + linkedTaskList.getTask(j).getTitle() + "; Next element: " + null + "\n");
+            }
+            j++;
+        }
+
+    }
 
     public static void main(String[] args) {
         /*
@@ -22,22 +38,17 @@ public class Main {
         while (j < 10) {
             linkedList.add(new Task("Task №: " + j++, 10));
         }
-        System.out.println(linkedList.size());
-
-
-        for (Task value :
-                linkedList) {
-            System.out.print(value.getTitle() + " , ");
-        }
+        System.out.println("Size of List: " + linkedList.size());
+        System.out.println();
+        printListWithPreviousNNext(linkedList);
         System.out.println();
         System.out.println(linkedList.remove(linkedList.getTask(4)));
 
-        System.out.println(linkedList.size());
+        System.out.println();
+        printListWithPreviousNNext(linkedList);
+        System.out.println();
+        System.out.println("Size of List: " + linkedList.size());
 
-        for (Task value :
-                linkedList) {
-            System.out.print(value.getTitle() + " , ");
-        }
     }
 
 
