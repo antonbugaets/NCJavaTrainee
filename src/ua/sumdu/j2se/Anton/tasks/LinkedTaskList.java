@@ -70,14 +70,14 @@ public class LinkedTaskList<E> extends AbstractTaskList {
     public boolean remove(Task task) {
         boolean isSuccess = false;
         Node firstLink = firstNode;
-        int i = 0;
-        while (firstLink.getNextElement().currentElement != null) {
-            System.out.println("inter: " + i++);
+        //int i = 0;
+        while (firstLink.getNextElement().getCurrentElement() != null) {
+            //  System.out.println("inter: " + i++);
             boolean isRemoved = false;
             Node secondLink = firstLink.getNextElement();
-            if (secondLink != null && secondLink.currentElement != null && secondLink.currentElement.equals(task)) {
+            if (secondLink != null && secondLink.getCurrentElement() != null && secondLink.getCurrentElement().equals(task)) {
                 firstLink.setNextElement(secondLink.getNextElement());
-                firstLink.setPreviousElement(secondLink.getPreviousElement());
+                secondLink.getNextElement().setPreviousElement(secondLink.getPreviousElement());
                 isRemoved = true;
                 isSuccess = true;
                 size--;
