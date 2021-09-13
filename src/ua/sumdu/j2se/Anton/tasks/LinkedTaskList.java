@@ -111,6 +111,32 @@ public class LinkedTaskList<E> extends AbstractTaskList {
         };
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LinkedTaskList)) return false;
+        LinkedTaskList<?> that = (LinkedTaskList<?>) o;
+        return firstNode.equals(that.firstNode) &&
+                lastNode.equals(that.lastNode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstNode, lastNode);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        int j = 0;
+        stringBuilder.append("\nThis LinkedTaskList with several Task's: ");
+        for (Task value :
+                this) {
+            stringBuilder.append("\n\n").append(value.toString()).append("\nIndex in LinkedList: ").append(j++);
+
+        }
+        return stringBuilder.toString();
+    }
 
     //class of links;
     private class Node<E> {

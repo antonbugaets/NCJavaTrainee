@@ -6,9 +6,6 @@ import java.util.function.Consumer;
 public class ArrayTaskList extends AbstractTaskList {
     private Task[] tasks = new Task[]{};
 
-    public ArrayTaskList() {
-    }
-
     /**
      * void add (Task task) is a method that adds the specified task to the list.
      */
@@ -27,7 +24,7 @@ public class ArrayTaskList extends AbstractTaskList {
      * if such a task was in the list. If the list contains several tasks of the same type, any of them should be removed.
      */
     @Override
-    public boolean remove(Task task) { //right version
+    public boolean remove(Task task) {
         boolean isRemoved = false;
         ArrayTaskList result = new ArrayTaskList();
         for (Task value : tasks) {
@@ -66,6 +63,32 @@ public class ArrayTaskList extends AbstractTaskList {
         }
         throw new IndexOutOfBoundsException("index exceeds the permissible limits for the list!");
         // return null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ArrayTaskList)) return false;
+        ArrayTaskList that = (ArrayTaskList) o;
+        return Arrays.equals(tasks, that.tasks);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(tasks);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        int j = 0;
+        stringBuilder.append("\nThis ArrayTaskList with several Task's: ");
+        for (Task value :
+                tasks) {
+            stringBuilder.append("\n\n").append(value.toString()).append("\nIndex in ArrayList: ").append(j++);
+
+        }
+        return stringBuilder.toString();
     }
 
     @Override

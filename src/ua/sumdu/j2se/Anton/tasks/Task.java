@@ -2,7 +2,7 @@ package ua.sumdu.j2se.Anton.tasks;
 
 import java.util.Objects;
 
-public class Task {
+public class Task implements Cloneable {
     private String title;
     private int time;
 
@@ -68,13 +68,29 @@ public class Task {
                 active == task.active &&
                 repeatable == task.repeatable &&
                 title.equals(task.title);
-
-        //Objects.equals(title, task.title);
     }
+
 
     @Override
     public int hashCode() {
         return Objects.hash(title, time, start, end, interval, active, repeatable);
+    }
+
+    @Override
+    protected Task clone() throws CloneNotSupportedException {
+        return (Task) super.clone();
+    }
+
+    @Override
+    public String toString() {
+        if (isRepeated()) {
+            return new StringBuilder("This repeatable Task with following parameters: ").append("\nActivity: ").append(active).append("\nTitle: ").append(title).append("\nStart time: ").append(start).append("\nEnd time: ").append(end).append("\nInterval: ").append(interval).toString();
+            //  return null;
+        } else {
+            return new StringBuilder("This non repeatable Task with following parameters: ").append("\nActivity: ").append(active).append("\nTitle: ").append(title).append("\nTime: ").append(time).toString();
+        }
+
+
     }
 
     String getTitle() {
