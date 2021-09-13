@@ -56,13 +56,23 @@ public class ArrayTaskList extends AbstractTaskList {
 
     @Override
     public Task getTask(int index) {
-        for (int i = 0; i < this.size(); i++) {
-            if (index == i) {
-                return tasks[i];
+        if (index < this.size() / 2 ) {
+            for (int i = 0; i < this.size() / 2; i++) {
+                if (index == i) {
+                    return tasks[i];
+                }
             }
+
+        } else {
+            for (int i = this.size() - 1; i >= this.size() / 2; i--) {
+                if (index == i) {
+                    return tasks[i];
+                }
+            }
+
         }
-        throw new IndexOutOfBoundsException("index exceeds the permissible limits for the list!");
-        // return null;
+        //  throw new IndexOutOfBoundsException("index exceeds the permissible limits for the list!");
+        return null;
     }
 
     @Override

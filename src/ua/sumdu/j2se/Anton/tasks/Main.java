@@ -24,21 +24,55 @@ public class Main {
         Task repetableTask2 = new Task("title", 16, 238, 16);
         Task nonrepetableTask1 = new Task("titleNon", 12);
 
-        LinkedTaskList arrayList1 = (LinkedTaskList) ListTypes.createTaskList(ListTypes.types.LINKED);
 
-        arrayList1.add(repetableTask1);
+        //Test's for Task's methods:
+        //clone & equals test
+        Task cloneTask = repetableTask1.clone();
 
-        arrayList1.add(repetableTask2);
+        System.out.println("Should be true: ");
+        System.out.println(cloneTask.equals(repetableTask1));
+        // clean equals test
+        Task testTask = cloneTask;
 
-        arrayList1.add(nonrepetableTask1);
+        System.out.println("Should be true: ");
+        System.out.println(cloneTask.equals(testTask));
+
+        //ToString test:
+
+        System.out.println(repetableTask1.toString());
 
 
-        AbstractTaskList arrayList2 = arrayList1.clone();
 
-        System.out.println(arrayList1.equals(arrayList2));
-        System.out.println(arrayList2.toString());
+        //Test's for List's methods:
+        AbstractTaskList array = ListTypes.createTaskList(ListTypes.types.ARRAY);
+        AbstractTaskList linked = ListTypes.createTaskList(ListTypes.types.LINKED);
+
+        array.add(repetableTask1);
+        array.add(repetableTask2);
+        array.add(nonrepetableTask1);
+
+        linked.add(repetableTask1);
+        linked.add(repetableTask2);
+        linked.add(nonrepetableTask1);
+        //equals's test's
+        System.out.println("Should be false: ");
+        System.out.println(array.equals(linked));
+        System.out.println("Should be true: ");
+        System.out.println(array.equals(array));
+        System.out.println("Should be true: ");
+        System.out.println(linked.equals(linked));
+
+        //clone's test's:
+        System.out.println("Should be true: ");
+        System.out.println(array.clone().equals(array));
+        System.out.println("Should be true: ");
+        System.out.println(linked.clone().equals(linked));
 
 
+        //toString test's:
+
+        System.out.println(array.toString());
+        System.out.println(linked.toString());
         /*
         AbstractTaskList linkedList = ListTypes.createTaskList(ListTypes.types.LINKED);
 
