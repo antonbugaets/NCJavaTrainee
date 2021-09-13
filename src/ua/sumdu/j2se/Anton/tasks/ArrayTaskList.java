@@ -71,8 +71,8 @@ public class ArrayTaskList extends AbstractTaskList {
             }
 
         }
-        //  throw new IndexOutOfBoundsException("index exceeds the permissible limits for the list!");
-        return null;
+          throw new IndexOutOfBoundsException("index exceeds the permissible limits for the list!");
+        //return null;
     }
 
     @Override
