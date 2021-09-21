@@ -2,6 +2,7 @@ package ua.sumdu.j2se.Anton.tasks;
 
 
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -37,12 +38,21 @@ public abstract class AbstractTaskList implements Iterable<Task>, Cloneable {
         List<Task> taskList = getStream().filter(task -> isNextTimeAfter(task, from, to))
                 .collect(Collectors.toList());
 
+        AbstractTaskList result = null;
+        if (this instanceof ArrayTaskList) result = new ArrayTaskList();
+        if (this instanceof LinkedTaskList) result = new LinkedTaskList<>();
+
         for (Task value :
                 taskList) {
-            System.out.println(value);
+            result.add(value);
         }
-        return null;
 
+        return result;
+
+/*
+       AbstractTaskList abstractTaskList = getStream().filter(task -> isNextTimeAfter(task,from,to))
+                .collect();
+ */
     }
 
     private boolean isNextTimeAfter(Object task, int from, int to) {

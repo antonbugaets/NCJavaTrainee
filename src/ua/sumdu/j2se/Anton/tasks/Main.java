@@ -34,7 +34,12 @@ public class Main {
         taskList.add(repetableTask2);
         taskList.add(nonrepetableTask1);
 
-        taskList.incomingTest(10,14);
+        taskList = taskList.incomingTest(10, 14);
+
+        for (Task value :
+                taskList) {
+            System.out.println(value);
+        }
 
     }
 
