@@ -2,6 +2,7 @@ package ua.sumdu.j2se.Anton.tasks;
 
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 public class ArrayTaskList extends AbstractTaskList {
     private Task[] tasks = new Task[]{};
@@ -49,6 +50,7 @@ public class ArrayTaskList extends AbstractTaskList {
         return tasks.length;
     }
 
+
     /**
      * Task getTask(int index) is a method that returns a task which takes the specified place in the list;
      * the index of the first task is 0.
@@ -56,7 +58,7 @@ public class ArrayTaskList extends AbstractTaskList {
 
     @Override
     public Task getTask(int index) {
-        if (index < this.size() / 2 ) {
+        if (index < this.size() / 2) {
             for (int i = 0; i < this.size() / 2; i++) {
                 if (index == i) {
                     return tasks[i];
@@ -71,7 +73,7 @@ public class ArrayTaskList extends AbstractTaskList {
             }
 
         }
-          throw new IndexOutOfBoundsException("index exceeds the permissible limits for the list!");
+        throw new IndexOutOfBoundsException("index exceeds the permissible limits for the list!");
         //return null;
     }
 
