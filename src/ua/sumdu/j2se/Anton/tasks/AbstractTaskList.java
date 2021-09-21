@@ -10,11 +10,11 @@ public abstract class AbstractTaskList implements Iterable<Task>, Cloneable {
     int size = 0;
 
 
-    abstract public void add(Task task);
+    public abstract void add(Task task);
 
-    abstract public boolean remove(Task task);
+    public abstract boolean remove(Task task);
 
-    abstract public Task getTask(int index);
+    public abstract Task getTask(int index);
 
     public int size() {
         return size;
