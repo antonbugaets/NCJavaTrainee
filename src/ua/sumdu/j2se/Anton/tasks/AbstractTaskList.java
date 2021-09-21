@@ -33,18 +33,18 @@ public abstract class AbstractTaskList implements Iterable<Task>, Cloneable {
         if (to <= from || from < 0) {
             throw new IllegalArgumentException("incoming's interval was set as a wrong number's!");
         }
-        var ref = new Object() {
-            AbstractTaskList result = null;
-        };
-        if (this instanceof ArrayTaskList) ref.result = new ArrayTaskList();
-        if (this instanceof LinkedTaskList) ref.result = new LinkedTaskList<>();
+
+        AbstractTaskList result = null;
+
+        if (this instanceof ArrayTaskList) result = new ArrayTaskList();
+        if (this instanceof LinkedTaskList) result = new LinkedTaskList<>();
 
 
+        AbstractTaskList finalResult = result;
         getStream().filter(task -> isNextTimeAfter(task, from, to))
-                .forEach(task -> {
-                    ref.result.add(task);
-                });
-        return ref.result;
+                .forEach(task ->
+                    finalResult.add(task));
+        return finalResult;
 
     }
 
