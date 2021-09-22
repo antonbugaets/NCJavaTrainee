@@ -35,7 +35,7 @@ public class Main {
         taskList.add(nonrepetableTask1);
 
 
-        taskList = taskList.incomingTest(10, 14);
+        taskList = taskList.incoming(10, 14);
 
         System.out.println(taskList);
 

@@ -29,22 +29,19 @@ public abstract class AbstractTaskList implements Iterable<Task>, Cloneable {
         return resultStream;
     }
 
-    final public AbstractTaskList incomingTest(int from, int to) {
+    final public AbstractTaskList incoming(int from, int to) {
         if (to <= from || from < 0) {
             throw new IllegalArgumentException("incoming's interval was set as a wrong number's!");
         }
 
-        AbstractTaskList result = null;
+        AbstractTaskList result = this;
 
         if (this instanceof ArrayTaskList) result = new ArrayTaskList();
         if (this instanceof LinkedTaskList) result = new LinkedTaskList<>();
 
-
-        AbstractTaskList finalResult = result;
         getStream().filter(task -> isNextTimeAfter(task, from, to))
-                .forEach(task ->
-                    finalResult.add(task));
-        return finalResult;
+                .forEach(result::add);
+        return result;
 
     }
 
@@ -58,6 +55,22 @@ public abstract class AbstractTaskList implements Iterable<Task>, Cloneable {
         return false;
     }
 
+    @Override
+    public abstract boolean equals(Object o);
+
+    @Override
+    public abstract int hashCode();
+
+    @Override
+    public abstract String toString();
+
+    @Override
+    protected AbstractTaskList clone() throws CloneNotSupportedException {
+        if (this instanceof ArrayTaskList) return (ArrayTaskList) super.clone();
+        if (this instanceof LinkedTaskList) return (LinkedTaskList) super.clone();
+        return null;
+    }
+/*
 
     final public AbstractTaskList incoming(int from, int to) {
         if (to <= from || from < 0) {
@@ -78,20 +91,6 @@ public abstract class AbstractTaskList implements Iterable<Task>, Cloneable {
         return result;
     }
 
-    @Override
-    public abstract boolean equals(Object o);
-
-    @Override
-    public abstract int hashCode();
-
-    @Override
-    public abstract String toString();
-
-    @Override
-    protected AbstractTaskList clone() throws CloneNotSupportedException {
-        if (this instanceof ArrayTaskList) return (ArrayTaskList) super.clone();
-        if (this instanceof LinkedTaskList) return (LinkedTaskList) super.clone();
-        return null;
-    }
+ */
 
 }
