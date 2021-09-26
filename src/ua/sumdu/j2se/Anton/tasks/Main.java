@@ -1,8 +1,8 @@
 package ua.sumdu.j2se.Anton.tasks;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Stream;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.Period;
 
 public class Main {
     public static void printListWithPreviousNNext(AbstractTaskList linkedTaskList) {
@@ -22,23 +22,50 @@ public class Main {
 
     }
 
-    public static void main(String[] args) throws CloneNotSupportedException {
+    public static void main(String[] args) throws CloneNotSupportedException, InterruptedException {
 
-        Task repetableTask1 = new Task("testtasik", 12, 3666, 2);
-        Task repetableTask2 = new Task("title", 16, 238, 16);
-        Task nonrepetableTask1 = new Task("titleNon", 12);
+
+        Task repetableTask1 = new Task("testtasik", LocalDateTime.of(2021, Month.AUGUST, 3, 14, 15), LocalDateTime.of(2021, Month.AUGUST, 29, 14, 15), Period.ofDays(5));
+        //   Task repetableTask2 = new Task("title", null, null, null);
+        Task nonrepetableTask1 = new Task("titleNon", LocalDateTime.of(2021, Month.AUGUST, 3, 14, 15));
+
+        /*
+        System.out.println("Start time: " +repetableTask1.getStartTime().getDayOfMonth());
+
+        System.out.println("End time: " +repetableTask1.getEndTime().getDayOfMonth());
+
+        System.out.println("Repeated interval: " +repetableTask1.getRepeatInterval().getDays());
+
+        LocalDateTime current = LocalDateTime.of(2021, Month.AUGUST, 26, 14, 15);
+        System.out.println("Current time : " + current.getDayOfMonth());
+        System.out.println("Next Time After: " + repetableTask1.nextTimeAfter(current).getDayOfMonth());
+
+
+         */
+
 
         AbstractTaskList taskList = ListTypes.createTaskList(ListTypes.types.LINKED);
 
         taskList.add(repetableTask1);
-        taskList.add(repetableTask2);
-        taskList.add(nonrepetableTask1);
+      //  taskList.add(nonrepetableTask1);
+
+        Tasks.calendar(taskList,  LocalDateTime.of(2021, Month.AUGUST, 3, 14, 15),  LocalDateTime.of(2021, Month.SEPTEMBER, 3, 14, 15));
 
 
-        taskList = taskList.incoming(10, 14);
 
-        System.out.println(taskList);
 
+/*
+        String input = "this\n" +
+                "that\n" +
+                "the_other";
+        Stream<String> stream = input.lines();
+        Iterable<String> iterable = stream::iterator;
+        for (String value : iterable) {
+            System.out.println("value = " + value);
+        }
+
+
+ */
     }
 
 

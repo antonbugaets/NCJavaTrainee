@@ -1,9 +1,6 @@
 package ua.sumdu.j2se.Anton.tasks;
 
 
-import java.util.List;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public abstract class AbstractTaskList implements Iterable<Task>, Cloneable {
@@ -29,31 +26,6 @@ public abstract class AbstractTaskList implements Iterable<Task>, Cloneable {
         return resultStream;
     }
 
-    final public AbstractTaskList incoming(int from, int to) {
-        if (to <= from || from < 0) {
-            throw new IllegalArgumentException("incoming's interval was set as a wrong number's!");
-        }
-
-        AbstractTaskList result = this;
-
-        if (this instanceof ArrayTaskList) result = new ArrayTaskList();
-        if (this instanceof LinkedTaskList) result = new LinkedTaskList<>();
-
-        getStream().filter(task -> isNextTimeAfter(task, from, to))
-                .forEach(result::add);
-        return result;
-
-    }
-
-    private boolean isNextTimeAfter(Object task, int from, int to) {
-        Task value = (Task) task;
-        for (int j = from; j < to; j++) {
-            if (value.nextTimeAfter(j) <= to && value.nextTimeAfter(j) != -1) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     @Override
     public abstract boolean equals(Object o);
@@ -70,27 +42,6 @@ public abstract class AbstractTaskList implements Iterable<Task>, Cloneable {
         if (this instanceof LinkedTaskList) return (LinkedTaskList) super.clone();
         return null;
     }
-/*
 
-    final public AbstractTaskList incoming(int from, int to) {
-        if (to <= from || from < 0) {
-            throw new IllegalArgumentException("incoming's interval was set as a wrong number's!");
-        }
-
-        AbstractTaskList result = null;
-        if (this instanceof ArrayTaskList) result = new ArrayTaskList();
-        if (this instanceof LinkedTaskList) result = new LinkedTaskList<>();
-        for (Task value : this) {
-            for (int j = from; j < to; j++) {
-                if (value.nextTimeAfter(j) <= to && value.nextTimeAfter(j) != -1) {
-                    result.add(value);
-                    break;
-                }
-            }
-        }
-        return result;
-    }
-
- */
 
 }

@@ -1,14 +1,20 @@
 package ua.sumdu.j2se.Anton.tasks;
 
+import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.Objects;
 
 public class Task implements Cloneable {
-    private String title;
-    private int time;
 
-    private int start;
-    private int end;
-    private int interval;
+
+    private String title;
+    //private int time;
+
+    private LocalDateTime time;
+
+    private LocalDateTime start;
+    private LocalDateTime end;
+    private Period interval;
 
     private boolean active;
 
@@ -17,11 +23,11 @@ public class Task implements Cloneable {
     /**
      * constructor constructs an inactive task to run at a specified time without repeating with a given name.
      */
-    public Task(String title, int time) {
+    public Task(String title, LocalDateTime time) {
+
+        //  time.format(DateTimeFormatter.ofPattern("M::dd::hh:mm"));
         //The constructor of a Task class should necessarily generate the IllegalArgumentException exception in the case when the time was set as a negative number;
-        if (time <= 0) {
-            throw new IllegalArgumentException("Time was set as a negative number!");
-        }
+
         if (title == null) {
             throw new NullPointerException("Title was set as a wrong!");
         }
@@ -36,16 +42,8 @@ public class Task implements Cloneable {
      * constructor constructs an inactive task to run within the specified time range
      * (including the start and the end time) with the set repetition interval and with a given name.
      */
-    public Task(String title, int start, int end, int interval) {
-        if (start < 0) {
-            throw new IllegalArgumentException("Start was set as a negative number!");
-        }
-        if (end <= start) {
-            throw new IllegalArgumentException("End was set as a wrong number!");
-        }
-        if (interval <= 0) {
-            throw new IllegalArgumentException("Interval was set as a wrong number!");
-        }
+    public Task(String title, LocalDateTime start, LocalDateTime end, Period interval) {
+
         if (title == null) {
             throw new NullPointerException("Title was set as a wrong!");
         }
@@ -85,11 +83,9 @@ public class Task implements Cloneable {
     public String toString() {
         if (isRepeated()) {
             return new StringBuilder("This repeatable Task with following parameters: ").append("\nActivity: ").append(active).append("\nTitle: ").append(title).append("\nStart time: ").append(start).append("\nEnd time: ").append(end).append("\nInterval: ").append(interval).toString();
-            //  return null;
         } else {
             return new StringBuilder("This non repeatable Task with following parameters: ").append("\nActivity: ").append(active).append("\nTitle: ").append(title).append("\nTime: ").append(time).toString();
         }
-
 
     }
 
@@ -121,7 +117,7 @@ public class Task implements Cloneable {
     /**
      * if the task is a repetitive one, the method must return the start time of the repetition;
      */
-    public int getTime() {
+    public LocalDateTime getTime() {
         if (!isRepeated()) {
             return time;
         } else return start;
@@ -132,15 +128,13 @@ public class Task implements Cloneable {
      * if the task was a repetitive one, it should become non-repetitive.
      */
 
-    public void setTime(int time) {
-        if (time <= 0) {
-            throw new IllegalArgumentException("Time was set as a negative number!");
-        }
+    public void setTime(LocalDateTime time) {
+
         this.time = time;
         if (isRepeated()) {
-            this.start = 0;
-            this.end = 0;
-            this.interval = 0;
+            this.start = null;
+            this.end = null;
+            this.interval = null;
             repeatable = false;
         }
     }
@@ -150,43 +144,35 @@ public class Task implements Cloneable {
     /**
      * if the task is a non-repetitive one, the method must return the time of the execution;
      */
-    public int getStartTime() {
+    public LocalDateTime getStartTime() {
         if (isRepeated()) {
             return start;
         } else return time;
     }
 
-    public int getEndTime() {
+    public LocalDateTime getEndTime() {
         if (isRepeated()) {
             return end;
         } else return time;
     }
 
-    public int getRepeatInterval() {
+    public Period getRepeatInterval() {
         if (isRepeated()) {
             return interval;
-        } else return 0;
+        } else return null;
     }
 
     /**
      * if the task is a non-repetitive one, it should become repetitive.
      */
 
-    public void setTime(int start, int end, int interval) {
-        if (start < 0) {
-            throw new IllegalArgumentException("Start was set as a negative number!");
-        }
-        if (end <= start) {
-            throw new IllegalArgumentException("End was set as a wrong number!");
-        }
-        if (interval <= 0) {
-            throw new IllegalArgumentException("Interval was set as a wrong number!");
-        }
+    public void setTime(LocalDateTime start, LocalDateTime end, Period interval) {
+
         this.start = start;
         this.end = end;
         this.interval = interval;
         if (!isRepeated()) {
-            this.time = 0;
+            this.time = null;
             repeatable = true;
         }
     }
@@ -200,39 +186,45 @@ public class Task implements Cloneable {
     /**
      * current - time at this moment
      */
-    public int nextTimeAfter(int current) {
+
+    public LocalDateTime nextTimeAfter(LocalDateTime current) {
 
         //for non repeatable task:
         if (!isRepeated()) {
-            if (time <= current) {
-                //active =false;
-                return -1; //
+            if (time.isBefore(current) || time.isEqual(current)) {
+
+                return null; //
             } else {
                 return time;
             }
         }
         //for  repeatable task:
-        if (current > end) {
-            return -1;
+        if (current.isAfter(end) || current.isEqual(end)) {
+            return null;
         }
-        if (current < start) {
+        if (current.isBefore(start)) {
             return start;
         }
-        //helpful variable's
-        //last Iteration with current
-        int count = start;
-        // calculation last Iteration w/o current
-        long lastIteration = end - start % interval == 0 ? end : end - ((end - start) % interval);
-        // System.out.println("LastIretation w/o current: " + lastIteration);
-        //the task will not be executed anymore
+
+        LocalDateTime count = start;
+
+        LocalDateTime lastIteration = start;
+
+        while (lastIteration.isBefore(end) || lastIteration.isEqual(end)) {
+            lastIteration = lastIteration.plus(getRepeatInterval());
+        }
+        lastIteration = lastIteration.minus(interval);
+        //   System.out.println("LastIretation w/o current: " + lastIteration.getDayOfMonth());
         //calculation last Iteration with current
-        while (count <= current) {
-            count += interval;
+        while (count.isBefore(current) || count.isEqual(current)) {
+            count = count.plus(getRepeatInterval());
         }
-        if (current >= lastIteration | count > lastIteration) {
-            return -1;
+
+
+        if (current.isEqual(lastIteration) || current.isAfter(lastIteration) || count.isAfter(lastIteration)) {
+            return null;
         }
-        // return last Iteration with current
+
         return count;
 
     }
