@@ -63,7 +63,7 @@ public class Tasks {
         Iterable<Task> iterableWithIncoming = incoming(tasks, start, end);
         TreeMap<LocalDateTime, Set<Task>> resultSortedMap = new TreeMap<>();
         for (Task value : iterableWithIncoming) {
-            LocalDateTime taskIterate = value.getStartTime();
+            LocalDateTime taskIterate = value.nextTimeAfter(start);
             while (true) {
                 if (taskIterate.isAfter(end) || taskIterate.isAfter(value.getEndTime())) {
                     break;
@@ -77,7 +77,7 @@ public class Tasks {
                     values.add(value);
                     resultSortedMap.put(value.getTime(), values);
                 }
-                if(value.getRepeatInterval() == null ){
+                if (value.getRepeatInterval() == null) {
                     break;
                 }
                 taskIterate = taskIterate.plus(value.getRepeatInterval());
@@ -91,7 +91,7 @@ public class Tasks {
         AbstractTaskList taskList = ListTypes.createTaskList(ListTypes.types.LINKED);
 
         //Test's for nonRepTasks:
-
+/*
         Task nonRep1 = new Task("nonRep1", LocalDateTime.now());
         Task nonRep2 = new Task("nonRep2", LocalDateTime.now());
 
@@ -108,9 +108,11 @@ public class Tasks {
 
         TreeMap<LocalDateTime, Set<Task>> sortedMap = (TreeMap) Tasks.calendar(taskList, LocalDateTime.now().minusDays(1), LocalDateTime.now());
 
+ */
+
 
         //Test's for RepTasks:
-/*
+
         Task repetableTask1 = new Task("testtasik1!", LocalDateTime.of(2021, Month.AUGUST, 3, 14, 15), LocalDateTime.of(2021, Month.AUGUST, 29, 14, 15), Period.ofDays(5));
 
         Task repetableTask2 = new Task("testtasik2!", LocalDateTime.of(2021, Month.AUGUST, 3, 14, 15), LocalDateTime.of(2021, Month.AUGUST, 29, 14, 15), Period.ofDays(5));
@@ -120,12 +122,11 @@ public class Tasks {
 
         TreeMap<LocalDateTime, Set<Task>> sortedMap = (TreeMap) Tasks.calendar(taskList, LocalDateTime.now().minusMonths(3), LocalDateTime.now());
 
- */
 
         for (Map.Entry<LocalDateTime, Set<Task>> entry : sortedMap.entrySet()) {
             System.out.println("KEY: " + entry.getKey() + ". \nVALUE: " + entry.getValue());
         }
-        
+
     }
 
     /*
