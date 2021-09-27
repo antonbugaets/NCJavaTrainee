@@ -75,7 +75,7 @@ public class Tasks {
                 } else {
                     Set<Task> values = resultSortedMap.get(taskIterate);
                     values.add(value);
-                    resultSortedMap.put(value.getTime(), values);
+                    resultSortedMap.put(taskIterate, values);
                 }
                 if (value.getRepeatInterval() == null) {
                     break;
@@ -124,7 +124,7 @@ public class Tasks {
 
 
         for (Map.Entry<LocalDateTime, Set<Task>> entry : sortedMap.entrySet()) {
-            System.out.println("KEY: " + entry.getKey() + ". \nVALUE: " + entry.getValue());
+            System.out.println("\nKEY: " + entry.getKey() + ". \nVALUE: " + entry.getValue());
         }
 
     }
