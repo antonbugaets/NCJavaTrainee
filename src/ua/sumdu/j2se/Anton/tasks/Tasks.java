@@ -68,7 +68,7 @@ public class Tasks {
                 if (taskIterate.isAfter(end) || taskIterate.isAfter(value.getEndTime())) {
                     break;
                 }
-                if (!resultSortedMap.containsKey(taskIterate)) {
+                if (resultSortedMap.containsKey(taskIterate) == false) {
                     Set<Task> values = new HashSet<>();
                     values.add(value);
                     resultSortedMap.put(taskIterate, values);
@@ -77,7 +77,7 @@ public class Tasks {
                     values.add(value);
                     resultSortedMap.put(value.getTime(), values);
                 }
-                if(value.getRepeatInterval() == null){
+                if(value.getRepeatInterval() == null ){
                     break;
                 }
                 taskIterate = taskIterate.plus(value.getRepeatInterval());
@@ -125,6 +125,7 @@ public class Tasks {
         for (Map.Entry<LocalDateTime, Set<Task>> entry : sortedMap.entrySet()) {
             System.out.println("KEY: " + entry.getKey() + ". \nVALUE: " + entry.getValue());
         }
+        
     }
 
     /*
