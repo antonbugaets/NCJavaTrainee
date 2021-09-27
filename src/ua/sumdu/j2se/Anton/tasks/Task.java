@@ -82,9 +82,9 @@ public class Task implements Cloneable {
     @Override
     public String toString() {
         if (isRepeated()) {
-            return new StringBuilder("This repeatable Task with following parameters: ").append("\nActivity: ").append(active).append("\nTitle: ").append(title).append("\nStart time: ").append(start).append("\nEnd time: ").append(end).append("\nInterval: ").append(interval).toString();
+            return new StringBuilder("This repeatable Task with following parameters: ").append("\nActivity: ").append(active).append("\nTitle: ").append(title).append("\nStart time: ").append(start.getMonth()).append(" ").append(start.getDayOfMonth()).append(", ").append(start.getHour()).append(":").append(start.getMinute()).append("\nEnd time: ").append(end.getMonth()).append(" ").append(end.getDayOfMonth()).append(", ").append(end.getHour()).append(":").append(end.getMinute()).append("\nInterval: ").append(interval).toString();
         } else {
-            return new StringBuilder("This non repeatable Task with following parameters: ").append("\nActivity: ").append(active).append("\nTitle: ").append(title).append("\nTime: ").append(time).toString();
+            return new StringBuilder("This non repeatable Task with following parameters: ").append("\nActivity: ").append(active).append("\nTitle: ").append(title).append("\nTime: ").append(time.getMonth()).append(" ").append(time.getDayOfMonth()).append(", ").append(time.getHour()).append(":").append(time.getMinute()).toString();
         }
 
     }

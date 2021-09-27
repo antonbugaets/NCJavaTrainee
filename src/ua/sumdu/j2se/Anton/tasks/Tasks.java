@@ -1,9 +1,10 @@
 package ua.sumdu.j2se.Anton.tasks;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.SortedMap;
+import java.time.Month;
+import java.time.Period;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public class Tasks {
@@ -20,10 +21,18 @@ public class Tasks {
         if (to.isBefore(from)) {
             throw new IllegalArgumentException("incoming's interval was set as a wrong number's!");
         }
+      /*  return StreamSupport.stream(tasks.spliterator(), true)
+                .filter(task -> isNextTimeAfter(task, from, to))
+                ::iterator;
+
+       */
+
 
         return StreamSupport.stream(tasks.spliterator(), true)
                 .filter(task -> isNextTimeAfter(task, from, to))
-                ::iterator;
+                .collect(Collectors.toList());
+
+
     }
 
     private static boolean isNextTimeAfter(Object task, LocalDateTime from, LocalDateTime to) {
@@ -51,28 +60,53 @@ public class Tasks {
      */
 
     public static SortedMap<LocalDateTime, Set<Task>> calendar(Iterable<Task> tasks, LocalDateTime start, LocalDateTime end) {
-        //take subsequence
-        Iterable<Task> tasksWithIncoming = incoming(tasks, start, end);
+        Iterable<Task> iterableWithIncoming = incoming(tasks, start, end);
+        TreeMap<LocalDateTime, Set<Task>> resultSortedMap = new TreeMap<>();
 
+        /*
+        1) Пробежаться по всем таскам, которые репетируют в этом интервале старт - енд
+        2) Взять каждое повторение таски как ключ, если его еще нет в мапе, добавить вместе с тасками, которые повторяются в этом ключе.
+        */
 
-        SortedMap<LocalDateTime, Set<Task>> resultSortedMap = null;
+        //put all keys:
+        for (Task value : iterableWithIncoming) {
 
-        for (Task value : tasksWithIncoming) {
-            ArrayList<LocalDateTime> eachTaskRepetition = new ArrayList<>();
-
-            for (LocalDateTime j = start; j.isBefore(end); j = j.plus(value.getRepeatInterval())) {
-                if (value.nextTimeAfter(j) != null) {
-                    if (value.nextTimeAfter(j).isBefore(end) || value.nextTimeAfter(j).isEqual(end)) {
-                        eachTaskRepetition.add(value.nextTimeAfter(j));
+            if (value.isRepeated()) {
+                LocalDateTime taskIterate = value.getStartTime();
+                while (true) {
+                    if (taskIterate.isAfter(end) || taskIterate.isAfter(value.getEndTime())) {
+                        break;
                     }
+                    resultSortedMap.put(taskIterate, null);
+
+                    LocalDateTime finalTaskIterate = taskIterate;
+/*
+                    resultSortedMap.replace(taskIterate,null, StreamSupport.stream(iterableWithIncoming.spliterator(), false)
+                    .filter(object -> finalTaskIterate.equals())
+                            .collect(Collectors.toSet()));
+
+ */
+                    taskIterate = taskIterate.plus(value.getRepeatInterval());
+
                 }
+            } else {
+                resultSortedMap.put(value.getTime(), null);
             }
-            for (LocalDateTime var :
-                    eachTaskRepetition) {
-                System.out.println(var.getDayOfMonth());
-            }
-            
+
         }
+        //put all values:
+
+/*
+        for (Task task : iterable) {
+            if (!sortedMap.containsKey(task.getTime())) {
+                LocalDateTime date_key = task.getTime();
+                sortedMap.put(date_key, StreamSupport.stream(iterable.spliterator(), false)
+                        .filter(task1 -> date_key.equals(task.getTime()))
+                        .collect(Collectors.toSet())
+                );
+            }
+        }
+        */
         return resultSortedMap;
     }
 

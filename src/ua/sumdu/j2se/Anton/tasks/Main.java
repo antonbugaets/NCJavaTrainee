@@ -3,6 +3,7 @@ package ua.sumdu.j2se.Anton.tasks;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.Period;
+import java.util.List;
 
 public class Main {
     public static void printListWithPreviousNNext(AbstractTaskList linkedTaskList) {
@@ -22,50 +23,51 @@ public class Main {
 
     }
 
-    public static void main(String[] args) throws CloneNotSupportedException, InterruptedException {
+    public static void main(String[] args) {
 
 
         Task repetableTask1 = new Task("testtasik", LocalDateTime.of(2021, Month.AUGUST, 3, 14, 15), LocalDateTime.of(2021, Month.AUGUST, 29, 14, 15), Period.ofDays(5));
         //   Task repetableTask2 = new Task("title", null, null, null);
-        Task nonrepetableTask1 = new Task("titleNon", LocalDateTime.of(2021, Month.AUGUST, 3, 14, 15));
+        Task nonrepetableTask1 = new Task("titleNon", LocalDateTime.of(2021, Month.AUGUST, 1, 14, 15));
 
-        /*
-        System.out.println("Start time: " +repetableTask1.getStartTime().getDayOfMonth());
+        System.out.println(repetableTask1);
 
-        System.out.println("End time: " +repetableTask1.getEndTime().getDayOfMonth());
+        System.out.println(nonrepetableTask1);
 
-        System.out.println("Repeated interval: " +repetableTask1.getRepeatInterval().getDays());
+        /**
+         * nextTimeAfter tests:
+         */
+        System.out.println("nextTimeAfter tests:");
+        //should be 2021-08-08T14:15
+        System.out.println(repetableTask1.nextTimeAfter(LocalDateTime.of(2021, Month.AUGUST, 3, 14, 15)));
+        //should be 2021-08-03T14:15 (start time)
+        System.out.println();
+        System.out.println(repetableTask1.nextTimeAfter(LocalDateTime.of(2021, Month.JULY, 3, 14, 15)));
+        System.out.println();
+        //should be null (cause after end time of task)
+        System.out.println(repetableTask1.nextTimeAfter(LocalDateTime.of(2021, Month.SEPTEMBER, 3, 14, 15)));
+        System.out.println();
+        //should be 2021-08-13T14:15
+        System.out.println(repetableTask1.nextTimeAfter(LocalDateTime.of(2021, Month.AUGUST, 12, 14, 15)));
 
-        LocalDateTime current = LocalDateTime.of(2021, Month.AUGUST, 26, 14, 15);
-        System.out.println("Current time : " + current.getDayOfMonth());
-        System.out.println("Next Time After: " + repetableTask1.nextTimeAfter(current).getDayOfMonth());
 
-
+        /**
+         * incoming tests:
          */
 
+        System.out.println("incoming tests:");
 
         AbstractTaskList taskList = ListTypes.createTaskList(ListTypes.types.LINKED);
 
         taskList.add(repetableTask1);
-      //  taskList.add(nonrepetableTask1);
+        taskList.add(nonrepetableTask1);
+        //should be both Task's
+        System.out.println(Tasks.incoming(taskList,LocalDateTime.of(2021, Month.JULY, 30, 14, 15), LocalDateTime.of(2021, Month.AUGUST, 10, 14, 15) ));
 
-        Tasks.calendar(taskList,  LocalDateTime.of(2021, Month.AUGUST, 3, 14, 15),  LocalDateTime.of(2021, Month.SEPTEMBER, 3, 14, 15));
+        System.out.println();
+        //should be Only titleNon task
+        System.out.println(Tasks.incoming(taskList,LocalDateTime.of(2021, Month.JULY, 30, 14, 15), LocalDateTime.of(2021, Month.AUGUST, 2, 14, 15) ));
 
-
-
-
-/*
-        String input = "this\n" +
-                "that\n" +
-                "the_other";
-        Stream<String> stream = input.lines();
-        Iterable<String> iterable = stream::iterator;
-        for (String value : iterable) {
-            System.out.println("value = " + value);
-        }
-
-
- */
     }
 
 
