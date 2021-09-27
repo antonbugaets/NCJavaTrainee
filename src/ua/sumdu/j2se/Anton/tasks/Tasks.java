@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.Period;
 import java.util.*;
+import java.util.logging.Handler;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -64,8 +65,11 @@ public class Tasks {
         TreeMap<LocalDateTime, Set<Task>> resultSortedMap = new TreeMap<>();
 
         /*
-        1) Пробежаться по всем таскам, которые репетируют в этом интервале старт - енд
-        2) Взять каждое повторение таски как ключ, если его еще нет в мапе, добавить вместе с тасками, которые повторяются в этом ключе.
+        первая таска, добавили ключ значение, нью сет,
+        потом если повторяющая таска, для нее несколько значений, каждый раз нью сет
+        вытащить сет
+        Есть ли ключ, нет создаем ключ-значение и новый сет
+        Если ключ есть, гетаем сет, добавляем в сет таску.
         */
 
         //put all keys:
@@ -77,37 +81,74 @@ public class Tasks {
                     if (taskIterate.isAfter(end) || taskIterate.isAfter(value.getEndTime())) {
                         break;
                     }
-                    resultSortedMap.put(taskIterate, null);
-
-                    LocalDateTime finalTaskIterate = taskIterate;
-/*
-                    resultSortedMap.replace(taskIterate,null, StreamSupport.stream(iterableWithIncoming.spliterator(), false)
-                    .filter(object -> finalTaskIterate.equals())
-                            .collect(Collectors.toSet()));
-
- */
+                    if (!resultSortedMap.containsKey(taskIterate)) {
+                        Set<Task> values = new HashSet<>();
+                        values.add(value);
+                        resultSortedMap.put(taskIterate, values);
+                    } else {
+                        Set<Task> values = resultSortedMap.get(taskIterate);
+                        values.add(value);
+                        resultSortedMap.put(value.getTime(), values);
+                    }
                     taskIterate = taskIterate.plus(value.getRepeatInterval());
 
                 }
             } else {
-                resultSortedMap.put(value.getTime(), null);
+                LocalDateTime taskIterate = value.getStartTime();
+                if (!resultSortedMap.containsKey(taskIterate)) {
+                    Set<Task> values = new HashSet<>();
+                    values.add(value);
+                    resultSortedMap.put(taskIterate, values);
+                } else {
+                    Set<Task> values = resultSortedMap.get(taskIterate);
+                    values.add(value);
+                    resultSortedMap.put(value.getTime(), values);
+                }
+
             }
 
         }
-        //put all values:
-
-/*
-        for (Task task : iterable) {
-            if (!sortedMap.containsKey(task.getTime())) {
-                LocalDateTime date_key = task.getTime();
-                sortedMap.put(date_key, StreamSupport.stream(iterable.spliterator(), false)
-                        .filter(task1 -> date_key.equals(task.getTime()))
-                        .collect(Collectors.toSet())
-                );
-            }
-        }
-        */
         return resultSortedMap;
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+
+        /*
+        //Test's for nonRepTasks:
+        Task nonRep1 = new Task("nonRep1", LocalDateTime.now());
+        Task nonRep2 = new Task("nonRep2", LocalDateTime.now());
+
+        Thread.sleep(2000);
+        Task nonRep3 = new Task("nonRep3", LocalDateTime.now());
+        Task nonRep4 = new Task("nonRep4", LocalDateTime.now());
+        AbstractTaskList taskList = ListTypes.createTaskList(ListTypes.types.LINKED);
+
+        taskList.add(nonRep1);
+        taskList.add(nonRep2);
+        taskList.add(nonRep3);
+        taskList.add(nonRep4);
+        Thread.sleep(2000);
+
+         TreeMap<LocalDateTime, Set<Task>> sortedMap = (TreeMap) Tasks.calendar(taskList, LocalDateTime.now().minusDays(1), LocalDateTime.now());
+
+         */
+
+        //Test's for RepTasks:
+
+        Task repetableTask1 = new Task("testtasik1!", LocalDateTime.of(2021, Month.AUGUST, 3, 14, 15), LocalDateTime.of(2021, Month.AUGUST, 29, 14, 15), Period.ofDays(5));
+
+
+        Task repetableTask2 = new Task("testtasik2!", LocalDateTime.of(2021, Month.AUGUST, 3, 14, 15), LocalDateTime.of(2021, Month.AUGUST, 29, 14, 15), Period.ofDays(5));
+
+        AbstractTaskList taskList = ListTypes.createTaskList(ListTypes.types.LINKED);
+        taskList.add(repetableTask1);
+        taskList.add(repetableTask2);
+
+        TreeMap<LocalDateTime, Set<Task>> sortedMap = (TreeMap) Tasks.calendar(taskList, LocalDateTime.now().minusMonths(3), LocalDateTime.now());
+
+        for (Map.Entry<LocalDateTime, Set<Task>> entry : sortedMap.entrySet()) {
+            System.out.println("KEY: " + entry.getKey() + ". \nVALUE: " + entry.getValue());
+        }
     }
 
 }
