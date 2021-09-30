@@ -28,10 +28,21 @@ public class Tasks {
 
        */
 
-
+/*
         return StreamSupport.stream(tasks.spliterator(), true)
                 .filter(task -> isNextTimeAfter(task, from, to))
                 .collect(Collectors.toList());
+
+
+ */
+
+
+
+        return StreamSupport.stream(tasks.spliterator(), false)
+                .filter(task -> task.nextTimeAfter(from) != null)
+                .filter(task -> !task.nextTimeAfter(from).isAfter(to))
+                .collect(Collectors.toList());
+
 
 
     }
@@ -60,6 +71,7 @@ public class Tasks {
      * @return
      */
     public static SortedMap<LocalDateTime, Set<Task>> calendar(Iterable<Task> tasks, LocalDateTime start, LocalDateTime end) {
+
         Iterable<Task> iterableWithIncoming = incoming(tasks, start, end);
         TreeMap<LocalDateTime, Set<Task>> resultSortedMap = new TreeMap<>();
         for (Task value : iterableWithIncoming) {
@@ -87,7 +99,8 @@ public class Tasks {
     }
 
 
-    public static void main(String[] args) throws InterruptedException {
+   public static void main(String[] args) throws InterruptedException {
+
         AbstractTaskList taskList = ListTypes.createTaskList(ListTypes.types.LINKED);
 
         //Test's for nonRepTasks:
@@ -120,7 +133,7 @@ public class Tasks {
         taskList.add(repetableTask1);
         taskList.add(repetableTask2);
 
-        TreeMap<LocalDateTime, Set<Task>> sortedMap = (TreeMap) Tasks.calendar(taskList, LocalDateTime.now().minusMonths(3), LocalDateTime.now());
+        SortedMap<LocalDateTime, Set<Task>> sortedMap =  Tasks.calendar(taskList, LocalDateTime.now().minusMonths(3), LocalDateTime.now());
 
 
         for (Map.Entry<LocalDateTime, Set<Task>> entry : sortedMap.entrySet()) {
@@ -129,54 +142,5 @@ public class Tasks {
 
     }
 
-    /*
-    public static SortedMap<LocalDateTime, Set<Task>> calendar(Iterable<Task> tasks, LocalDateTime start, LocalDateTime end) {
-        Iterable<Task> iterableWithIncoming = incoming(tasks, start, end);
-        TreeMap<LocalDateTime, Set<Task>> resultSortedMap = new TreeMap<>();
-
-
-
-        //put all keys:
-        for (Task value : iterableWithIncoming) {
-
-            if (value.isRepeated()) {
-                LocalDateTime taskIterate = value.getStartTime();
-                while (true) {
-                    if (taskIterate.isAfter(end) || taskIterate.isAfter(value.getEndTime())) {
-                        break;
-                    }
-                    if (!resultSortedMap.containsKey(taskIterate)) {
-                        Set<Task> values = new HashSet<>();
-                        values.add(value);
-                        resultSortedMap.put(taskIterate, values);
-                    } else {
-                        Set<Task> values = resultSortedMap.get(taskIterate);
-                        values.add(value);
-                        resultSortedMap.put(value.getTime(), values);
-                    }
-                    taskIterate = taskIterate.plus(value.getRepeatInterval());
-
-                }
-            } else {
-                LocalDateTime taskIterate = value.getStartTime();
-                if (!resultSortedMap.containsKey(taskIterate)) {
-                    Set<Task> values = new HashSet<>();
-                    values.add(value);
-                    resultSortedMap.put(taskIterate, values);
-                } else {
-                    Set<Task> values = resultSortedMap.get(taskIterate);
-                    values.add(value);
-                    resultSortedMap.put(value.getTime(), values);
-                }
-
-            }
-
-        }
-
-        return resultSortedMap;
-    }
-
-
- */
 
 }

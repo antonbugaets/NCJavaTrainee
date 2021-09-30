@@ -1,10 +1,11 @@
 package ua.sumdu.j2se.Anton.tasks;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.Objects;
 
-public class Task implements Cloneable {
+public class Task implements Cloneable, Serializable {
 
 
     private String title;

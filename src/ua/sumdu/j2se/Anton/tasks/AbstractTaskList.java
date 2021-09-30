@@ -1,9 +1,10 @@
 package ua.sumdu.j2se.Anton.tasks;
 
 
+import java.io.Serializable;
 import java.util.stream.Stream;
 
-public abstract class AbstractTaskList implements Iterable<Task>, Cloneable {
+public abstract class AbstractTaskList implements Iterable<Task>, Cloneable, Serializable {
     int size = 0;
 
 
