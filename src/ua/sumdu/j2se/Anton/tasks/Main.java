@@ -1,6 +1,7 @@
 package ua.sumdu.j2se.Anton.tasks;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.Period;
@@ -24,18 +25,20 @@ public class Main {
 
     }
 
+
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Task repetableTask1 = new Task("testtasik", LocalDateTime.of(2021, Month.AUGUST, 3, 14, 15), LocalDateTime.of(2021, Month.AUGUST, 29, 14, 15), Period.ofDays(5));
         Task nonrepetableTask1 = new Task("titleNon", LocalDateTime.of(2021, Month.AUGUST, 1, 14, 15));
 
-
         AbstractTaskList taskList = ListTypes.createTaskList(ListTypes.types.LINKED);
 
+        taskList.add(repetableTask1, nonrepetableTask1);
 
-        TaskIO.writeBinary(taskList, new File("testik.txt"));
+      //  System.out.println(taskList);
+        File fileTest = new File("test.txt");
 
-        AbstractTaskList taskList1 = ListTypes.createTaskList(ListTypes.types.LINKED);
-        TaskIO.readBinary(taskList1, new File("testik.txt"));
-        System.out.println(taskList1);
+        TaskIO.writeBinary(taskList,  fileTest);
+
+        TaskIO.readBinary(taskList, fileTest);
     }
 }

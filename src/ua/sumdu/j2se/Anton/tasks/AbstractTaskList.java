@@ -7,7 +7,10 @@ import java.util.stream.Stream;
 public abstract class AbstractTaskList implements Iterable<Task>, Cloneable, Serializable {
     int size = 0;
 
-
+    public  void add(Task task1, Task task2){
+        add(task1);
+        add(task2);
+    }
     public abstract void add(Task task);
 
     public abstract boolean remove(Task task);

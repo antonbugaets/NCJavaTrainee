@@ -1,113 +1,77 @@
 package ua.sumdu.j2se.Anton.tasks;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 
 public class TaskIO {
     /**
-     writes the tasks from the list to the stream in a binary format
+     * writes the tasks from the list to the stream in a binary format
      */
-    public static void write(AbstractTaskList tasks, OutputStream out) throws IOException {
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(out);
-        for (Task value : tasks) {
-            //The number of tasks:
-            int i = 0;
-            objectOutputStream.writeInt(i);
-            //The length of the name
-            objectOutputStream.writeInt(value.getTitle().length());
-            //name
+    private static long skipBytes;
 
-            objectOutputStream.write(value.getTitle().getBytes());
+    public static void write(AbstractTaskList tasks, OutputStream out) throws IOException {
+        //The number of tasks
+        skipBytes = (tasks.size() +  "\n\n").getBytes().length;
+        out.write((tasks.size() + "\n\n").getBytes(StandardCharsets.UTF_8));
+        for (Task value : tasks) {
+            //The length of the name
+            out.write((value.getTitle().length() + "\n").getBytes(StandardCharsets.UTF_8));
+            //The name of Task
+            out.write((value.getTitle() + "\n").getBytes(StandardCharsets.UTF_8));
             //Activity: 0/1
             if (value.isActive()) {
-                objectOutputStream.writeInt(1);
+                out.write((1 + "\n").getBytes(StandardCharsets.UTF_8));
             } else {
-                objectOutputStream.writeInt(0);
+                out.write((0 + "\n").getBytes(StandardCharsets.UTF_8));
             }
             //Repetition interval
-            objectOutputStream.writeObject(value.getRepeatInterval());
+            out.write((value.getRepeatInterval() + "\n").getBytes(StandardCharsets.UTF_8));
 
+            //Start & end time
             if (value.isRepeated()) {
-                //Start time
-                //End time
-                objectOutputStream.writeObject(value.getStartTime());
-                objectOutputStream.writeObject(value.getEndTime());
-            } else {
-                //Execution time
-                objectOutputStream.writeObject(value.getTime());
+                out.write((value.getStartTime() + "\n").getBytes(StandardCharsets.UTF_8));
+                out.write((value.getEndTime() + "\n").getBytes(StandardCharsets.UTF_8));
             }
-            i++;
+            //Execution time
+            else {
+                out.write((value.getTime() + "\n").getBytes(StandardCharsets.UTF_8));
+            }
+            out.write("\n".getBytes(StandardCharsets.UTF_8));
         }
-        objectOutputStream.flush();
-        objectOutputStream.close();
     }
 
     /**
-      reads tasks from the stream to the current task list.
+     * reads tasks from the stream to the current task list.
      */
 
     public static void read(AbstractTaskList tasks, InputStream in) throws IOException, ClassNotFoundException {
-        ObjectInputStream objectInputStream = new ObjectInputStream(in);
+        in.skip(skipBytes);
+        byte[] bytes = in.readAllBytes();
+        String allSymbols = new String(bytes, StandardCharsets.UTF_8);
+        String[] splitedallSymbols = allSymbols.split("\n");
+        for (String value: splitedallSymbols) {
+            String title = "";
 
-        Iterable<Task> taskIterable = (Iterable<Task>) objectInputStream.readObject();
-        objectInputStream.close();
-        for (Task value : taskIterable) {
-            tasks.add(value);
         }
     }
 
     /**
-      writes tasks from the list to the file.
+     * writes tasks from the list to the file.
      */
     public static void writeBinary(AbstractTaskList tasks, File file) throws IOException {
-
-
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
-        for (Task value : tasks) {
-            //The number of tasks:
-            int i = 0;
-            objectOutputStream.writeInt(i);
-            //The length of the name
-            objectOutputStream.writeInt(value.getTitle().length());
-            //name
-
-            objectOutputStream.write(value.getTitle().getBytes());
-            //Activity: 0/1
-            if (value.isActive()) {
-                objectOutputStream.writeInt(1);
-            } else {
-                objectOutputStream.writeInt(0);
-            }
-            //Repetition interval
-            objectOutputStream.writeObject(value.getRepeatInterval());
-
-            if (value.isRepeated()) {
-                //Start time
-                //End time
-                objectOutputStream.writeObject(value.getStartTime());
-                objectOutputStream.writeObject(value.getEndTime());
-            } else {
-                //Execution time
-                objectOutputStream.writeObject(value.getTime());
-            }
-            i++;
-        }
-        objectOutputStream.flush();
-        objectOutputStream.close();
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        write(tasks, fileOutputStream);
     }
 
     /**
-     reads tasks from the file to the task list.
+     * reads tasks from the file to the task list.
      */
 
     public static void readBinary(AbstractTaskList tasks, File file) throws IOException, ClassNotFoundException {
-        ObjectInputStream objectInputStream = new ObjectInputStream( new FileInputStream(file));
-
-        Iterable<Task> taskIterable = (Iterable<Task>) objectInputStream.readObject();
-        objectInputStream.close();
-        for (Task value : taskIterable) {
-            tasks.add(value);
-        }
+        FileInputStream fileInputStream = new FileInputStream(file);
+        read(tasks, fileInputStream);
     }
 }
