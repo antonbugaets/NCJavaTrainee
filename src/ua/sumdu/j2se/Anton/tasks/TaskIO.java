@@ -77,7 +77,8 @@ public class TaskIO {
 
             //create task
             if (interval == null) {
-                value = new Task(title, LocalDateTime.ofInstant(Instant.ofEpochSecond(dataInputStream.readLong()), ZoneId.systemDefault()));
+                value = new Task(title,
+                        LocalDateTime.ofInstant(Instant.ofEpochSecond(dataInputStream.readLong()), ZoneId.systemDefault()));
             } else {
 
                 value = new Task(title,

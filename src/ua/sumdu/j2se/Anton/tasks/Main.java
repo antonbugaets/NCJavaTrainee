@@ -40,9 +40,9 @@ public class Main {
         AbstractTaskList taskListRead = ListTypes.createTaskList(ListTypes.types.LINKED);
 
         TaskIO.readBinary(taskListRead, fileTest);
-        System.out.println("Лист из которого записываем Таски в байтовый файл: ");
+        System.out.println("\n*Лист из которого записываем Таски в байтовый файл: *");
         System.out.println(taskList);
-        System.out.println("Лист в который считываем Таски из байтового файла: ");
+        System.out.println("\n*Лист в который считываем Таски из байтового файла: *");
         System.out.println(taskListRead);
     }
 }
