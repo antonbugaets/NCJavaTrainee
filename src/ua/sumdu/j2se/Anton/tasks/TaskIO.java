@@ -74,11 +74,11 @@ public class TaskIO {
             LocalDateTime endTime = null;
             LocalDateTime time = null;
             if (interval == null) {
-                time = LocalDateTime.ofEpochSecond(dataInputStream.readLong(), 0, (ZoneOffset) ZoneId.systemDefault());
+                time = LocalDateTime.ofInstant(Instant.ofEpochSecond(dataInputStream.readLong()), ZoneId.systemDefault());
                 value = new Task(title, time);
             } else {
-                startTime = LocalDateTime.ofEpochSecond(dataInputStream.readLong(), 0, (ZoneOffset) ZoneId.systemDefault());
-                endTime = LocalDateTime.ofEpochSecond(dataInputStream.readLong(), 0, (ZoneOffset) ZoneId.systemDefault());
+                startTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(dataInputStream.readLong()), ZoneId.systemDefault());
+                endTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(dataInputStream.readLong()), ZoneId.systemDefault());
                 value = new Task(title, startTime, endTime, interval);
             }
             value.setActive(activity);
