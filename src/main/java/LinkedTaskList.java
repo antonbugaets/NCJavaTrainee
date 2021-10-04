@@ -1,4 +1,3 @@
-package ua.sumdu.j2se.Anton.tasks;
 
 import java.util.Iterator;
 import java.util.Objects;

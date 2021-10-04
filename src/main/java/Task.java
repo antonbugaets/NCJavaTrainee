@@ -1,5 +1,3 @@
-package ua.sumdu.j2se.Anton.tasks;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.Period;

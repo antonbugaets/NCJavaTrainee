@@ -1,4 +1,3 @@
-package ua.sumdu.j2se.Anton.tasks;
 
 public class ListTypes {
     public enum types {

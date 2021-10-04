@@ -1,10 +1,9 @@
-package ua.sumdu.j2se.Anton.tasks;
+
 
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.Period;
 import java.util.*;
-import java.util.logging.Handler;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 

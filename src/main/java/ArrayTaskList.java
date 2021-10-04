@@ -1,8 +1,8 @@
-package ua.sumdu.j2se.Anton.tasks;
 
-import java.util.*;
-import java.util.function.Consumer;
-import java.util.stream.Stream;
+
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Objects;
 
 public class ArrayTaskList extends AbstractTaskList {
     private Task[] tasks = new Task[]{};

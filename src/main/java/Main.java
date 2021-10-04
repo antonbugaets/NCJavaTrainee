@@ -1,11 +1,10 @@
-package ua.sumdu.j2se.Anton.tasks;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
+
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.Period;
-import java.util.List;
 
 public class Main {
     public static void printListWithPreviousNNext(AbstractTaskList linkedTaskList) {
