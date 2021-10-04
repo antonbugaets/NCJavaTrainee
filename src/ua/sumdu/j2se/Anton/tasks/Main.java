@@ -31,20 +31,18 @@ public class Main {
         Task nonrepetableTask1 = new Task("titleNon", LocalDateTime.of(2021, Month.AUGUST, 1, 14, 15));
 
         AbstractTaskList taskList = ListTypes.createTaskList(ListTypes.types.LINKED);
+        taskList.add(repetableTask1, nonrepetableTask1);
 
-       // taskList.add(repetableTask1, nonrepetableTask1);
 
-        taskList.add(nonrepetableTask1);
-        taskList.add(repetableTask1);
-
-      //  System.out.println(taskList);
         File fileTest = new File("test.txt");
 
-        TaskIO.writeBinary(taskList,  fileTest);
+        TaskIO.writeBinary(taskList, fileTest);
         AbstractTaskList taskListRead = ListTypes.createTaskList(ListTypes.types.LINKED);
 
         TaskIO.readBinary(taskListRead, fileTest);
-
+        System.out.println("Лист из которого записываем Таски в байтовый файл: ");
+        System.out.println(taskList);
+        System.out.println("Лист в который считываем Таски из байтового файла: ");
         System.out.println(taskListRead);
     }
 }
