@@ -33,15 +33,18 @@ public class Main {
         taskList.add(repetableTask1, nonrepetableTask1);
 
 
-        File fileTest = new File("test.txt");
+        File fileTest = new File("testText.txt");
 
-        TaskIO.writeBinary(taskList, fileTest);
+        TaskIO.writeText(taskList, fileTest);
+
+
         AbstractTaskList taskListRead = ListTypes.createTaskList(ListTypes.types.LINKED);
 
-        TaskIO.readBinary(taskListRead, fileTest);
-        System.out.println("\n*Лист из которого записываем Таски в байтовый файл: *");
+        TaskIO.readText(taskListRead, fileTest);
+        System.out.println("\n*Лист из которого записываем Таски в текстовый файл: *");
         System.out.println(taskList);
-        System.out.println("\n*Лист в который считываем Таски из байтового файла: *");
+        System.out.println("\n*Лист в который считываем Таски из текстового файла: *");
         System.out.println(taskListRead);
+
     }
 }
