@@ -32,13 +32,19 @@ public class Main {
 
         AbstractTaskList taskList = ListTypes.createTaskList(ListTypes.types.LINKED);
 
-        taskList.add(repetableTask1, nonrepetableTask1);
+       // taskList.add(repetableTask1, nonrepetableTask1);
+
+        taskList.add(nonrepetableTask1);
+        taskList.add(repetableTask1);
 
       //  System.out.println(taskList);
         File fileTest = new File("test.txt");
 
         TaskIO.writeBinary(taskList,  fileTest);
+        AbstractTaskList taskListRead = ListTypes.createTaskList(ListTypes.types.LINKED);
 
-        TaskIO.readBinary(taskList, fileTest);
+        TaskIO.readBinary(taskListRead, fileTest);
+
+        System.out.println(taskListRead);
     }
 }
