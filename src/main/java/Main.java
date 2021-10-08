@@ -10,11 +10,15 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        //  new Emulator().startApplication();
+        Emulator emulator = new Emulator();
+
 
         Task repetableTask1 = new Task("testtasik", LocalDateTime.of(2021, Month.AUGUST, 3, 14, 15), LocalDateTime.of(2021, Month.AUGUST, 29, 14, 15), Period.ofDays(5));
         Task nonrepetableTask1 = new Task("titleNon", LocalDateTime.of(2021, Month.AUGUST, 1, 14, 15));
+        emulator.taskList.add(repetableTask1, nonrepetableTask1);
 
+        emulator.startApplication();
+/*
         AbstractTaskList taskList = ListTypes.createTaskList(ListTypes.types.LINKED);
         taskList.add(repetableTask1, nonrepetableTask1);
 
@@ -28,6 +32,8 @@ public class Main {
         System.out.println(taskList);
         System.out.println("\n*Лист в который считываем Таски из текстового файла: *");
         System.out.println(taskListRead);
+
+         */
 
     }
 }

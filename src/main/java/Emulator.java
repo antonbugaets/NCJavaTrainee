@@ -42,10 +42,12 @@ public class Emulator {
                 //TODO create new Task and add in taskList
                 break;
             case ("2"):
-                //TODO change param  of Task(i) in taskList
+                changeParamInTasK();
+                //TODO change param of Task(i) in taskList
                 break;
             case ("3"):
-                //TODO delete Task in taskList
+                deleteTaskOrClearList();
+                //TODO delete Task in taskList or clear TaskList
                 break;
             case ("4"):
                 //TODO view calendar
@@ -63,6 +65,118 @@ public class Emulator {
         }
     }
 
+    private void changeParamInTasK() {
+        System.out.println(taskList);
+        if (taskList.size() == 0) {
+            System.out.println("TaskList is empty, please, add Task's");
+            todoMenu();
+        }
+        System.out.println("\nEnter index of changing Task in TaskList:\n");
+        int index = -1;
+        try {
+            index = Integer.parseInt(scanner.nextLine());
+        } catch (Exception e) {
+            System.out.println("Enter the correct data according to the instructions");
+            changeParamInTasK();
+        }
+        if (index < 0 || index > taskList.size() - 1) {
+            System.out.println("There no Task in TaskList with this index \nEnter the correct data according to the instructions");
+            changeParamInTasK();
+        }
+        changeParamInTaskIndex(index);
+    }
+
+    private void changeParamInTaskIndex(int index) {
+        this.value = taskList.getTask(index);
+        System.out.println(value);
+
+        System.out.println("\nSelect changing data in Task" + value.getTitle() + ":");
+        System.out.println("1 - change Title");
+        System.out.println("2 - change activity");
+        System.out.println("3 - change Times");
+        System.out.println("0 - step Back to Menu\n");
+        switch (scanner.nextLine()) {
+            case ("0"):
+                todoMenu();
+                break;
+            case ("1"):
+                setTitleInTask();
+                changeParamInTaskIndex(index);
+                break;
+            case ("2"):
+                setActivityInTask();
+                changeParamInTaskIndex(index);
+                break;
+            case ("3"):
+                setTimesInTask();
+                changeParamInTaskIndex(index);
+                break;
+            default:
+                System.out.println("Enter the correct data according to the instructions");
+                changeParamInTaskIndex(index);
+        }
+    }
+
+    private void deleteTaskOrClearList() {
+
+        if (taskList.size() == 0) {
+            System.out.println("There no Task's in Task list");
+            todoMenu();
+        }
+        System.out.println(taskList);
+        System.out.println("\n1 - Delete Task in TaskList");
+        System.out.println("2 - Clear Task in TaskList");
+        System.out.println("0 - Step Back\n");
+
+        switch (scanner.nextLine()) {
+            case ("0"):
+                todoMenu();
+                break;
+            case ("1"):
+                deleteTaskI();
+                break;
+            case ("2"):
+                for (Task value : taskList) {
+                    taskList.remove(value);
+                    System.out.println("TaskList cleared");
+                    todoMenu();
+                    break;
+                }
+            default:
+                System.out.println("Enter the correct data according to the instructions");
+                deleteTaskOrClearList();
+                break;
+        }
+    }
+
+    private void deleteTaskI() {
+        System.out.println("Insert index of Task in TaskList:\n");
+        int index = 0;
+
+        try {
+            index = Integer.parseInt(scanner.nextLine());
+        } catch (Exception e) {
+            System.out.println("Enter the correct data according to the instructions");
+            deleteTaskI();
+        }
+        if (index < 0 || index > taskList.size() - 1) {
+            System.out.println("There no Task in TaskList with this index \nEnter the correct data according to the instructions");
+            deleteTaskI();
+        }
+        for (int i = 0; i < taskList.size(); i++) {
+            if (i == index) {
+
+                if (taskList.remove(taskList.getTask(i))) {
+                    System.out.println("Task removed");
+                    todoMenu();
+                } else {
+                    System.out.println("Task isn't removed");
+                    deleteTaskI();
+                }
+            }
+        }
+
+    }
 
     private void saveAndExit() {
         try {
@@ -73,17 +187,28 @@ public class Emulator {
         return;
     }
 
-    public void addNewTask() {
+    private void addNewTask() {
+        value = new Task("null", LocalDateTime.MIN);
         System.out.println("It's Task-create menu:");
-        setTitleInTask();
-        System.out.println("Tittle was ser correctly");
-        setTimesInTask();
-        System.out.println("Times was set correctly");
-        setActivityInTask();
-        System.out.println("Activity was set correctly");
-        taskList.add(value);
-        System.out.println("Task '" + value.getTitle() + "' was added correctly ");
-        todoMenu();
+        System.out.println("1 - Start Task adding");
+        System.out.println("0 - Step Back\n");
+        switch (scanner.nextLine()) {
+            case ("1"):
+                setTitleInTask();
+                System.out.println("Tittle was ser correctly");
+                setTimesInTask();
+                System.out.println("Times was set correctly");
+                setActivityInTask();
+                System.out.println("Activity was set correctly");
+                taskList.add(value);
+                System.out.println("Task '" + value.getTitle() + "' was added correctly ");
+                todoMenu();
+            case ("0"):
+                todoMenu();
+            default:
+                System.out.println("Enter the correct data according to the instructions");
+                addNewTask();
+        }
     }
 
     private void setTitleInTask() {
