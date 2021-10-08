@@ -1,5 +1,10 @@
 
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
 import java.io.*;
 import java.time.*;
 
@@ -119,106 +124,40 @@ public class TaskIO {
     /**
      * writes tasks from the list to the stream in the JSON format.
      */
-    public static void write(AbstractTaskList tasks, Writer out) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(out);
-        //tasks size:
-        bufferedWriter.write(tasks.size() + "\n");
-        for (Task value : tasks) {
-            //task length
-            bufferedWriter.write("\n" + value.getTitle().length() + "\n");
-            //task title
-            bufferedWriter.write(value.getTitle() + "\n");
-            //task activity
-            bufferedWriter.write(value.isActive() ? "1\n" : "0\n");
-            //Repetition interval
-            bufferedWriter.write(value.getRepeatInterval() == null
-                    ? null + "\n"
-                    : value.getRepeatInterval().getDays() * 86400 + "\n");
-            //Start & end time
-            if (value.isRepeated()) {
-                bufferedWriter.write(ZonedDateTime.of(value.getStartTime(), ZoneId.systemDefault()).toEpochSecond() + "\n");
-                bufferedWriter.write(ZonedDateTime.of(value.getEndTime(), ZoneId.systemDefault()).toEpochSecond() + "\n");
-            }
-            //Execution time
-            else {
-                bufferedWriter.write(ZonedDateTime.of(value.getTime(), ZoneId.systemDefault()).toEpochSecond() + "\n");
-            }
+    private static void write(AbstractTaskList tasks, Writer out) throws IOException {
+        Gson gson = new Gson();
+        JsonWriter jsonWriter = new JsonWriter(out);
+        jsonWriter.setIndent(" ");
+        jsonWriter.beginArray();
+        for (Task value :
+                tasks) {
+            gson.toJson(value, Task.class, jsonWriter);
         }
-        bufferedWriter.flush();
-        bufferedWriter.close();
+        jsonWriter.endArray();
+        jsonWriter.close();
     }
 
-    /**
-     * writes tasks to the file in JSON format
-     */
-    public static void writeText(AbstractTaskList tasks, File file) throws IOException {
-        FileWriter fileWriter = new FileWriter(file);
-        write(tasks, fileWriter);
-    }
-
-    /**
-     * reads tasks from the stream to the list
-     */
-    public static void read(AbstractTaskList tasks, Reader in) throws IOException {
-
-
-        BufferedReader bufferedReader = new BufferedReader(in);
-        int numOfTasks = Integer.parseInt(bufferedReader.readLine());
-
-        for (int i = 0; i < numOfTasks; i++) {
-            Task value;
-            //skip two values
-            String skiped1 = bufferedReader.readLine();
-            String skiped2 = bufferedReader.readLine();
-            //read title
-            String title = bufferedReader.readLine();
-            //read activity
-            String isActive = bufferedReader.readLine();
-            //set activity in boolean
-            boolean activity = false;
-            if (isActive.equals("1")) {
-                activity = true;
-            }
-            //initialize interval:
-            Period intervalInPeriod = null;
-            //read interval in String:
-            String intervalInStr = bufferedReader.readLine();
-            //Parse interval to seconds:
-            long intervalInSec = 0;
-            if (!intervalInStr.equals("null")) {
-                intervalInSec = Long.parseLong(intervalInStr);
-            }
-            //set interval in Period
-            if (intervalInSec > 0) {
-                intervalInPeriod = Period.ofDays((int) (intervalInSec / 86400));
-            }
-            //create task
-            if (intervalInPeriod == null) {
-                value = new Task(title,
-                        LocalDateTime.ofInstant(Instant.ofEpochSecond(Long.parseLong(bufferedReader.readLine())), ZoneId.systemDefault()));
-            } else {
-
-                value = new Task(title,
-                        LocalDateTime.ofInstant(Instant.ofEpochSecond(Long.parseLong(bufferedReader.readLine())), ZoneId.systemDefault()),
-                        LocalDateTime.ofInstant(Instant.ofEpochSecond(Long.parseLong(bufferedReader.readLine())), ZoneId.systemDefault()),
-                        intervalInPeriod);
-            }
-            //set activity in task
-            value.setActive(activity);
-            //add task in list
+    private static void read(AbstractTaskList tasks, Reader in) throws IOException {
+        Gson gson = new Gson();
+        JsonReader jsonReader = new JsonReader(in);
+        jsonReader.beginArray();
+        while (jsonReader.hasNext()) {
+            Task value = gson.fromJson(jsonReader, Task.class);
             tasks.add(value);
         }
-        bufferedReader.close();
+        jsonReader.endArray();
+        jsonReader.close();
     }
 
+    public static void writeText(AbstractTaskList tasks, File file) throws IOException {
+        try (FileWriter fileWriter = new FileWriter(file)) {
+            write(tasks, fileWriter);
+        }
+    }
 
-    /**
-     * reads tasks from the file.
-     */
     public static void readText(AbstractTaskList tasks, File file) throws IOException {
-        FileReader fileReader = new FileReader(file);
-        read(tasks, fileReader);
-
+        try (FileReader fileReader = new FileReader(file)) {
+            read(tasks, fileReader);
+        }
     }
-
 }
