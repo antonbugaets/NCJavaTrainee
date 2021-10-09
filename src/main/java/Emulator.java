@@ -4,8 +4,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.ZoneId;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class Emulator {
     AbstractTaskList taskList = ListTypes.createTaskList(ListTypes.types.LINKED);
@@ -38,21 +37,27 @@ public class Emulator {
 
         switch (scanner.nextLine()) {
             case ("1"):
+                // create new Task and add in taskList
                 addNewTask();
-                //TODO create new Task and add in taskList
+
                 break;
             case ("2"):
+                //change param of Task(i) in taskList
                 changeParamInTasK();
-                //TODO change param of Task(i) in taskList
+
                 break;
             case ("3"):
+                //delete Task in taskList or clear TaskList
                 deleteTaskOrClearList();
-                //TODO delete Task in taskList or clear TaskList
+
                 break;
             case ("4"):
-                //TODO view calendar
+                //view calendar
+                viewCalendar(taskList);
+
                 break;
             case ("5"):
+
                 System.out.println(taskList);
                 todoMenu();
                 break;
@@ -63,6 +68,31 @@ public class Emulator {
                 System.out.println("Enter the correct data according to the instructions");
                 todoMenu();
         }
+    }
+
+    private void viewCalendar(AbstractTaskList taskList) {
+        LocalDateTime start = null;
+        LocalDateTime end = null;
+        System.out.println("Enter a Start time in seconds:\n");
+        try {
+            start = LocalDateTime.ofInstant(Instant.ofEpochSecond(Long.parseLong(scanner.nextLine())), ZoneId.systemDefault());
+        } catch (Exception e) {
+            System.out.println("Enter the correct data of Start Time according to the instructions");
+            viewCalendar(taskList);
+        }
+        System.out.println("Enter the End time in seconds:\n");
+        try {
+            end = LocalDateTime.ofInstant(Instant.ofEpochSecond(Long.parseLong(scanner.nextLine())), ZoneId.systemDefault());
+        } catch (Exception e) {
+            System.out.println("Enter the correct data of End Time according to the instructions");
+            viewCalendar(taskList);
+        }
+        SortedMap<LocalDateTime, Set<Task>> sortedMap = Tasks.calendar(taskList, start, end);
+
+        for (Map.Entry<LocalDateTime, Set<Task>> entry : sortedMap.entrySet()) {
+            System.out.println("\nTIME: " + entry.getKey() + ". \nTASK: " + entry.getValue());
+        }
+        todoMenu();
     }
 
     private void changeParamInTasK() {
