@@ -71,8 +71,8 @@ public class Emulator {
     }
 
     private void viewCalendar(AbstractTaskList taskList) {
-        LocalDateTime start = null;
-        LocalDateTime end = null;
+        LocalDateTime start = LocalDateTime.MIN;
+        LocalDateTime end = LocalDateTime.MIN;
         System.out.println("Enter a Start time in seconds:\n");
         try {
             start = LocalDateTime.ofInstant(Instant.ofEpochSecond(Long.parseLong(scanner.nextLine())), ZoneId.systemDefault());
