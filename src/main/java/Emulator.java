@@ -17,7 +17,10 @@ public class Emulator {
     public void startApplication() throws IOException, ClassNotFoundException {
         System.out.print("\n0 - Start application\n");
         if (scanner.nextLine().equals("0")) {
-            TaskIO.readBinary(taskList, file);
+            TaskIO.readText(taskList, file);
+            if (taskList.size() > 0) {
+                viewNotifications();
+            }
             todoMenu();
         } else {
             System.out.println("Enter the correct data according to the instructions");
@@ -25,7 +28,7 @@ public class Emulator {
         }
     }
 
-    public void todoMenu() {
+    private void todoMenu() {
         System.out.print("\nIt's Main menu\nChoose action: ");
         System.out.print("\n1 - Create new Task");
         System.out.print("\n2 - Change parameters in existing Tasks");
@@ -68,6 +71,20 @@ public class Emulator {
                 System.out.println("Enter the correct data according to the instructions");
                 todoMenu();
         }
+    }
+
+    private void viewNotifications() {
+        TreeMap<LocalDateTime, String> localDateTimeTaskTreeMap = new TreeMap<>();
+        for (Task value : taskList) {
+            LocalDateTime localDateTimeKey = value.nextTimeAfter(LocalDateTime.now());
+            if (localDateTimeKey != null) {
+                localDateTimeTaskTreeMap.put(localDateTimeKey, value.getTitle());
+            }
+        }
+        for (Map.Entry<LocalDateTime, String> entry : localDateTimeTaskTreeMap.entrySet()) {
+            System.out.println("Next " + entry.getValue() + " Execution " + entry.getKey());
+        }
+
     }
 
     private void viewCalendar(AbstractTaskList taskList) {
@@ -144,6 +161,7 @@ public class Emulator {
             default:
                 System.out.println("Enter the correct data according to the instructions");
                 changeParamInTaskIndex(index);
+                break;
         }
     }
 
@@ -210,7 +228,7 @@ public class Emulator {
 
     private void saveAndExit() {
         try {
-            TaskIO.writeBinary(taskList, file);
+            TaskIO.writeText(taskList, file);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -233,11 +251,14 @@ public class Emulator {
                 taskList.add(value);
                 System.out.println("Task '" + value.getTitle() + "' was added correctly ");
                 todoMenu();
+                break;
             case ("0"):
                 todoMenu();
+                break;
             default:
                 System.out.println("Enter the correct data according to the instructions");
                 addNewTask();
+                break;
         }
     }
 
@@ -265,6 +286,7 @@ public class Emulator {
             default:
                 System.out.println("Please, Enter the correct data according to the instructions");
                 setTimesInTask();
+                break;
         }
     }
 
@@ -324,6 +346,7 @@ public class Emulator {
             default:
                 System.out.println("Enter the correct data of Activity according to the instructions");
                 setActivityInTask();
+                break;
         }
     }
 }
