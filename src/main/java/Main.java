@@ -5,19 +5,24 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args)  {
         Emulator emulator = new Emulator();
 
 
         Task repetableTask1 = new Task("testtasik", LocalDateTime.of(2021, Month.AUGUST, 3, 14, 15), LocalDateTime.of(2022, Month.AUGUST, 29, 14, 15), Period.ofDays(5));
         Task nonrepetableTask1 = new Task("titleNon", LocalDateTime.of(2022, Month.AUGUST, 1, 14, 15));
-  //      emulator.taskList.add(repetableTask1, nonrepetableTask1);
+        //      emulator.taskList.add(repetableTask1, nonrepetableTask1);
 
-        emulator.startApplication();
+        try {
+            emulator.startApplication();
+        } catch (IOException e) {
+            emulator.logger.error("Exception in main met", e);
+        }
 /*
         AbstractTaskList taskList = ListTypes.createTaskList(ListTypes.types.LINKED);
         taskList.add(repetableTask1, nonrepetableTask1);
@@ -34,7 +39,6 @@ public class Main {
         System.out.println(taskListRead);
 
          */
-
     }
 }
 
