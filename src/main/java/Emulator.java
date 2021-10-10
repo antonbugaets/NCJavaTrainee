@@ -170,10 +170,11 @@ public class Emulator {
         if (taskList.size() == 0) {
             System.out.println("There no Task's in Task list");
             todoMenu();
+            return;
         }
         System.out.println(taskList);
         System.out.println("\n1 - Delete Task in TaskList");
-        System.out.println("2 - Clear Task in TaskList");
+        System.out.println("2 - Clear TaskList");
         System.out.println("0 - Step Back\n");
 
         switch (scanner.nextLine()) {
@@ -208,7 +209,7 @@ public class Emulator {
             deleteTaskI();
         }
         if (index < 0 || index > taskList.size() - 1) {
-            System.out.println("There no Task in TaskList with this index \nEnter the correct data according to the instructions");
+            System.out.println("There no Task in TaskList with this index \nEnter the correct index");
             deleteTaskI();
         }
         for (int i = 0; i < taskList.size(); i++) {
