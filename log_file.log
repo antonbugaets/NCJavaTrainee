@@ -1,0 +1,55 @@
+2021-10-11 00:40 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 00:40 INFO  Emulator:97 - User: newli views notifications
+2021-10-11 00:40 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 00:40 INFO  Emulator:265 - User: newli starts metaddNewTask()
+2021-10-11 00:40 INFO  Emulator:286 - User: newli starts metaddParamsInNewTask()
+2021-10-11 00:40 INFO  Emulator:305 - User: newli starts metsetTitleInTask()
+2021-10-11 00:40 INFO  Emulator:319 - User: newli starts metsetTimesInTask()
+2021-10-11 00:40 INFO  Emulator:359 - User: newli starts metsetTimesRepeatableTask()
+2021-10-11 00:40 INFO  Emulator:373 - User: newli starts metsetStartRepeatable()
+2021-10-11 00:40 ERROR Emulator:383 - Exception in met setStartRepeatable()
+java.time.format.DateTimeParseException: Text 'sdd' could not be parsed at index 0
+	at java.base/java.time.format.DateTimeFormatter.parseResolved0(DateTimeFormatter.java:2046)
+	at java.base/java.time.format.DateTimeFormatter.parse(DateTimeFormatter.java:1948)
+	at java.base/java.time.LocalDateTime.parse(LocalDateTime.java:492)
+	at Emulator.setStartRepeatable(Emulator.java:381)
+	at Emulator.setTimesRepeatableTask(Emulator.java:360)
+	at Emulator.setTimesInTask(Emulator.java:329)
+	at Emulator.addParamsInNewTask(Emulator.java:292)
+	at Emulator.addNewTask(Emulator.java:272)
+	at Emulator.todoMenu(Emulator.java:48)
+	at Emulator.startApplication(Emulator.java:27)
+	at Main.main(Main.java:22)
+2021-10-11 00:40 INFO  Emulator:373 - User: newli starts metsetStartRepeatable()
+2021-10-11 00:40 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 00:41 INFO  Emulator:72 - User: newli views a Task List
+2021-10-11 00:41 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 00:41 INFO  Emulator:254 - User: newli starts metsaveAndExit()
+2021-10-11 00:41 INFO  Emulator:257 - User: newli logged out of the application
+2021-10-11 00:41 INFO  Emulator:77 - User: newli saves Data
+2021-10-11 00:41 INFO  Emulator:49 - User: newli adds a new Task
+2021-10-11 00:49 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 00:49 INFO  Emulator:95 - User: newli views notifications
+2021-10-11 00:49 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 00:49 INFO  Emulator:69 - User: newli views a Task List
+2021-10-11 00:49 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 00:49 INFO  Emulator:59 - User: newli deletes Task
+2021-10-11 00:49 INFO  Emulator:189 - User: newli starts metdeleteTaskOrClearList()
+2021-10-11 00:49 INFO  Emulator:189 - User: newli starts metdeleteTaskOrClearList()
+2021-10-11 00:50 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 00:50 INFO  Emulator:69 - User: newli views a Task List
+2021-10-11 00:50 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 00:50 INFO  Emulator:74 - User: newli saves Data
+2021-10-11 00:50 INFO  Emulator:252 - User: newli starts metsaveAndExit()
+2021-10-11 00:50 INFO  Emulator:255 - User: newli logged out of the application
+2021-10-11 00:50 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 00:50 INFO  Emulator:74 - User: newli saves Data
+2021-10-11 00:50 INFO  Emulator:252 - User: newli starts metsaveAndExit()
+2021-10-11 00:50 INFO  Emulator:255 - User: newli logged out of the application
+2021-10-11 00:53 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 00:53 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 00:53 INFO  Emulator:69 - User: newli views a Task List
+2021-10-11 00:53 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 00:53 INFO  Emulator:74 - User: newli saves Data
+2021-10-11 00:53 INFO  Emulator:252 - User: newli starts metsaveAndExit()
+2021-10-11 00:53 INFO  Emulator:255 - User: newli logged out of the application
