@@ -53,3 +53,29 @@ java.time.format.DateTimeParseException: Text 'sdd' could not be parsed at index
 2021-10-11 00:53 INFO  Emulator:74 - User: newli saves Data
 2021-10-11 00:53 INFO  Emulator:252 - User: newli starts metsaveAndExit()
 2021-10-11 00:53 INFO  Emulator:255 - User: newli logged out of the application
+2021-10-11 15:34 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 15:34 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:34 INFO  Emulator:48 - User: newli adds a new Task
+2021-10-11 15:34 INFO  Emulator:263 - User: newli starts metaddNewTask()
+2021-10-11 15:34 INFO  Emulator:284 - User: newli starts metaddParamsInNewTask()
+2021-10-11 15:34 INFO  Emulator:303 - User: newli starts metsetTitleInTask()
+2021-10-11 15:34 INFO  Emulator:317 - User: newli starts metsetTimesInTask()
+2021-10-11 15:34 INFO  Emulator:340 - User: newli starts metsetTimesNonRepeatableTask()
+2021-10-11 15:37 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 15:37 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:37 INFO  Emulator:48 - User: newli adds a new Task
+2021-10-11 15:37 INFO  Emulator:263 - User: newli starts metaddNewTask()
+2021-10-11 15:37 INFO  Emulator:284 - User: newli starts metaddParamsInNewTask()
+2021-10-11 15:37 INFO  Emulator:308 - User: newli starts metsetTitleInTask()
+2021-10-11 15:37 INFO  Emulator:322 - User: newli starts metsetTimesInTask()
+2021-10-11 15:37 INFO  Emulator:345 - User: newli starts metsetTimesNonRepeatableTask()
+2021-10-11 15:37 INFO  Emulator:438 - User: newli starts metsetActivityInTask()
+2021-10-11 15:37 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:37 INFO  Emulator:59 - User: newli deletes Task
+2021-10-11 15:37 INFO  Emulator:189 - User: newli starts metdeleteTaskOrClearList()
+2021-10-11 15:37 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:37 INFO  Emulator:69 - User: newli views a Task List
+2021-10-11 15:37 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:37 INFO  Emulator:74 - User: newli saves Data
+2021-10-11 15:37 INFO  Emulator:252 - User: newli starts metsaveAndExit()
+2021-10-11 15:37 INFO  Emulator:255 - User: newli logged out of the application

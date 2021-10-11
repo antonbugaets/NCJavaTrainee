@@ -288,7 +288,12 @@ public class Emulator {
         }
         System.out.println("Title was set correctly");
         setTimesInTask();
-        if (value.getStartTime().isEqual(LocalDateTime.MIN) || value.getEndTime().isEqual(LocalDateTime.MIN) || value.getRepeatInterval().isZero()) {
+        if (value.getStartTime().isEqual(LocalDateTime.MIN)) {
+            if(value.isRepeated()){
+                if(value.getEndTime().isEqual(LocalDateTime.MIN) || value.getRepeatInterval().isZero()){
+                    return;
+                }
+            }
             return;
         }
         System.out.println("Times was set correctly");
