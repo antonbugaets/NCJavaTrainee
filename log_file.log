@@ -79,3 +79,131 @@ java.time.format.DateTimeParseException: Text 'sdd' could not be parsed at index
 2021-10-11 15:37 INFO  Emulator:74 - User: newli saves Data
 2021-10-11 15:37 INFO  Emulator:252 - User: newli starts metsaveAndExit()
 2021-10-11 15:37 INFO  Emulator:255 - User: newli logged out of the application
+2021-10-11 15:39 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 15:39 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:39 INFO  Emulator:48 - User: newli adds a new Task
+2021-10-11 15:39 INFO  Emulator:263 - User: newli starts metaddNewTask()
+2021-10-11 15:39 INFO  Emulator:284 - User: newli starts metaddParamsInNewTask()
+2021-10-11 15:39 INFO  Emulator:308 - User: newli starts metsetTitleInTask()
+2021-10-11 15:39 INFO  Emulator:322 - User: newli starts metsetTimesInTask()
+2021-10-11 15:39 INFO  Emulator:362 - User: newli starts metsetTimesRepeatableTask()
+2021-10-11 15:39 INFO  Emulator:376 - User: newli starts metsetStartRepeatable()
+2021-10-11 15:39 INFO  Emulator:393 - User: newli starts metsetEndRepeatable()
+2021-10-11 15:39 INFO  Emulator:415 - User: newli starts metsetIntervalRepeatable()
+2021-10-11 15:39 INFO  Emulator:438 - User: newli starts metsetActivityInTask()
+2021-10-11 15:39 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:39 INFO  Emulator:69 - User: newli views a Task List
+2021-10-11 15:39 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:39 INFO  Emulator:74 - User: newli saves Data
+2021-10-11 15:39 INFO  Emulator:252 - User: newli starts metsaveAndExit()
+2021-10-11 15:39 INFO  Emulator:255 - User: newli logged out of the application
+2021-10-11 15:44 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 15:44 INFO  Emulator:95 - User: newli views notifications
+2021-10-11 15:44 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:44 INFO  Emulator:69 - User: newli views a Task List
+2021-10-11 15:44 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:44 INFO  Emulator:59 - User: newli deletes Task
+2021-10-11 15:44 INFO  Emulator:189 - User: newli starts metdeleteTaskOrClearList()
+2021-10-11 15:44 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:44 INFO  Emulator:69 - User: newli views a Task List
+2021-10-11 15:44 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:44 INFO  Emulator:74 - User: newli saves Data
+2021-10-11 15:44 INFO  Emulator:252 - User: newli starts metsaveAndExit()
+2021-10-11 15:44 INFO  Emulator:255 - User: newli logged out of the application
+2021-10-11 15:44 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 15:44 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:44 INFO  Emulator:69 - User: newli views a Task List
+2021-10-11 15:44 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:44 INFO  Emulator:53 - User: newli changes params in existing Task
+2021-10-11 15:44 INFO  Emulator:132 - User: newli starts metchangeParamInTasK()
+2021-10-11 15:44 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:44 INFO  Emulator:74 - User: newli saves Data
+2021-10-11 15:44 INFO  Emulator:252 - User: newli starts metsaveAndExit()
+2021-10-11 15:44 INFO  Emulator:255 - User: newli logged out of the application
+2021-10-11 15:45 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 15:46 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:46 INFO  Emulator:48 - User: newli adds a new Task
+2021-10-11 15:46 INFO  Emulator:263 - User: newli starts metaddNewTask()
+2021-10-11 15:46 INFO  Emulator:284 - User: newli starts metaddParamsInNewTask()
+2021-10-11 15:46 INFO  Emulator:308 - User: newli starts metsetTitleInTask()
+2021-10-11 15:46 INFO  Emulator:322 - User: newli starts metsetTimesInTask()
+2021-10-11 15:46 INFO  Emulator:345 - User: newli starts metsetTimesNonRepeatableTask()
+2021-10-11 15:46 ERROR Emulator:355 - Exception in met setTimesNonRepeatableTask()
+java.time.format.DateTimeParseException: Text 'https://github.com/AntonSamSTU/NCJavaTrainee/blob/6cf1e305092bd3...' could not be parsed at index 0
+	at java.base/java.time.format.DateTimeFormatter.parseResolved0(DateTimeFormatter.java:2046)
+	at java.base/java.time.format.DateTimeFormatter.parse(DateTimeFormatter.java:1948)
+	at java.base/java.time.LocalDateTime.parse(LocalDateTime.java:492)
+	at Emulator.setTimesNonRepeatableTask(Emulator.java:353)
+	at Emulator.setTimesInTask(Emulator.java:329)
+	at Emulator.addParamsInNewTask(Emulator.java:290)
+	at Emulator.addNewTask(Emulator.java:270)
+	at Emulator.todoMenu(Emulator.java:49)
+	at Emulator.startApplication(Emulator.java:27)
+	at Main.main(Main.java:22)
+2021-10-11 15:46 INFO  Emulator:345 - User: newli starts metsetTimesNonRepeatableTask()
+2021-10-11 15:46 ERROR Emulator:355 - Exception in met setTimesNonRepeatableTask()
+java.time.format.DateTimeParseException: Text '2' could not be parsed at index 0
+	at java.base/java.time.format.DateTimeFormatter.parseResolved0(DateTimeFormatter.java:2046)
+	at java.base/java.time.format.DateTimeFormatter.parse(DateTimeFormatter.java:1948)
+	at java.base/java.time.LocalDateTime.parse(LocalDateTime.java:492)
+	at Emulator.setTimesNonRepeatableTask(Emulator.java:353)
+	at Emulator.setTimesNonRepeatableTask(Emulator.java:357)
+	at Emulator.setTimesInTask(Emulator.java:329)
+	at Emulator.addParamsInNewTask(Emulator.java:290)
+	at Emulator.addNewTask(Emulator.java:270)
+	at Emulator.todoMenu(Emulator.java:49)
+	at Emulator.startApplication(Emulator.java:27)
+	at Main.main(Main.java:22)
+2021-10-11 15:46 INFO  Emulator:345 - User: newli starts metsetTimesNonRepeatableTask()
+2021-10-11 15:46 INFO  Emulator:438 - User: newli starts metsetActivityInTask()
+2021-10-11 15:46 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:46 INFO  Emulator:69 - User: newli views a Task List
+2021-10-11 15:46 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:46 INFO  Emulator:74 - User: newli saves Data
+2021-10-11 15:46 INFO  Emulator:252 - User: newli starts metsaveAndExit()
+2021-10-11 15:46 INFO  Emulator:255 - User: newli logged out of the application
+2021-10-11 15:46 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 15:46 INFO  Emulator:95 - User: newli views notifications
+2021-10-11 15:46 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:47 INFO  Emulator:53 - User: newli changes params in existing Task
+2021-10-11 15:47 INFO  Emulator:132 - User: newli starts metchangeParamInTasK()
+2021-10-11 15:47 INFO  Emulator:156 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 15:47 INFO  Emulator:438 - User: newli starts metsetActivityInTask()
+2021-10-11 15:47 INFO  Emulator:156 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 15:47 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:47 INFO  Emulator:69 - User: newli views a Task List
+2021-10-11 15:47 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:47 INFO  Emulator:74 - User: newli saves Data
+2021-10-11 15:47 INFO  Emulator:252 - User: newli starts metsaveAndExit()
+2021-10-11 15:47 INFO  Emulator:255 - User: newli logged out of the application
+2021-10-11 15:47 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 15:47 INFO  Emulator:95 - User: newli views notifications
+2021-10-11 15:47 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:47 INFO  Emulator:69 - User: newli views a Task List
+2021-10-11 15:47 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:47 INFO  Emulator:53 - User: newli changes params in existing Task
+2021-10-11 15:47 INFO  Emulator:132 - User: newli starts metchangeParamInTasK()
+2021-10-11 15:48 INFO  Emulator:156 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 15:48 INFO  Emulator:322 - User: newli starts metsetTimesInTask()
+2021-10-11 15:48 INFO  Emulator:345 - User: newli starts metsetTimesNonRepeatableTask()
+2021-10-11 15:48 ERROR Emulator:355 - Exception in met setTimesNonRepeatableTask()
+java.time.format.DateTimeParseException: Text '2021-8-15 14:12' could not be parsed at index 5
+	at java.base/java.time.format.DateTimeFormatter.parseResolved0(DateTimeFormatter.java:2046)
+	at java.base/java.time.format.DateTimeFormatter.parse(DateTimeFormatter.java:1948)
+	at java.base/java.time.LocalDateTime.parse(LocalDateTime.java:492)
+	at Emulator.setTimesNonRepeatableTask(Emulator.java:353)
+	at Emulator.setTimesInTask(Emulator.java:329)
+	at Emulator.changeParamInTaskIndex(Emulator.java:178)
+	at Emulator.changeParamInTasK(Emulator.java:152)
+	at Emulator.todoMenu(Emulator.java:54)
+	at Emulator.todoMenu(Emulator.java:71)
+	at Emulator.startApplication(Emulator.java:27)
+	at Main.main(Main.java:22)
+2021-10-11 15:48 INFO  Emulator:345 - User: newli starts metsetTimesNonRepeatableTask()
+2021-10-11 15:48 INFO  Emulator:156 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 15:48 INFO  Emulator:308 - User: newli starts metsetTitleInTask()
+2021-10-11 15:48 INFO  Emulator:156 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 15:48 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 15:48 INFO  Emulator:74 - User: newli saves Data
+2021-10-11 15:48 INFO  Emulator:252 - User: newli starts metsaveAndExit()
+2021-10-11 15:48 INFO  Emulator:255 - User: newli logged out of the application

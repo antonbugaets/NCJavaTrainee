@@ -105,7 +105,7 @@ public class Emulator {
             System.out.println("Enter the correct data of Start Time according to the instructions");
             viewCalendar(taskList);
         }
-        System.out.println("Enter the End time in seconds:\n");
+        System.out.println("Enter the End time in Pattern \"yyyy-MM-dd HH:mm\":\n");
         try {
             end = LocalDateTime.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         } catch (Exception e) {
@@ -209,7 +209,7 @@ public class Emulator {
                     taskList.remove(taskList.getTask(i));
                 }
                 System.out.println("TaskList cleared");
-          //      todoMenu();
+                //      todoMenu();
                 break;
             default:
                 System.out.println("Enter the correct data according to the instructions");
@@ -289,8 +289,8 @@ public class Emulator {
         System.out.println("Title was set correctly");
         setTimesInTask();
         if (value.getStartTime().isEqual(LocalDateTime.MIN)) {
-            if(value.isRepeated()){
-                if(value.getEndTime().isEqual(LocalDateTime.MIN) || value.getRepeatInterval().isZero()){
+            if (value.isRepeated()) {
+                if (value.getEndTime().isEqual(LocalDateTime.MIN) || value.getRepeatInterval().isZero()) {
                     return;
                 }
             }
@@ -421,7 +421,7 @@ public class Emulator {
                 return;
             }
             Period period = Period.ofDays(Integer.parseInt(nextLine));
-            if (!value.getStartTime().plus(period).isBefore(value.getEndTime())) {
+            if (!value.getStartTime().plus(period).isBefore(value.getEndTime()) || period.isNegative()) {
                 throw new Exception();
             }
             value.setTime(value.getStartTime(), value.getEndTime(), period);
