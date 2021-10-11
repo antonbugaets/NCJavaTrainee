@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 public class Emulator {
 
     Logger logger = Logger.getLogger(Emulator.class);
-    private AbstractTaskList taskList = ListTypes.createTaskList(ListTypes.types.ARRAY);
+     AbstractTaskList taskList = ListTypes.createTaskList(ListTypes.types.ARRAY);
     private Scanner scanner = new Scanner(System.in);
     private Task value = new Task("null", LocalDateTime.MIN);
 
@@ -144,7 +144,7 @@ public class Emulator {
                     System.out.println("\nTIME: " + entry.getKey() + ". \nTASK: " + entry.getValue());
                 }
             } else {
-                System.out.println("There are no one task which next execution will be in certain Interval");
+                System.out.println("There are no one task which active & they next execution will be in certain Interval");
             }
         }
         return;
@@ -172,16 +172,23 @@ public class Emulator {
             System.out.println("There no Task in TaskList with this index \nEnter the correct data according to the instructions");
             changeParamInTasK();
         } else {
-            changeParamInTaskIndex(index);
+            changeParamInTaskIndex(taskList.getTask(index));
         }
     }
 
-    private void changeParamInTaskIndex(int index) {
+    private void changeParamInTaskIndex(Task value) {
         logger.info("User: " + System.getProperty("user.name") + " starts met" + "changeParamInTasKIndex()");
-        this.value = taskList.getTask(index);
+        this.value = value;
+
+        if (value.isRepeated() && value.getRepeatInterval().isZero()) {
+            taskList.remove(value);
+            value = new Task(value.getTitle(), value.getStartTime());
+            taskList.add(value);
+        }
         System.out.println(value);
+
         System.out.println("\nIT's Task - changing menu");
-        System.out.println("Select changing data in Task" + value.getTitle() + ":");
+        System.out.println("Select changing data in Task " + value.getTitle() + ":");
         System.out.println("1 - change Title");
         System.out.println("2 - change activity");
         System.out.println("3 - change Times");
@@ -192,22 +199,23 @@ public class Emulator {
                 break;
             case ("1"):
                 setTitleInTask();
-                changeParamInTaskIndex(index);
+                changeParamInTaskIndex(value);
                 break;
             case ("2"):
                 setActivityInTask();
-                changeParamInTaskIndex(index);
+                changeParamInTaskIndex(value);
                 break;
             case ("3"):
                 setTimesInTask();
-                changeParamInTaskIndex(index);
+                changeParamInTaskIndex(value);
                 break;
             default:
                 System.out.println("Enter the correct data according to the instructions");
-                changeParamInTaskIndex(index);
+                changeParamInTaskIndex(value);
                 break;
         }
     }
+
 
     private void deleteTaskOrClearList() {
         logger.info("User: " + System.getProperty("user.name") + " starts met" + "deleteTaskOrClearList()");
@@ -229,11 +237,12 @@ public class Emulator {
                 deleteTaskI();
                 break;
             case ("2"):
-                for (int i = 0; i < taskList.size(); i++) {
-                    taskList.remove(taskList.getTask(i));
-                }
+            try {
+                while (taskList.remove(taskList.getTask(0)));
+            }catch (Exception e) {
                 System.out.println("TaskList cleared");
-                //      todoMenu();
+            }
+
                 break;
             default:
                 System.out.println("Enter the correct data according to the instructions");
@@ -312,20 +321,19 @@ public class Emulator {
         }
         System.out.println("Title was set correctly");
         setTimesInTask();
-        if (value.getStartTime().isEqual(LocalDateTime.MIN)) {
-            if (value.isRepeated()) {
-                if (value.getEndTime().isEqual(LocalDateTime.MIN) || value.getRepeatInterval().isZero()) {
-                    return;
-                }
-            }
-            return;
-        }
-        System.out.println("Times was set correctly");
-        setActivityInTask();
-        System.out.println("Activity was set correctly");
-        taskList.add(value);
-        System.out.println("Task '" + value.getTitle() + "' was added correctly ");
 
+    if( ( value.isRepeated() && value.getRepeatInterval().isZero() ) | ( !value.isRepeated() && value.getStartTime().isEqual(LocalDateTime.MIN)))
+        {
+            taskList.remove(value);
+            value = new Task("null", LocalDateTime.MIN);
+            return;
+        } else {
+            System.out.println("Times was set correctly");
+            setActivityInTask();
+            System.out.println("Activity was set correctly");
+            taskList.add(value);
+            System.out.println("Task '" + value.getTitle() + "' was added correctly ");
+        }
     }
 
     private void setTitleInTask() {
@@ -374,16 +382,17 @@ public class Emulator {
         logger.info("User: " + System.getProperty("user.name") + " starts met" + "setTimesNonRepeatableTask()");
         System.out.println("Enter the time of execution of Pattern: \"yyyy-MM-dd HH:mm\":");
         System.out.println("0 - Back to Menu\n");
-        try {
-            String dateTime = scanner.nextLine();
-            if (dateTime.equals("0")) {
-                return;
+        String dateTime = scanner.nextLine();
+        if (dateTime.equals("0")) {
+            return;
+        } else {
+            try {
+                value.setTime(LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+            } catch (Exception e) {
+                logger.error("Exception in met " + "setTimesNonRepeatableTask()", e);
+                System.out.println("Please, Enter the correct data of Execution according to the instructions");
+                setTimesNonRepeatableTask();
             }
-            value.setTime(LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
-        } catch (Exception e) {
-            logger.error("Exception in met " + "setTimesNonRepeatableTask()", e);
-            System.out.println("Please, Enter the correct data of Execution according to the instructions");
-            setTimesNonRepeatableTask();
         }
     }
 
@@ -392,29 +401,34 @@ public class Emulator {
         setStartRepeatable();
         if (!value.isRepeated()) {
             return;
+        } else {
+            setEndRepeatable();
+            if (value.getEndTime().isEqual(LocalDateTime.MIN)) {
+                return;
+            } else {
+                setIntervalRepeatable();
+            }
+
+            //    return;
         }
-        setEndRepeatable();
-        if (value.getEndTime().isEqual(LocalDateTime.MIN)) {
-            return;
-        }
-        setIntervalRepeatable();
-        //    return;
     }
 
     private void setStartRepeatable() {
         logger.info("User: " + System.getProperty("user.name") + " starts met" + "setStartRepeatable()");
         System.out.println("Enter the  Start time of execution of Pattern: \"yyyy-MM-dd HH:mm\":\n");
         System.out.println("0 - Back to Menu");
-        try {
-            String startTime = scanner.nextLine();
-            if (startTime.equals("0")) {
-                return;
+        String startTime = scanner.nextLine();
+        if (startTime.equals("0")) {
+            return;
+        } else {
+            try {
+
+                value.setTime(LocalDateTime.parse(startTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")), LocalDateTime.MIN, Period.ZERO);
+            } catch (Exception e) {
+                logger.error("Exception in met " + "setStartRepeatable()", e);
+                System.out.println("Please, Enter the correct data of of StartTime according to the instructions");
+                setStartRepeatable();
             }
-            value.setTime(LocalDateTime.parse(startTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")), LocalDateTime.MIN, Period.ZERO);
-        } catch (Exception e) {
-            logger.error("Exception in met " + "setStartRepeatable()", e);
-            System.out.println("Please, Enter the correct data of of StartTime according to the instructions");
-            setStartRepeatable();
         }
     }
 
@@ -422,45 +436,45 @@ public class Emulator {
         logger.info("User: " + System.getProperty("user.name") + " starts met" + "setEndRepeatable()");
         System.out.println("Enter the End time of execution of Pattern: \"yyyy-MM-dd HH:mm\":");
         System.out.println("0 - Back to Menu\n");
-        try {
-            String endTimeString = scanner.nextLine();
-            if (endTimeString.equals("0")) {
-                return;
+        String endTimeString = scanner.nextLine();
+        if (endTimeString.equals("0")) {
+            return;
+        } else {
+            try {
+                LocalDateTime endTime = LocalDateTime.parse(endTimeString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+                if (value.getStartTime().isAfter(endTime) || value.getStartTime().isEqual(endTime)) {
+                    throw new Exception();
+                }
+                value.setTime(value.getStartTime(), endTime, Period.ZERO);
+            } catch (Exception e) {
+                logger.error("Exception in met " + "setEndRepeatable()", e);
+                System.out.println("Please, Enter the correct data of EndTime according to the instructions");
+                setEndRepeatable();
             }
-            LocalDateTime endTime = LocalDateTime.parse(endTimeString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-            if (value.getStartTime().isAfter(endTime) || value.getStartTime().isEqual(endTime)) {
-                throw new Exception();
-            }
-            value.setTime(value.getStartTime(), endTime, Period.ZERO);
-        } catch (Exception e) {
-            logger.error("Exception in met " + "setEndRepeatable()", e);
-            System.out.println("Please, Enter the correct data of EndTime according to the instructions");
-            setEndRepeatable();
         }
-
     }
 
     private void setIntervalRepeatable() {
         logger.info("User: " + System.getProperty("user.name") + " starts met" + "setIntervalRepeatable()");
         System.out.println("Enter the Interval of execution in Days");
         System.out.println("0 - Back to Menu\n");
-        try {
-            String nextLine = scanner.nextLine();
-            if (nextLine.equals("0")) {
-                return;
+        String nextLine = scanner.nextLine();
+        if (nextLine.equals("0")) {
+            return;
+        } else {
+            try {
+                Period period = Period.ofDays(Integer.parseInt(nextLine));
+                if (!value.getStartTime().plus(period).isBefore(value.getEndTime()) || period.isNegative()) {
+                    throw new Exception();
+                }
+                value.setTime(value.getStartTime(), value.getEndTime(), period);
+            } catch (Exception e) {
+                logger.error("Exception in met " + "setIntervalRepeatable() ", e);
+                System.out.println("Please, Enter the correct data Interval according to the instructions");
+                setIntervalRepeatable();
             }
-            Period period = Period.ofDays(Integer.parseInt(nextLine));
-            if (!value.getStartTime().plus(period).isBefore(value.getEndTime()) || period.isNegative()) {
-                throw new Exception();
-            }
-            value.setTime(value.getStartTime(), value.getEndTime(), period);
-        } catch (Exception e) {
-            logger.error("Exception in met " + "setIntervalRepeatable() ", e);
-            System.out.println("Please, Enter the correct data Interval according to the instructions");
-            setIntervalRepeatable();
+
         }
-
-
     }
 
     private void setActivityInTask() {
@@ -468,10 +482,7 @@ public class Emulator {
         System.out.println("Is this Task Active?");
         System.out.println("1 - Yes, Active");
         System.out.println("2 - No, non Active");
-        System.out.println("0 - Back to Menu\n");
         switch (scanner.nextLine()) {
-            case ("0"):
-                break;
             case ("1"):
                 value.setActive(true);
                 break;
