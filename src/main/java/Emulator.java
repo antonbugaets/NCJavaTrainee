@@ -63,7 +63,8 @@ public class Emulator {
             case ("4"):
                 //view calendar
                 logger.info("User: " + System.getProperty("user.name") + " views a calendar of Tasks");
-                viewCalendar(taskList);
+                viewCalendar(taskList, LocalDateTime.MIN);
+                todoMenu();
                 break;
             case ("5"):
                 logger.info("User: " + System.getProperty("user.name") + " views a Task List");
@@ -95,37 +96,59 @@ public class Emulator {
         logger.info("User: " + System.getProperty("user.name") + " views notifications");
     }
 
-    private void viewCalendar(AbstractTaskList taskList) {
-        LocalDateTime start = LocalDateTime.MIN;
+    private void viewCalendar(AbstractTaskList taskList, LocalDateTime start) {
+        logger.info("User: " + System.getProperty("user.name") + " starts met"
+                + " viewCalendar(AbstractTaskList taskList, LocalDateTime start)");
+        //    start = LocalDateTime.MIN;
         LocalDateTime end = LocalDateTime.MIN;
-        System.out.println("Enter a Start time in Pattern \"yyyy-MM-dd HH:mm\":\n");
-        try {
-            start = LocalDateTime.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        } catch (Exception e) {
-            System.out.println("Enter the correct data of Start Time according to the instructions");
-            viewCalendar(taskList);
-        }
-        System.out.println("Enter the End time in Pattern \"yyyy-MM-dd HH:mm\":\n");
-        try {
-            end = LocalDateTime.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        } catch (Exception e) {
-            System.out.println("Enter the correct data of End Time according to the instructions");
-            viewCalendar(taskList);
-        }
-        if (!start.isBefore(end)) {
+        if (start.isEqual(LocalDateTime.MIN)) {
+            System.out.println("Enter a Start time in Pattern \"yyyy-MM-dd HH:mm\":\n");
             try {
-                throw new Exception();
+                start = LocalDateTime.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+                viewCalendar(taskList, start);
+                return;
             } catch (Exception e) {
-                System.out.println("Start time >= End time in Calendar interval, please enter the correct data. ");
-                viewCalendar(taskList);
+                System.out.println("Enter the correct data of Start Time according to the instructions");
+                viewCalendar(taskList, LocalDateTime.MIN);
+                return;
+            }
+        } else {
+            System.out.println("Enter the End time in Pattern \"yyyy-MM-dd HH:mm\":\n");
+            try {
+                end = LocalDateTime.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            } catch (Exception e) {
+                System.out.println("Enter the correct data of End Time according to the instructions");
+                viewCalendar(taskList, start);
+                return;
+            }
+            if (start.isAfter(end) || start.isEqual(end)) {
+                try {
+                    throw new Exception();
+                } catch (Exception e) {
+                    System.out.println("Start time >= End time in Calendar interval, please enter the correct data. ");
+                    viewCalendar(taskList, LocalDateTime.MIN);
+                    return;
+                }
+            }
+            //TODO debug
+
+            AbstractTaskList activeTasks = ListTypes.createTaskList(ListTypes.types.ARRAY);
+            for (Task value : taskList) {
+                if (value.isActive()) {
+                    activeTasks.add(value);
+                }
+            }
+            SortedMap<LocalDateTime, Set<Task>> sortedMap = Tasks.calendar(activeTasks, start, end);
+            if (sortedMap.size() > 0) {
+                for (Map.Entry<LocalDateTime, Set<Task>> entry : sortedMap.entrySet()) {
+                    System.out.println("\nTIME: " + entry.getKey() + ". \nTASK: " + entry.getValue());
+                }
+            } else {
+                System.out.println("There are no one task which next execution will be in certain Interval");
             }
         }
-        SortedMap<LocalDateTime, Set<Task>> sortedMap = Tasks.calendar(taskList, start, end);
-
-        for (Map.Entry<LocalDateTime, Set<Task>> entry : sortedMap.entrySet()) {
-            System.out.println("\nTIME: " + entry.getKey() + ". \nTASK: " + entry.getValue());
-        }
-        todoMenu();
+        return;
+        //  todoMenu();
     }
 
     private void changeParamInTasK() {
@@ -148,15 +171,16 @@ public class Emulator {
         if (index < 0 || index > taskList.size() - 1) {
             System.out.println("There no Task in TaskList with this index \nEnter the correct data according to the instructions");
             changeParamInTasK();
+        } else {
+            changeParamInTaskIndex(index);
         }
-        changeParamInTaskIndex(index);
     }
 
     private void changeParamInTaskIndex(int index) {
         logger.info("User: " + System.getProperty("user.name") + " starts met" + "changeParamInTasKIndex()");
         this.value = taskList.getTask(index);
         System.out.println(value);
-        System.out.println("IT's Task - changing menu");
+        System.out.println("\nIT's Task - changing menu");
         System.out.println("Select changing data in Task" + value.getTitle() + ":");
         System.out.println("1 - change Title");
         System.out.println("2 - change activity");
@@ -307,13 +331,18 @@ public class Emulator {
     private void setTitleInTask() {
         logger.info("User: " + System.getProperty("user.name") + " starts met" + "setTitleInTask()");
         System.out.println("Insert title of the Task:");
-        try {
-            String nextLine = scanner.nextLine();
-            value.setTitle(nextLine);
-        } catch (Exception e) {
-            logger.error("Exception in met " + "setTitleInTask()", e);
-            System.out.println("Enter the correct data of Title according to the instructions");
-            setTitleInTask();
+        System.out.println("0 - Back to Menu");
+        String nextLine = scanner.nextLine();
+        if (nextLine.equals("0")) {
+            return;
+        } else {
+            try {
+                value.setTitle(nextLine);
+            } catch (Exception e) {
+                logger.error("Exception in met " + "setTitleInTask()", e);
+                System.out.println("Enter the correct data of Title according to the instructions");
+                setTitleInTask();
+            }
         }
     }
 

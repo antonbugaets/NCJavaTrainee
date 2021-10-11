@@ -207,3 +207,272 @@ java.time.format.DateTimeParseException: Text '2021-8-15 14:12' could not be par
 2021-10-11 15:48 INFO  Emulator:74 - User: newli saves Data
 2021-10-11 15:48 INFO  Emulator:252 - User: newli starts metsaveAndExit()
 2021-10-11 15:48 INFO  Emulator:255 - User: newli logged out of the application
+2021-10-11 20:41 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 20:41 INFO  Emulator:95 - User: newli views notifications
+2021-10-11 20:41 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 20:41 INFO  Emulator:69 - User: newli views a Task List
+2021-10-11 20:41 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 20:41 INFO  Emulator:65 - User: newli views a calendar of Tasks
+2021-10-11 20:43 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 20:43 INFO  Emulator:74 - User: newli saves Data
+2021-10-11 20:43 INFO  Emulator:253 - User: newli starts metsaveAndExit()
+2021-10-11 20:43 INFO  Emulator:256 - User: newli logged out of the application
+2021-10-11 20:43 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 20:43 INFO  Emulator:74 - User: newli saves Data
+2021-10-11 20:43 INFO  Emulator:253 - User: newli starts metsaveAndExit()
+2021-10-11 20:43 INFO  Emulator:256 - User: newli logged out of the application
+2021-10-11 20:43 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 20:43 INFO  Emulator:74 - User: newli saves Data
+2021-10-11 20:43 INFO  Emulator:253 - User: newli starts metsaveAndExit()
+2021-10-11 20:43 INFO  Emulator:256 - User: newli logged out of the application
+2021-10-11 20:47 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 20:47 INFO  Emulator:95 - User: newli views notifications
+2021-10-11 20:47 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:04 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 21:04 INFO  Emulator:95 - User: newli views notifications
+2021-10-11 21:04 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:05 INFO  Emulator:69 - User: newli views a Task List
+2021-10-11 21:05 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:05 INFO  Emulator:53 - User: newli changes params in existing Task
+2021-10-11 21:05 INFO  Emulator:146 - User: newli starts metchangeParamInTasK()
+2021-10-11 21:05 INFO  Emulator:170 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 21:05 INFO  Emulator:452 - User: newli starts metsetActivityInTask()
+2021-10-11 21:05 INFO  Emulator:170 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 21:05 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:05 INFO  Emulator:69 - User: newli views a Task List
+2021-10-11 21:05 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:05 INFO  Emulator:74 - User: newli saves Data
+2021-10-11 21:05 INFO  Emulator:266 - User: newli starts metsaveAndExit()
+2021-10-11 21:05 INFO  Emulator:269 - User: newli logged out of the application
+2021-10-11 21:05 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 21:05 INFO  Emulator:95 - User: newli views notifications
+2021-10-11 21:05 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:05 INFO  Emulator:69 - User: newli views a Task List
+2021-10-11 21:05 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:05 INFO  Emulator:65 - User: newli views a calendar of Tasks
+2021-10-11 21:13 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 21:13 INFO  Emulator:95 - User: newli views notifications
+2021-10-11 21:13 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:13 INFO  Emulator:69 - User: newli views a Task List
+2021-10-11 21:13 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:13 INFO  Emulator:65 - User: newli views a calendar of Tasks
+2021-10-11 21:20 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 21:20 INFO  Emulator:95 - User: newli views notifications
+2021-10-11 21:20 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:20 INFO  Emulator:65 - User: newli views a calendar of Tasks
+2021-10-11 21:23 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 21:23 INFO  Emulator:95 - User: newli views notifications
+2021-10-11 21:23 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:23 INFO  Emulator:65 - User: newli views a calendar of Tasks
+2021-10-11 21:23 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:23 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:24 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:24 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:24 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:24 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:26 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 21:26 INFO  Emulator:95 - User: newli views notifications
+2021-10-11 21:26 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:26 INFO  Emulator:65 - User: newli views a calendar of Tasks
+2021-10-11 21:26 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:26 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:27 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:27 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:27 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:27 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:27 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:27 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:27 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:27 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:27 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:27 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:30 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 21:30 INFO  Emulator:95 - User: newli views notifications
+2021-10-11 21:30 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:30 INFO  Emulator:69 - User: newli views a Task List
+2021-10-11 21:30 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:30 INFO  Emulator:53 - User: newli changes params in existing Task
+2021-10-11 21:30 INFO  Emulator:149 - User: newli starts metchangeParamInTasK()
+2021-10-11 21:30 INFO  Emulator:173 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 21:30 INFO  Emulator:339 - User: newli starts metsetTimesInTask()
+2021-10-11 21:30 INFO  Emulator:362 - User: newli starts metsetTimesNonRepeatableTask()
+2021-10-11 21:30 INFO  Emulator:173 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 21:31 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:31 INFO  Emulator:74 - User: newli saves Data
+2021-10-11 21:31 INFO  Emulator:269 - User: newli starts metsaveAndExit()
+2021-10-11 21:31 INFO  Emulator:272 - User: newli logged out of the application
+2021-10-11 21:31 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 21:31 INFO  Emulator:95 - User: newli views notifications
+2021-10-11 21:31 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:31 INFO  Emulator:65 - User: newli views a calendar of Tasks
+2021-10-11 21:31 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:31 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:31 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:31 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:32 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:32 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:41 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 21:41 INFO  Emulator:95 - User: newli views notifications
+2021-10-11 21:41 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:41 INFO  Emulator:65 - User: newli views a calendar of Tasks
+2021-10-11 21:41 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:41 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:41 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:41 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:41 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:41 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:42 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:44 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 21:44 INFO  Emulator:95 - User: newli views notifications
+2021-10-11 21:44 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:44 INFO  Emulator:65 - User: newli views a calendar of Tasks
+2021-10-11 21:44 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:44 INFO  Emulator:99 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:45 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 21:45 INFO  Emulator:96 - User: newli views notifications
+2021-10-11 21:45 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:45 INFO  Emulator:65 - User: newli views a calendar of Tasks
+2021-10-11 21:45 INFO  Emulator:100 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:45 INFO  Emulator:100 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:45 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:46 INFO  Emulator:75 - User: newli saves Data
+2021-10-11 21:46 INFO  Emulator:275 - User: newli starts metsaveAndExit()
+2021-10-11 21:46 INFO  Emulator:278 - User: newli logged out of the application
+2021-10-11 21:46 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 21:46 INFO  Emulator:96 - User: newli views notifications
+2021-10-11 21:46 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:46 INFO  Emulator:65 - User: newli views a calendar of Tasks
+2021-10-11 21:46 INFO  Emulator:100 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:46 INFO  Emulator:100 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:46 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:46 INFO  Emulator:65 - User: newli views a calendar of Tasks
+2021-10-11 21:46 INFO  Emulator:100 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:46 INFO  Emulator:100 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:46 INFO  Emulator:100 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:46 INFO  Emulator:100 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:47 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:47 INFO  Emulator:75 - User: newli saves Data
+2021-10-11 21:47 INFO  Emulator:275 - User: newli starts metsaveAndExit()
+2021-10-11 21:47 INFO  Emulator:278 - User: newli logged out of the application
+2021-10-11 21:47 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 21:47 INFO  Emulator:96 - User: newli views notifications
+2021-10-11 21:47 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:47 INFO  Emulator:65 - User: newli views a calendar of Tasks
+2021-10-11 21:47 INFO  Emulator:100 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:47 INFO  Emulator:100 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:47 INFO  Emulator:100 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:47 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:47 INFO  Emulator:70 - User: newli views a Task List
+2021-10-11 21:47 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:47 INFO  Emulator:65 - User: newli views a calendar of Tasks
+2021-10-11 21:47 INFO  Emulator:100 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:47 INFO  Emulator:100 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:47 INFO  Emulator:100 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:48 INFO  Emulator:100 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:48 INFO  Emulator:100 - User: newli starts met viewCalendar(AbstractTaskList taskList, LocalDateTime start)
+2021-10-11 21:48 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:48 INFO  Emulator:75 - User: newli saves Data
+2021-10-11 21:48 INFO  Emulator:275 - User: newli starts metsaveAndExit()
+2021-10-11 21:48 INFO  Emulator:278 - User: newli logged out of the application
+2021-10-11 21:51 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 21:51 INFO  Emulator:96 - User: newli views notifications
+2021-10-11 21:51 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:51 INFO  Emulator:53 - User: newli changes params in existing Task
+2021-10-11 21:51 INFO  Emulator:155 - User: newli starts metchangeParamInTasK()
+2021-10-11 21:51 INFO  Emulator:155 - User: newli starts metchangeParamInTasK()
+2021-10-11 21:51 ERROR Emulator:167 - Exception in met changeParamInTasK()
+java.lang.NumberFormatException: For input string: "p"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.base/java.lang.Integer.parseInt(Integer.java:652)
+	at java.base/java.lang.Integer.parseInt(Integer.java:770)
+	at Emulator.changeParamInTasK(Emulator.java:165)
+	at Emulator.changeParamInTasK(Emulator.java:173)
+	at Emulator.todoMenu(Emulator.java:54)
+	at Emulator.startApplication(Emulator.java:27)
+	at Main.main(Main.java:22)
+2021-10-11 21:51 INFO  Emulator:155 - User: newli starts metchangeParamInTasK()
+2021-10-11 21:51 INFO  Emulator:180 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 21:51 INFO  Emulator:155 - User: newli starts metchangeParamInTasK()
+2021-10-11 21:51 INFO  Emulator:180 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 21:51 INFO  Emulator:332 - User: newli starts metsetTitleInTask()
+2021-10-11 21:51 INFO  Emulator:180 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 21:51 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:52 INFO  Emulator:75 - User: newli saves Data
+2021-10-11 21:52 INFO  Emulator:276 - User: newli starts metsaveAndExit()
+2021-10-11 21:52 INFO  Emulator:279 - User: newli logged out of the application
+2021-10-11 21:52 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 21:52 INFO  Emulator:96 - User: newli views notifications
+2021-10-11 21:52 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:52 INFO  Emulator:53 - User: newli changes params in existing Task
+2021-10-11 21:52 INFO  Emulator:155 - User: newli starts metchangeParamInTasK()
+2021-10-11 21:52 INFO  Emulator:155 - User: newli starts metchangeParamInTasK()
+2021-10-11 21:52 INFO  Emulator:180 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 21:52 INFO  Emulator:332 - User: newli starts metsetTitleInTask()
+2021-10-11 21:52 INFO  Emulator:180 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 21:52 INFO  Emulator:346 - User: newli starts metsetTimesInTask()
+2021-10-11 21:52 INFO  Emulator:386 - User: newli starts metsetTimesRepeatableTask()
+2021-10-11 21:52 INFO  Emulator:400 - User: newli starts metsetStartRepeatable()
+2021-10-11 21:52 INFO  Emulator:417 - User: newli starts metsetEndRepeatable()
+2021-10-11 21:52 INFO  Emulator:439 - User: newli starts metsetIntervalRepeatable()
+2021-10-11 21:52 ERROR Emulator:453 - Exception in met setIntervalRepeatable() 
+java.lang.Exception
+	at Emulator.setIntervalRepeatable(Emulator.java:449)
+	at Emulator.setTimesRepeatableTask(Emulator.java:395)
+	at Emulator.setTimesInTask(Emulator.java:356)
+	at Emulator.changeParamInTaskIndex(Emulator.java:202)
+	at Emulator.changeParamInTaskIndex(Emulator.java:195)
+	at Emulator.changeParamInTasK(Emulator.java:175)
+	at Emulator.changeParamInTasK(Emulator.java:173)
+	at Emulator.todoMenu(Emulator.java:54)
+	at Emulator.startApplication(Emulator.java:27)
+	at Main.main(Main.java:22)
+2021-10-11 21:52 INFO  Emulator:439 - User: newli starts metsetIntervalRepeatable()
+2021-10-11 21:53 INFO  Emulator:180 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 21:53 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:53 INFO  Emulator:75 - User: newli saves Data
+2021-10-11 21:53 INFO  Emulator:276 - User: newli starts metsaveAndExit()
+2021-10-11 21:53 INFO  Emulator:279 - User: newli logged out of the application
+2021-10-11 21:53 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 21:53 INFO  Emulator:96 - User: newli views notifications
+2021-10-11 21:53 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:53 INFO  Emulator:70 - User: newli views a Task List
+2021-10-11 21:53 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:53 INFO  Emulator:53 - User: newli changes params in existing Task
+2021-10-11 21:53 INFO  Emulator:155 - User: newli starts metchangeParamInTasK()
+2021-10-11 21:53 INFO  Emulator:180 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 21:53 INFO  Emulator:462 - User: newli starts metsetActivityInTask()
+2021-10-11 21:53 INFO  Emulator:180 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 21:54 INFO  Emulator:346 - User: newli starts metsetTimesInTask()
+2021-10-11 21:54 INFO  Emulator:180 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 21:54 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:54 INFO  Emulator:75 - User: newli saves Data
+2021-10-11 21:54 INFO  Emulator:276 - User: newli starts metsaveAndExit()
+2021-10-11 21:54 INFO  Emulator:279 - User: newli logged out of the application
+2021-10-11 21:56 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 21:56 INFO  Emulator:96 - User: newli views notifications
+2021-10-11 21:56 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:56 INFO  Emulator:53 - User: newli changes params in existing Task
+2021-10-11 21:56 INFO  Emulator:155 - User: newli starts metchangeParamInTasK()
+2021-10-11 21:56 INFO  Emulator:180 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 21:56 INFO  Emulator:332 - User: newli starts metsetTitleInTask()
+2021-10-11 21:56 INFO  Emulator:180 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 21:56 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:56 INFO  Emulator:75 - User: newli saves Data
+2021-10-11 21:56 INFO  Emulator:276 - User: newli starts metsaveAndExit()
+2021-10-11 21:56 INFO  Emulator:279 - User: newli logged out of the application
+2021-10-11 21:57 INFO  Emulator:21 - User: newli logged into the application & saves data
+2021-10-11 21:57 INFO  Emulator:96 - User: newli views notifications
+2021-10-11 21:57 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:57 INFO  Emulator:53 - User: newli changes params in existing Task
+2021-10-11 21:57 INFO  Emulator:155 - User: newli starts metchangeParamInTasK()
+2021-10-11 21:57 INFO  Emulator:180 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 21:57 INFO  Emulator:332 - User: newli starts metsetTitleInTask()
+2021-10-11 21:57 INFO  Emulator:180 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 21:57 INFO  Emulator:467 - User: newli starts metsetActivityInTask()
+2021-10-11 21:57 INFO  Emulator:180 - User: newli starts metchangeParamInTasKIndex()
+2021-10-11 21:57 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:57 INFO  Emulator:70 - User: newli views a Task List
+2021-10-11 21:57 INFO  Emulator:35 - User: newli opens main Menu
+2021-10-11 21:57 INFO  Emulator:75 - User: newli saves Data
+2021-10-11 21:57 INFO  Emulator:276 - User: newli starts metsaveAndExit()
+2021-10-11 21:57 INFO  Emulator:279 - User: newli logged out of the application

@@ -23,6 +23,10 @@ public class Main {
         } catch (IOException e) {
             emulator.logger.error("Exception in main met", e);
         }
+
+
+
+
 /*
         AbstractTaskList taskList = ListTypes.createTaskList(ListTypes.types.LINKED);
         taskList.add(repetableTask1, nonrepetableTask1);
