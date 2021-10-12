@@ -130,8 +130,6 @@ public class Emulator {
                     return;
                 }
             }
-            //TODO debug
-
             AbstractTaskList activeTasks = ListTypes.createTaskList(ListTypes.types.ARRAY);
             for (Task value : taskList) {
                 if (value.isActive()) {
